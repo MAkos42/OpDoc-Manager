@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using OpDoc_Manager.Models;
 using System.Diagnostics;
+using OpDoc_Manager.Models;
 
 namespace OpDoc_Manager.Controllers
 {

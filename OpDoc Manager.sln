@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.34003.232
+VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpDoc Manager", "OpDoc Manager.csproj", "{F5E54451-3EFE-481D-B205-5FE5E96800BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpDoc Manager", "OpDoc Manager.csproj", "{7E0BEE0E-B0CF-403E-9708-16CB28E1E849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F5E54451-3EFE-481D-B205-5FE5E96800BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5E54451-3EFE-481D-B205-5FE5E96800BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5E54451-3EFE-481D-B205-5FE5E96800BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5E54451-3EFE-481D-B205-5FE5E96800BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0BEE0E-B0CF-403E-9708-16CB28E1E849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0BEE0E-B0CF-403E-9708-16CB28E1E849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0BEE0E-B0CF-403E-9708-16CB28E1E849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0BEE0E-B0CF-403E-9708-16CB28E1E849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {41295DD9-752C-481F-861C-4BE338F29155}
+		SolutionGuid = {70D14809-838A-4E5A-8BCF-076E77AD01FB}
 	EndGlobalSection
 EndGlobal
