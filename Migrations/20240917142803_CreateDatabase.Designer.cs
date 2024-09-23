@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OpDoc_Manager.Data;
@@ -11,9 +12,11 @@ using OpDoc_Manager.Data;
 namespace OpDoc_Manager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240917142803_CreateDatabase")]
+    partial class CreateDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,56 +36,6 @@ namespace OpDoc_Manager.Migrations
                     b.ToTable("Forklifts");
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("LeaseeCompany")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaseeContact")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaseeName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaseeOrgUnit")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaseePosition")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaserCompany")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaserContact")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaserName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaserOrgUnit")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LeaserPosition")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ForkliftLeaseInformation");
-                });
-
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+OperatorInformation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -100,7 +53,7 @@ namespace OpDoc_Manager.Migrations
                     b.Property<bool>("IsDifferentOperator")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("OperationArea")
+                    b.Property<string>("OperationLocation")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -207,13 +160,6 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", b =>
-                {
-                    b.HasOne("OpDoc_Manager.Models.Forklift+OperatorInformation", null)
-                        .WithOne("LeaseInformation")
-                        .HasForeignKey("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", "Id");
-                });
-
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+OperatorInformation", b =>
                 {
                     b.HasOne("OpDoc_Manager.Models.Forklift", null)
@@ -227,11 +173,6 @@ namespace OpDoc_Manager.Migrations
                 {
                     b.Navigation("Operator")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+OperatorInformation", b =>
-                {
-                    b.Navigation("LeaseInformation");
                 });
 #pragma warning restore 612, 618
         }

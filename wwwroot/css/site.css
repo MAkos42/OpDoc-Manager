@@ -20,3 +20,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.navbar {
+    padding-bottom: 0;
+    margin-bottom: .5rem;
+}
+
+.highlight-on-hover:hover {
+    background: #f0f00010;
+    background-clip: padding-box;
+}
+
+.hide-input::-webkit-inner-spin-button,
+.hide-input::-webkit-inner-spin-button{
+    -webkit-appearance:none;
+    margin: 0;
+}
+
+.unified-label-width{
+    width:160px;
+}

@@ -1,6 +1,6 @@
-﻿using static OpDoc_Manager.Model.Entity.Forklift;
+﻿using static OpDoc_Manager.Models.Forklift;
 
-namespace OpDoc_Manager.Model.Entity
+namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {

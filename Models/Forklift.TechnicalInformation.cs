@@ -1,4 +1,4 @@
-﻿namespace OpDoc_Manager.Model.Entity
+﻿namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {

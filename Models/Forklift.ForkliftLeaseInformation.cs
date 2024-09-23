@@ -1,20 +1,34 @@
-﻿
-namespace OpDoc_Manager.Model.Entity
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
         public class ForkliftLeaseInformation
         {
-            public string LeaserOrganisation { get; set; }
+            [ForeignKey("OperatorInformation")]
+            public Guid Id { get; set; }
+            [Required]
+            public string LeaserCompany { get; set; }
+            [Required]
             public string LeaserName { get; set; }
-            public string LeaserOrgUnit {  get; set; }
+            [Required]
+            public string LeaserOrgUnit { get; set; }
+            [Required]
             public string LeaserPosition { get; set; }
-            public string LeaserContact { get; set;}
+            [Required]
+            public string LeaserContact { get; set; }
 
-            public string LeaseeOrganisation { get; set; }
+            [Required]
+            public string LeaseeCompany { get; set; }
+            [Required]
             public string LeaseeName { get; set; }
+            [Required]
             public string LeaseeOrgUnit { get; set; }
+            [Required]
             public string LeaseePosition { get; set; }
+            [Required]
             public string LeaseeContact { get; set; }
         }
     }

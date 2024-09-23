@@ -31,8 +31,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+    name: "EditRoute",
+    pattern: "{controller}/{id}/{action}",
+    defaults: new { controller = "View", action = "edit" });
+
+    endpoints.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/");
+});
 
 app.Run();

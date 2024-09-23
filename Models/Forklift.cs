@@ -1,18 +1,15 @@
-﻿
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace OpDoc_Manager.Model.Entity
+namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
         [Key]
-        public string UniqueId { get; set; }
+        public Guid UniqueId { get; set; }
         //Owned
         public GeneralInformation General { get; set; }
 
-        //public OperationalInformation Operation { get; set; }
+        public OperatorInformation Operator { get; set; }
 
         //public UserManualInformation UserManual { get; set; }
 

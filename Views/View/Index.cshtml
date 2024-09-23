@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Forklift Editor";
+}
+@using OpDoc_Manager.Models
+@model Forklift
+
+@using (Html.BeginForm("Save", "Editor", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-3">
+        @Html.LabelFor(forklift=>forklift.General.Name, new {@class = "form-label"})
+        @Html.TextBoxFor(forklift=>forklift.General.Name, new {@class = "form-control", @readonly="readonly"})
+        @Html.ValidationMessageFor(forklift=>forklift.General.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+}
