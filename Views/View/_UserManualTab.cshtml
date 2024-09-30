@@ -53,37 +53,6 @@
                 @Html.ValidationMessageFor(um=>um.ManualWebsite, "", new { @class = "text-danger" })
             </div>
 
-
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-
-                    const dropdown = document.getElementById('UserManual_IsOnlineManual');
-                    const div = document.getElementById('WebsiteInput');
-
-                    console.log(dropdown.value);
-
-
-                    dropdown.addEventListener('change', function () {
-
-                        if (dropdown.value === 'true') {
-                            div.style.display = 'flex';
-                        }
-                        else {
-                            div.style.display = 'none';
-                        }
-
-                    });
-
-                    if (dropdown.value === 'true') {
-                        div.style.display = 'flex';
-                    }
-                    else {
-                        div.style.display = 'none';
-                    }
-                });
-            </script>
-
-
             <div class="row">
 
                 <div class="col-md-6">
@@ -246,9 +215,9 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', function () {
-            const checkbox = document.getElementById('Operator_IsDifferentOperator');
-            const supplierDropdown = document.getElementById('UserManual_SupplierType');
-            const recipientDropdown = document.getElementById('UserManual_RecipientType');
+            const checkbox = document.getElementById('IsDifferentOperator');
+            const supplierDropdown = document.getElementById('SupplierType');
+            const recipientDropdown = document.getElementById('RecipientType');
             const manualReturnDiv = document.getElementById(('ForkliftManualReturn'));
 
             let prevSupplierType = 'MANUFACTURER';
@@ -288,6 +257,32 @@
             supplierDropdown.disabled = checkbox.checked;
             recipientDropdown.disabled = checkbox.checked;
         });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const dropdown = document.getElementById('IsOnlineManual');
+            const div = document.getElementById('WebsiteInput');
+
+            dropdown.addEventListener('change', function () {
+
+                if (dropdown.value === 'true') {
+                    div.style.display = 'flex';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+
+            });
+
+            if (dropdown.value === 'true') {
+                div.style.display = 'flex';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        });
+
     </script>
 
 

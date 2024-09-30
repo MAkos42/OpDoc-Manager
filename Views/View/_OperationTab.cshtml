@@ -73,7 +73,7 @@
                 <div class="card-header">
                     Emelőgép ügyintéző
                 </div>
-                <div class="card-body" id="Forklift_Admin_Div">
+                <div class="card-body" id="AdminDiv">
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o=>o.ForkliftAdministrator, "Név:")
@@ -102,8 +102,8 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const dropdown = document.getElementById('General_ForkliftType');
-                const div = document.getElementById('Forklift_Admin_Div');
+                const dropdown = document.getElementById('ForkliftType');
+                const div = document.getElementById('AdminDiv');
                 const inputs = document.querySelectorAll('.lifter-only');
 
                 dropdown.addEventListener('change', function () {
