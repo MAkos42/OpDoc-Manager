@@ -1,38 +1,55 @@
-﻿namespace OpDoc_Manager.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
         public class UserManualInformation
         {
-            public enum ManualSupplier
+            public enum Supplier
             {
                 MANUFACTURER,
                 DISTRIBUTOR,
+                SELLER,
                 LEASER
             }
-            public enum ManualRecipient
+            public enum Recipient
             {
                 OPERATOR,
-                OWNER,
+                CUSTOMER,
                 LEASEE
             }
 
+            [ForeignKey("Forklift")]
+            public Guid Id { get; set; }
+
+            [Required]
             public DateOnly DateOfTransfer { get; set; }
-            public ManualSupplier Bestower { get; set; }
-            public string BestowerName { get; set; }
-            public string BestowerPosition { get; set; }
-            public ManualRecipient Recipient {  get; set; }
-            public string RecipientName { get; set; }
-            public string RecipientPosition { get; set; }
+            [Required]
+            [Column(TypeName = "text")]
+            public Supplier SupplierType { get; set; }
+            [Required]
+            public string SupplierSigneeName { get; set; }
+            [Required]
+            public string SupplierSigneePosition { get; set; }
+            [Required]
+            [Column(TypeName = "text")]
+            public Recipient RecipientType { get; set; }
+            [Required]
+            public string RecipientSigneeName { get; set; }
+            [Required]
+            public string RecipientSigneePosition { get; set; }
 
+            [Required]
             public bool IsOnlineManual { get; set; }
-            public string? ManualAddress {  get; set; }
+            public string? ManualWebsite { get; set; }
 
-            public DateOnly? LeaseTransferDate { get; set; }
-            public string? LeaserName { get; set; }
-            public string? LeaserPosition { get; set; }
-            public string? LeaseeName { get; set; }
-            public string? LeaseePosition { get;set; }
+            public DateOnly? LeaseReturnDate { get; set; }
+            public string? LeaseeSigneeName { get; set; }
+            public string? LeaseeSigneePosition { get; set; }
+            public string? LeaserSigneeName { get; set; }
+            public string? LeaserSigneePosition { get; set; }
         }
     }
 }

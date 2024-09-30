@@ -6,14 +6,14 @@ namespace OpDoc_Manager.Models
     {
         [Key]
         public Guid UniqueId { get; set; }
-        //Owned
+
         public GeneralInformation General { get; set; }
 
         public OperatorInformation Operator { get; set; }
 
-        //public UserManualInformation UserManual { get; set; }
+        public UserManualInformation UserManual { get; set; }
 
-        //public TechnicalInformation Technical { get; set; }
+        // public TechnicalInformation Technical { get; set; }
 
         //public AdapterInformation Adapter { get; set; }
 

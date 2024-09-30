@@ -47,6 +47,11 @@ namespace OpDoc_Manager.Controllers
             {
                 forklift.Operator.LeaseInformation = tempLeaseInformation;
             }
+            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(m => m.Id == id);
+            if (userManualInfo == null)
+            {
+                return NotFound();
+            }
             return View(forklift);
         }
 

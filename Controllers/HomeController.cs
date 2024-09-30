@@ -18,7 +18,7 @@ namespace OpDoc_Manager.Controllers
 
         public IActionResult Index()
         {
-            if (_context.Forklifts.Count() == 0)
+            //if (_context.Forklifts.Count() == 0)
             {
                 _context.Forklifts.RemoveRange(_context.Forklifts);
 
@@ -50,11 +50,26 @@ namespace OpDoc_Manager.Controllers
                         ForkliftAdministrator = "Ferenczy Sándor",
                         ForkliftAdminPosition = "Emelõgép-ügyintézõ",
                         ForkliftAdminContact = "+36201234567"
+                    },
+                    UserManual = new Forklift.UserManualInformation
+                    {
+                        DateOfTransfer = new DateOnly(2022, 10, 14),
+                        IsOnlineManual = true,
+                        ManualWebsite = "https://www.niketrans.hu/site/assets/files/1081/chbc2037-d.pdf",
+                        SupplierType = Forklift.UserManualInformation.Supplier.DISTRIBUTOR,
+                        SupplierSigneeName = "Pálffy János",
+                        SupplierSigneePosition = "Adásvételi technikus",
+                        RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
+                        RecipientSigneeName = "Ferenczy Sándor",
+                        RecipientSigneePosition = "Emelõgép-ügyintézõ"
                     }
                 };
 
                 _context.Forklifts.Add(test);
                 _context.OperatorInformation.Add(test.Operator);
+                if (test.Operator.LeaseInformation != null)
+                    _context.LeaseInformation.Add(test.Operator.LeaseInformation);
+                _context.UserManualInformation.Add(test.UserManual);
                 _context.SaveChanges();
             }
 

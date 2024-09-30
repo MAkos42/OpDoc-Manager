@@ -1,0 +1,135 @@
+﻿
+@model Forklift.OperatorInformation
+
+<div class="tab-pane fade col-11" id="operation" role="tabpanel" aria-labelled-by="operation-tab">
+
+
+
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="input-group">
+                <span class="input-group-text col-md-3">
+                    @Html.LabelFor(o=>o.OperationArea, "Üzemeltetés helye:")
+                </span>
+                @Html.TextBoxFor(o=>o.OperationArea, new {@class = "form-control"})
+                @Html.ValidationMessageFor(o=>o.OperationArea, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Üzemeltetésért felelős személy
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.UserName, "Név:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.UserName, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(o=>o.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.UserPosition, "Pozíció:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.UserPosition, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(o=>o.UserPosition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Karbantartásért felelős személy
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.TechnicianName, "Név:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.TechnicianName, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(o=>o.TechnicianName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.TechnicianPosition, "Pozíció:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.TechnicianPosition, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(o=>o.TechnicianPosition, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Emelőgép ügyintéző
+                </div>
+                <div class="card-body" id="Forklift_Admin_Div">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.ForkliftAdministrator, "Név:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.ForkliftAdministrator, new {@class = "form-control lifter-only"})
+                        @Html.ValidationMessageFor(o=>o.ForkliftAdministrator, "", new { @class = "text-danger lifter-only" })
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text col-md-3">
+                            @Html.LabelFor(o=>o.ForkliftAdminPosition, "Pozíció:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.ForkliftAdminPosition, new {@class = "form-control lifter-only"})
+                        @Html.ValidationMessageFor(o=>o.ForkliftAdminPosition, "", new { @class = "text-danger lifter-only" })
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-text col-md-5">
+                            @Html.LabelFor(o=>o.ForkliftAdminContact, "Elérhetőség:")
+                        </span>
+                        @Html.TextBoxFor(o=>o.ForkliftAdminContact, new {@class = "form-control lifter-only", placeholder="+36(xx)123 4567"})
+                        @Html.ValidationMessageFor(o=>o.ForkliftAdminContact, "", new { @class = "text-danger lifter-only" })
+                    </div>
+                </div>
+                <div class="card-footer">Csak emelőtargoncáknál szükséges</div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const dropdown = document.getElementById('General_ForkliftType');
+                const div = document.getElementById('Forklift_Admin_Div');
+                const inputs = document.querySelectorAll('.lifter-only');
+
+                dropdown.addEventListener('change', function () {
+
+                    if (dropdown.value != "LIFT")
+                        div.classList.add("bg-light");
+                    else
+                        div.classList.remove("bg-light");
+
+                    inputs.forEach(input => {
+                        input.disabled = dropdown.value != "LIFT";
+                    });
+                });
+
+                if (dropdown.value != "LIFT")
+                    div.classList.add("bg-light");
+
+                inputs.forEach(input => {
+                    input.disabled = dropdown.value != "LIFT";
+                });
+            });
+
+        </script>
+
+    </div>
+
+
+
+</div>

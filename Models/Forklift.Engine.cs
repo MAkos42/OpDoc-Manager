@@ -1,4 +1,5 @@
-﻿using static OpDoc_Manager.Models.Forklift;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using static OpDoc_Manager.Models.Forklift;
 
 namespace OpDoc_Manager.Models
 {
@@ -6,14 +7,14 @@ namespace OpDoc_Manager.Models
     {
         public abstract class Engine
         {
-            public abstract EngineType EngineType { get; }
+            [ForeignKey("Forklift")]
+            public Guid Id { get; set; }
 
         }
     }
 
     public class ElectricEngine : Engine
     {
-        public override EngineType EngineType { get { return EngineType.ELECTRIC; } }
 
         public string BatteryType { get; set; }
         public string BatteryManufacturer { get; set; }
@@ -37,7 +38,6 @@ namespace OpDoc_Manager.Models
 
     public class InternalCombustionEngine : Engine
     {
-        public override EngineType EngineType { get { return EngineType.ICE; } }
 
         public string Manufacturer { get; set; }
         public string Type { get; set; }
