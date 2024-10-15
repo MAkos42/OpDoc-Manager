@@ -10,6 +10,7 @@ namespace OpDoc_Manager.Models
             [ForeignKey("Forklift")]
             public Guid Id { get; set; }
 
+            public EngineType EngineType { get; set; }
         }
     }
 
@@ -42,9 +43,11 @@ namespace OpDoc_Manager.Models
         public string Manufacturer { get; set; }
         public string Type { get; set; }
         public string ProductionNumber { get; set; }
+
         public int EngineOutput { get; set; }
         public int CylinderVolume { get; set; }
         public string? EnviromentalClassification { get; set; }
+
         public string? CatalyticConverter { get; set; }
         public int FuelCapacity { get; set; }
         public string? NatGasSafetyValveType { get; set; }

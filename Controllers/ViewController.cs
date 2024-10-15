@@ -35,12 +35,12 @@ namespace OpDoc_Manager.Controllers
                 .FirstOrDefaultAsync(m => m.UniqueId == id);
             if (forklift == null)
             {
-                return NotFound();
+                return NotFound("forklift");
             }
             var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(m => m.Id == id);
             if (operatorInfo == null)
             {
-                return NotFound();
+                return NotFound("operator information");
             }
             var tempLeaseInformation = new Forklift.ForkliftLeaseInformation();
             if (operatorInfo.LeaseInformation == null)
@@ -50,8 +50,10 @@ namespace OpDoc_Manager.Controllers
             var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(m => m.Id == id);
             if (userManualInfo == null)
             {
-                return NotFound();
+                return NotFound("user manual");
             }
+
+
             return View(forklift);
         }
 

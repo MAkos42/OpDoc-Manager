@@ -101,10 +101,10 @@
         <div class="col-md-4">
             <div class="input-group">
                 <span class="input-group-text col-md-5">
-                    @Html.LabelFor(g=>g.ForkliftType, "Targonca típusa:")
+                    @Html.LabelFor(g=>g.OperationType, "Targonca típusa:")
                 </span>
-                @Html.DropDownListFor(g=>g.ForkliftType, forkliftTypeSelector, new {@class = "form-select"})
-                @Html.ValidationMessageFor(g=>g.ForkliftType, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(g=>g.OperationType, forkliftTypeSelector, new {@class = "form-select"})
+                @Html.ValidationMessageFor(g=>g.OperationType, "", new { @class = "text-danger" })
             </div>
         </div>
 

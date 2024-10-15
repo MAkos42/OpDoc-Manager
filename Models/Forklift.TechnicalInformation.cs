@@ -1,21 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
+        [Index("Manufacturer", "Type", IsUnique = true)]
         public class TechnicalInformation
         {
-            [ForeignKey("Forklift")]
+            [Key]
             public Guid Id { get; set; }
+
+            public string Manufacturer { get; set; }
+
+            public string Type { get; set; }
 
             public LiftMechanism Lift { get; set; }
 
             public RoadInformation RoadInformation { get; set; }
 
-            //public EngineType EngineType { get; set; }
-
-            //public Engine Engine { get; set; }
+            public Engine Engine { get; set; }
         }
     }
 }

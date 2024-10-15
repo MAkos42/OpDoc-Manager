@@ -33,7 +33,7 @@ namespace OpDoc_Manager.Controllers
                         ControlMethod = Forklift.ControlMethod.SEAT,
                         ManufacturingYear = 2022,
                         ProductionNumber = "CTZXAB1222001",
-                        ForkliftType = Forklift.ForkliftType.LIFT,
+                        OperationType = Forklift.OperationType.LIFT,
                         EnergySource = Forklift.EnergySource.DIESEL,
                         EntryIntoService = new DateOnly(2022, 10, 11)
                     },

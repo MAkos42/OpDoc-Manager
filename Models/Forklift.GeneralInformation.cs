@@ -28,8 +28,8 @@ namespace OpDoc_Manager.Models
             [Column("EntryIntoService")]
             public DateOnly EntryIntoService { get; set; }
             [Required]
-            [Column("ForkliftType", TypeName = "text")]
-            public ForkliftType ForkliftType { get; set; }
+            [Column("OperationType", TypeName = "text")]
+            public OperationType OperationType { get; set; }
             [Required]
             [Column("ControlMethod", TypeName = "text")]
             public ControlMethod ControlMethod { get; set; }
