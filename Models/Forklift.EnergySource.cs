@@ -2,7 +2,7 @@
 {
     public partial class Forklift
     {
-        public enum EnergySource
+        public enum PowerSource
         {
             DIESEL,
             GASOLINE,

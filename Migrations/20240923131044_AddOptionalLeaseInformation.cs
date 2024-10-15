@@ -12,7 +12,7 @@ namespace OpDoc_Manager.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ForkliftLeaseInformation",
+                name: "LeaseInformation",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -42,7 +42,7 @@ namespace OpDoc_Manager.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ForkliftLeaseInformation");
+                name: "LeaseInformation");
         }
     }
 }

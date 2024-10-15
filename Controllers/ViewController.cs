@@ -42,7 +42,7 @@ namespace OpDoc_Manager.Controllers
             {
                 return NotFound("operator information");
             }
-            var tempLeaseInformation = new Forklift.ForkliftLeaseInformation();
+            var tempLeaseInformation = new Forklift.LeaseInformation();
             if (operatorInfo.LeaseInformation == null)
             {
                 forklift.Operator.LeaseInformation = tempLeaseInformation;

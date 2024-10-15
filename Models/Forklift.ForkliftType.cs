@@ -2,11 +2,11 @@
 {
     public partial class Forklift
     {
-        public enum ControlMethod
+        public enum ForkliftType
         {
-            SEAT,
-            STAND,
-            WALK
+            LIFT,
+            TOW,
+            TRANSPORT
         }
     }
 }

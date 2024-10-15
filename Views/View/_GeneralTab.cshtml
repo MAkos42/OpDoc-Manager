@@ -4,13 +4,13 @@
         new SelectListItem("Vontatótargonca","TOW"),
         new SelectListItem("Szállítótargonca", "TRANSPORT")};
 
-    var controlMethodSelector = new List<SelectListItem> {
-        new SelectListItem("Vezetőüles", "SEAT"),
-        new SelectListItem("Vezetőállás", "STAND"),
-        new SelectListItem("Gyalogkíséret", "WALK")
+    var operatorTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Vezetőüles", "SEATED"),
+        new SelectListItem("Vezetőállás", "STANDING"),
+        new SelectListItem("Gyalogkíséret", "PEDESTRIAN")
     };
 
-    var energySourceSelector = new List<SelectListItem> {
+    var powerSourceSelector = new List<SelectListItem> {
         new SelectListItem("Dízel", "DIESEL"),
         new SelectListItem("Benzin", "GASOLINE"),
         new SelectListItem("Földgáz", "NATGAS"),
@@ -101,20 +101,20 @@
         <div class="col-md-4">
             <div class="input-group">
                 <span class="input-group-text col-md-5">
-                    @Html.LabelFor(g=>g.OperationType, "Targonca típusa:")
+                    @Html.LabelFor(g=>g.ForkliftType, "Targonca típusa:")
                 </span>
-                @Html.DropDownListFor(g=>g.OperationType, forkliftTypeSelector, new {@class = "form-select"})
-                @Html.ValidationMessageFor(g=>g.OperationType, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(g=>g.ForkliftType, forkliftTypeSelector, new {@class = "form-select"})
+                @Html.ValidationMessageFor(g=>g.ForkliftType, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="input-group">
                 <span class="input-group-text col-md-5">
-                    @Html.LabelFor(g=>g.ControlMethod, "Kezelés módja:")
+                    @Html.LabelFor(g=>g.OperatorType, "Kezelés módja:")
                 </span>
-                @Html.DropDownListFor(g=>g.ControlMethod, controlMethodSelector, new {@class = "form-select"})
-                @Html.ValidationMessageFor(g=>g.ControlMethod, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(g=>g.OperatorType, operatorTypeSelector, new {@class = "form-select"})
+                @Html.ValidationMessageFor(g=>g.OperatorType, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -122,10 +122,10 @@
             <div class="col-md-11">
                 <div class="input-group">
                     <span class="input-group-text col-md-7">
-                        @Html.LabelFor(g=>g.EnergySource, "Működtetőenergia:")
+                        @Html.LabelFor(g=>g.PowerSource, "Működtetőenergia:")
                     </span>
-                    @Html.DropDownListFor(g=>g.EnergySource, energySourceSelector, new {@class = "form-select"})
-                    @Html.ValidationMessageFor(g=>g.EnergySource, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(g=>g.PowerSource, powerSourceSelector, new {@class = "form-select"})
+                    @Html.ValidationMessageFor(g=>g.PowerSource, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

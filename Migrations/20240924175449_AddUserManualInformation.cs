@@ -12,14 +12,14 @@ namespace OpDoc_Manager.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_ForkliftLeaseInformation_OperatorInformation_Id",
-                table: "ForkliftLeaseInformation");
+                table: "LeaseInformation");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_ForkliftLeaseInformation",
-                table: "ForkliftLeaseInformation");
+                table: "LeaseInformation");
 
             migrationBuilder.RenameTable(
-                name: "ForkliftLeaseInformation",
+                name: "LeaseInformation",
                 newName: "LeaseInformation");
 
             migrationBuilder.AddPrimaryKey(
@@ -82,16 +82,16 @@ namespace OpDoc_Manager.Migrations
 
             migrationBuilder.RenameTable(
                 name: "LeaseInformation",
-                newName: "ForkliftLeaseInformation");
+                newName: "LeaseInformation");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_ForkliftLeaseInformation",
-                table: "ForkliftLeaseInformation",
+                table: "LeaseInformation",
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_ForkliftLeaseInformation_OperatorInformation_Id",
-                table: "ForkliftLeaseInformation",
+                table: "LeaseInformation",
                 column: "Id",
                 principalTable: "OperatorInformation",
                 principalColumn: "Id");

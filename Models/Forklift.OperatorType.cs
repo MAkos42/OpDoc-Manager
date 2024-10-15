@@ -2,11 +2,11 @@
 {
     public partial class Forklift
     {
-        public enum OperationType
+        public enum OperatorType
         {
-            LIFT,
-            TOW,
-            TRANSPORT
+            SEATED,
+            STANDING,
+            PEDESTRIAN
         }
     }
 }

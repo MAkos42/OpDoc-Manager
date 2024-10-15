@@ -28,7 +28,7 @@ namespace OpDoc_Manager.Controllers
         private void GenerateTestData()
         {
             /*_context.ForkliftModels.RemoveRange(_context.ForkliftModels);
-            Forklift.TechnicalInformation testType = new Forklift.TechnicalInformation
+            Forklift.ModelInformation testType = new Forklift.ModelInformation
             {
                 Manufacturer = "CAT",
                 Model = "DP20-35N3"
@@ -45,11 +45,11 @@ namespace OpDoc_Manager.Controllers
                     Name = "TestForklift1",
                     Manufacturer = "CAT",
                     Model = "DP20-35N3",
-                    ControlMethod = Forklift.ControlMethod.SEAT,
+                    OperatorType = Forklift.OperatorType.SEAT,
                     ManufacturingYear = 2022,
                     ProductionNumber = "CTZXAB1222001",
-                    OperationType = Forklift.OperationType.LIFT,
-                    EnergySource = Forklift.EnergySource.DIESEL,
+                    ForkliftType = Forklift.ForkliftType.LIFT,
+                    PowerSource = Forklift.PowerSource.DIESEL,
                     EntryIntoService = new DateOnly(2022, 10, 11)
                 },
                 Operator = new Forklift.OperatorInformation

@@ -5,7 +5,7 @@
         public class AdapterInformation
         {
             public string AdapterClassification { get; set; }
-            ICollection<ForkliftAdapter> AdapterList { get; set; }
+            ICollection<Adapter> AdapterList { get; set; }
 
             public ServiceDocumentList AdapterServiceDocumentation { get; set; }
 

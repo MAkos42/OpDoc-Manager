@@ -32,7 +32,7 @@ namespace OpDoc_Manager.Models
             [Required]
             public string TechnicianPosition { get; set; }
 
-            public ForkliftLeaseInformation? LeaseInformation { get; set; }
+            public LeaseInformation? LeaseInformation { get; set; }
 
             public string? ForkliftAdministrator { get; set; }
             public string? ForkliftAdminPosition { get; set; }

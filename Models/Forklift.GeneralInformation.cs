@@ -28,14 +28,14 @@ namespace OpDoc_Manager.Models
             [Column("EntryIntoService")]
             public DateOnly EntryIntoService { get; set; }
             [Required]
-            [Column("OperationType", TypeName = "text")]
-            public OperationType OperationType { get; set; }
+            [Column("ForkliftType", TypeName = "text")]
+            public ForkliftType ForkliftType { get; set; }
             [Required]
-            [Column("ControlMethod", TypeName = "text")]
-            public ControlMethod ControlMethod { get; set; }
+            [Column("OperatorType", TypeName = "text")]
+            public OperatorType OperatorType { get; set; }
             [Required]
-            [Column("EnergySource", TypeName = "text")]
-            public EnergySource EnergySource { get; set; }
+            [Column("PowerSource", TypeName = "text")]
+            public PowerSource PowerSource { get; set; }
         }
     }
 }

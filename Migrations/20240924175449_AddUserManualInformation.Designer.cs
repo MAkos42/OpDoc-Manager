@@ -36,7 +36,7 @@ namespace OpDoc_Manager.Migrations
                     b.ToTable("Forklifts");
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", b =>
+            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+LeaseInformation", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -213,24 +213,24 @@ namespace OpDoc_Manager.Migrations
                             b1.Property<Guid>("ForkliftUniqueId")
                                 .HasColumnType("uuid");
 
-                            b1.Property<string>("ControlMethod")
+                            b1.Property<string>("OperatorType")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("ControlMethod");
+                                .HasColumnName("OperatorType");
 
-                            b1.Property<string>("EnergySource")
+                            b1.Property<string>("PowerSource")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("EnergySource");
+                                .HasColumnName("PowerSource");
 
                             b1.Property<DateOnly>("EntryIntoService")
                                 .HasColumnType("date")
                                 .HasColumnName("EntryIntoService");
 
-                            b1.Property<string>("OperationType")
+                            b1.Property<string>("ForkliftType")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("OperationType");
+                                .HasColumnName("ForkliftType");
 
                             b1.Property<string>("Manufacturer")
                                 .IsRequired()
@@ -268,11 +268,11 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", b =>
+            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+LeaseInformation", b =>
                 {
                     b.HasOne("OpDoc_Manager.Models.Forklift+OperatorInformation", null)
                         .WithOne("LeaseInformation")
-                        .HasForeignKey("OpDoc_Manager.Models.Forklift+ForkliftLeaseInformation", "Id");
+                        .HasForeignKey("OpDoc_Manager.Models.Forklift+LeaseInformation", "Id");
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+OperatorInformation", b =>

@@ -14,10 +14,10 @@ namespace OpDoc_Manager.Models
 
         public UserManualInformation UserManual { get; set; }
 
-        public OperationType Technical { get; set; }
+        public ForkliftModel Technical { get; set; }
 
-        [ForeignKey("TechnicalInformation")]
-        private Guid forkliftTypeId { get; set; }
+        [ForeignKey("ModelInformation")]
+        public Guid ForkliftModelId { get; set; }
 
         //public AdapterInformation Adapter { get; set; }
 

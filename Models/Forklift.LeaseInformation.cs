@@ -5,7 +5,7 @@ namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
-        public class ForkliftLeaseInformation
+        public class LeaseInformation
         {
             [ForeignKey("OperatorInformation")]
             public Guid Id { get; set; }

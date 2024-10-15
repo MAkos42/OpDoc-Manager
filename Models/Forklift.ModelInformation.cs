@@ -6,7 +6,7 @@ namespace OpDoc_Manager.Models
     public partial class Forklift
     {
         [Index("Manufacturer", "Model", IsUnique = true)]
-        public class TechnicalInformation
+        public class ModelInformation
         {
             [Key]
             public Guid Id { get; set; }

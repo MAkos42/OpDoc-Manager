@@ -105,24 +105,24 @@ namespace OpDoc_Manager.Migrations
                             b1.Property<Guid>("ForkliftUniqueId")
                                 .HasColumnType("uuid");
 
-                            b1.Property<string>("ControlMethod")
+                            b1.Property<string>("OperatorType")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("ControlMethod");
+                                .HasColumnName("OperatorType");
 
-                            b1.Property<string>("EnergySource")
+                            b1.Property<string>("PowerSource")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("EnergySource");
+                                .HasColumnName("PowerSource");
 
                             b1.Property<DateOnly>("EntryIntoService")
                                 .HasColumnType("date")
                                 .HasColumnName("EntryIntoService");
 
-                            b1.Property<string>("OperationType")
+                            b1.Property<string>("ForkliftType")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("OperationType");
+                                .HasColumnName("ForkliftType");
 
                             b1.Property<string>("Manufacturer")
                                 .IsRequired()
