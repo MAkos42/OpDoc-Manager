@@ -53,10 +53,10 @@
         <div class="col-md-4">
             <div class="input-group">
                 <span class="input-group-text col-md-5">
-                    @Html.LabelFor(g=>g.Type, "Típusjelzés:")
+                    @Html.LabelFor(g=>g.Model, "Típusjelzés:")
                 </span>
-                @Html.TextBoxFor(g=>g.Type, new {@class = "form-control"})
-                @Html.ValidationMessageFor(g=>g.Type, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(g=>g.Model, new {@class = "form-control"})
+                @Html.ValidationMessageFor(g=>g.Model, "", new { @class = "text-danger" })
             </div>
         </div>
 

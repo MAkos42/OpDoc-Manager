@@ -5,7 +5,7 @@ namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
-        [Index("Manufacturer", "Type", IsUnique = true)]
+        [Index("Manufacturer", "Model", IsUnique = true)]
         public class TechnicalInformation
         {
             [Key]
@@ -13,7 +13,7 @@ namespace OpDoc_Manager.Models
 
             public string Manufacturer { get; set; }
 
-            public string Type { get; set; }
+            public string Model { get; set; }
 
             public LiftMechanism Lift { get; set; }
 

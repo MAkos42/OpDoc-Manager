@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpDoc_Manager.Models
 {
@@ -13,7 +14,10 @@ namespace OpDoc_Manager.Models
 
         public UserManualInformation UserManual { get; set; }
 
-        // public OperationType Technical { get; set; }
+        public OperationType Technical { get; set; }
+
+        [ForeignKey("TechnicalInformation")]
+        private Guid forkliftTypeId { get; set; }
 
         //public AdapterInformation Adapter { get; set; }
 

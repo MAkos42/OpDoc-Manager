@@ -193,10 +193,10 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("ProductionNumber");
 
-                            b1.Property<string>("Type")
+                            b1.Property<string>("Model")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("Type");
+                                .HasColumnName("Model");
 
                             b1.HasKey("ForkliftUniqueId");
 

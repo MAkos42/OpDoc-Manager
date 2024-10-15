@@ -16,8 +16,8 @@ namespace OpDoc_Manager.Models
             [Column("Manufacturer")]
             public string Manufacturer { get; set; }
             [Required]
-            [Column("Type")]
-            public string Type { get; set; }
+            [Column("Model")]
+            public string Model { get; set; }
             [Required]
             [Column("ManufacturingYear")]
             public int ManufacturingYear { get; set; }

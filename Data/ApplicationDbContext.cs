@@ -15,7 +15,7 @@ namespace OpDoc_Manager.Data
         public DbSet<Forklift.ForkliftLeaseInformation> LeaseInformation { get; set; }
         public DbSet<Forklift.UserManualInformation> UserManualInformation { get; set; }
 
-        public DbSet<Forklift.TechnicalInformation> ForkliftTypes { get; set; }
+        public DbSet<Forklift.TechnicalInformation> ForkliftModels { get; set; }
         public DbSet<Forklift.Engine> Engines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
