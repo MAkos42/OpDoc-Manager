@@ -13,7 +13,7 @@ namespace OpDoc_Manager.Models
 
         public UserManualInformation UserManual { get; set; }
 
-        //public TechnicalInformation Technical { get; set; }
+        public TechnicalInformation Technical { get; set; }
 
         //public AdapterInformation Adapter { get; set; }
 

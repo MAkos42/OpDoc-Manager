@@ -90,7 +90,7 @@ namespace OpDoc_Manager.Controllers
             _context.SaveChanges();
 
 
-            //_context.Forklifts.RemoveRange(_context.Forklifts);
+            _context.Forklifts.RemoveRange(_context.Forklifts);
 
             Forklift test = new Forklift
             {
@@ -133,11 +133,11 @@ namespace OpDoc_Manager.Controllers
                     RecipientSigneeName = "Ferenczy Sándor",
                     RecipientSigneePosition = "Emelõgép-ügyintézõ"
                 },
-                /*Technical = new Forklift.TechnicalInformation
+                Technical = new Forklift.TechnicalInformation
                 {
                     Model = testModel,
                     EngineProductionNumber = "TEST0101"
-                }*/
+                }
             };
 
             _context.Forklifts.Add(test);
@@ -145,7 +145,7 @@ namespace OpDoc_Manager.Controllers
             if (test.Operator.LeaseInformation != null)
                 _context.LeaseInformation.Add(test.Operator.LeaseInformation);
             _context.UserManualInformation.Add(test.UserManual);
-            //_context.TechnicalInformation.Add(test.Technical);
+            _context.TechnicalInformation.Add(test.Technical);
             _context.SaveChanges();
         }
 

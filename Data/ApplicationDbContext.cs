@@ -15,7 +15,7 @@ namespace OpDoc_Manager.Data
         public DbSet<OperatorInformation> OperatorInformation { get; set; }
         public DbSet<LeaseInformation> LeaseInformation { get; set; }
         public DbSet<UserManualInformation> UserManualInformation { get; set; }
-        //public DbSet<TechnicalInformation> TechnicalInformation { get; set; }
+        public DbSet<TechnicalInformation> TechnicalInformation { get; set; }
 
         public DbSet<ModelInformation> ForkliftModels { get; set; }
         public DbSet<Engine> Engines { get; set; }
@@ -33,8 +33,8 @@ namespace OpDoc_Manager.Data
             builder.Entity<ModelInformation>().HasOne(m => m.Engine).WithOne().HasForeignKey<ModelInformation>(mi => mi.EngineId);
 
 
-            //builder.Entity<Forklift>().HasOne<TechnicalInformation>().WithOne().HasForeignKey<TechnicalInformation>(ti => ti.Id);
-            //builder.Entity<TechnicalInformation>().HasOne(ti => ti.Model).WithMany().HasForeignKey(ti => ti.ModelId);
+            builder.Entity<Forklift>().HasOne(f => f.Technical).WithOne().HasForeignKey<TechnicalInformation>(ti => ti.Id);
+            builder.Entity<TechnicalInformation>().HasOne(ti => ti.Model).WithMany().HasForeignKey(ti => ti.ModelId);
         }
     }
 }
