@@ -17,13 +17,13 @@ namespace OpDoc_Manager.Migrations
                     UniqueId = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Manufacturer = table.Column<string>(type: "text", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
+                    Model = table.Column<string>(type: "text", nullable: false),
                     ManufacturingYear = table.Column<int>(type: "integer", nullable: false),
                     ProductionNumber = table.Column<string>(type: "text", nullable: false),
                     EntryIntoService = table.Column<DateOnly>(type: "date", nullable: false),
                     ForkliftType = table.Column<string>(type: "text", nullable: false),
-                    ControlMethod = table.Column<string>(type: "text", nullable: false),
-                    EnergySource = table.Column<string>(type: "text", nullable: false)
+                    OperatorType = table.Column<string>(type: "text", nullable: false),
+                    PowerSource = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
