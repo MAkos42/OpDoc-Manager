@@ -16,14 +16,14 @@ namespace OpDoc_Manager.Models
             [Column("Length")]
             public int Length { get; set; }
             [Required]
-            [Column("TransportHeight")]
-            public int TransportHeight { get; set; }
+            [Column("HeightTransportPosition")]
+            public int HeightTransportPosition { get; set; }
             [Required]
-            [Column("MaximumTransportHeight")]
-            public int MaximumTransportHeight { get; set; }
+            [Column("HeightMastLowered")]
+            public int HeightMastLowered { get; set; }
             [Required]
-            [Column("MaximumOperationalHeight")]
-            public int MaximumOperationalHeight { get; set; }
+            [Column("HeightMastRaised")]
+            public int HeightMastRaised { get; set; }
             [Required]
             [Column("OuterTurningCircle")]
             public int OuterTurningCircle { get; set; }
@@ -31,23 +31,23 @@ namespace OpDoc_Manager.Models
             [Column("InnerTurningCircle")]
             public int InnerTurningCircle { get; set; }
             [Required]
-            [Column("AxleWidth")]
-            public int AxleWidth { get; set; }
+            [Column("Wheelbase")]
+            public int Wheelbase { get; set; }
             [Required]
-            [Column("FrontWheelspan")]
-            public int FrontWheelspan { get; set; }
+            [Column("TrackWidthFront")]
+            public int TrackWidthFront { get; set; }
             [Required]
-            [Column("BackWheelspan")]
-            public int BackWheelspan { get; set; }
+            [Column("TrackWidthBack")]
+            public int TrackWidthBack { get; set; }
             [Required]
             [Column("RideHeight")]
             public int RideHeight { get; set; }
             [Required]
-            [Column("LoadedTopSpeed")]
-            public int LoadedTopSpeed { get; set; }
+            [Column("TopSpeedWithLoad")]
+            public double TopSpeedWithLoad { get; set; }
             [Required]
-            [Column("UnloadedTopSpeed")]
-            public int UnloadedTopSpeed { get; set; }
+            [Column("TopSpeedWithoutLoad")]
+            public double TopSpeedWithoutLoad { get; set; }
             [Required]
             [Column("TractiveForce")]
             public int TractiveForce { get; set; }
@@ -59,16 +59,16 @@ namespace OpDoc_Manager.Models
             public int BackWheelCount { get; set; }
             [Required]
             [Column("FrontWheelSize")]
-            public int FrontWheelSize { get; set; }
+            public string FrontWheelSize { get; set; }
             [Required]
             [Column("BackWheelSize")]
-            public int BackWheelSize { get; set; }
+            public string BackWheelSize { get; set; }
             [Required]
             [Column("FrontWheelPressure")]
-            public int FrontWheelPressure { get; set; }
+            public double FrontWheelPressure { get; set; }
             [Required]
             [Column("BackWheelPressure")]
-            public int BackWheelPressure { get; set; }
+            public double BackWheelPressure { get; set; }
             [Required]
             [Column("OperationalWeight")]
             public int OperationalWeight { get; set; }

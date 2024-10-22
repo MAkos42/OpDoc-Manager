@@ -1,6 +1,6 @@
 ﻿namespace OpDoc_Manager.Data
 {
-    public class ForkliftTypeDTO
+    public class ForkliftModelSelectorDTO
     {
         public Guid Id { get; set; }
         public string Manufacturer { get; set; }

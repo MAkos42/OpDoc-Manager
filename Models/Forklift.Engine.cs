@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using static OpDoc_Manager.Models.Forklift;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpDoc_Manager.Models
 {
@@ -7,50 +7,67 @@ namespace OpDoc_Manager.Models
     {
         public abstract class Engine
         {
-            [ForeignKey("Forklift")]
             public Guid Id { get; set; }
 
+            [Required]
+            [Column(TypeName = "text")]
             public EngineType EngineType { get; set; }
         }
-    }
 
-    public class ElectricEngine : Engine
-    {
+        public class ElectricEngine : Engine
+        {
+            [Required]
+            public string BatteryType { get; set; }
+            [Required]
+            public string BatteryManufacturer { get; set; }
+            [Required]
+            public int NominalBatteryCapacity { get; set; }
+            [Required]
+            public int BatteryVoltage { get; set; }
+            [Required]
+            public int BatteryCellCount { get; set; }
 
-        public string BatteryType { get; set; }
-        public string BatteryManufacturer { get; set; }
-        public int NominalBatteryCapacity { get; set; }
-        public int BatteryVoltage { get; set; }
-        public int BatteryCellCount { get; set; }
+            [Required]
+            public string EngineManufacturer { get; set; }
+            [Required]
+            public int EngineOutput { get; set; }
+            [Required]
+            public int EngineRPM { get; set; }
 
-        public string EngineManufacturer { get; set; }
-        public int EngineOutput { get; set; }
-        public int EngineRPM { get; set; }
+            [Required]
+            public string InverterManufacturer { get; set; }
+            [Required]
+            public string InverterType { get; set; }
+            [Required]
+            public int InverterPerformance { get; set; }
 
-        public string InverterManufacturer { get; set; }
-        public string InverterType { get; set; }
-        public int InverterPerformance { get; set; }
+            [Required]
+            public string FrequencyConverterManufacturer { get; set; }
+            [Required]
+            public string FrequencyConverterType { get; set; }
+            [Required]
+            public string FrequencyConverterPerformance { get; set; }
 
-        public string FrequencyConverterManufacturer { get; set; }
-        public string FrequencyConverterType { get; set; }
-        public string FrequencyConverterPerformance { get; set; }
+        }
 
-    }
+        public class InternalCombustionEngine : Engine
+        {
+            [Required]
+            public string Manufacturer { get; set; }
+            [Required]
+            public string Type { get; set; }
 
-    public class InternalCombustionEngine : Engine
-    {
+            [Required]
+            public double RatedOutput { get; set; }
+            [Required]
+            public int CylinderVolume { get; set; }
+            public string? EnviromentalClassification { get; set; }
 
-        public string Manufacturer { get; set; }
-        public string Type { get; set; }
-        public string ProductionNumber { get; set; }
+            public string? CatalyticConverter { get; set; }
+            [Required]
+            public int FuelCapacity { get; set; }
+            public string? NatGasSafetyValveType { get; set; }
 
-        public int EngineOutput { get; set; }
-        public int CylinderVolume { get; set; }
-        public string? EnviromentalClassification { get; set; }
-
-        public string? CatalyticConverter { get; set; }
-        public int FuelCapacity { get; set; }
-        public string? NatGasSafetyValveType { get; set; }
-
+        }
     }
 }
