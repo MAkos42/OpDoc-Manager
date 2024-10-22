@@ -28,12 +28,7 @@ namespace OpDoc_Manager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("TechnicalId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("UniqueId");
-
-                    b.HasIndex("TechnicalId");
 
                     b.ToTable("Forklifts");
                 });
@@ -195,25 +190,6 @@ namespace OpDoc_Manager.Migrations
                     b.ToTable("OperatorInformation");
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+TechnicalInformation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EngineProductionNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("ModelId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("TechnicalInformation");
-                });
-
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+UserManualInformation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -364,12 +340,6 @@ namespace OpDoc_Manager.Migrations
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift", b =>
                 {
-                    b.HasOne("OpDoc_Manager.Models.Forklift+TechnicalInformation", "Technical")
-                        .WithMany()
-                        .HasForeignKey("TechnicalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.OwnsOne("OpDoc_Manager.Models.Forklift+GeneralInformation", "General", b1 =>
                         {
                             b1.Property<Guid>("ForkliftUniqueId")
@@ -428,8 +398,6 @@ namespace OpDoc_Manager.Migrations
 
                     b.Navigation("General")
                         .IsRequired();
-
-                    b.Navigation("Technical");
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+LeaseInformation", b =>
@@ -623,23 +591,6 @@ namespace OpDoc_Manager.Migrations
                         .HasForeignKey("OpDoc_Manager.Models.Forklift+OperatorInformation", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+TechnicalInformation", b =>
-                {
-                    b.HasOne("OpDoc_Manager.Models.Forklift", null)
-                        .WithOne()
-                        .HasForeignKey("OpDoc_Manager.Models.Forklift+TechnicalInformation", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpDoc_Manager.Models.Forklift+ModelInformation", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Model");
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+UserManualInformation", b =>
