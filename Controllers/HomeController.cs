@@ -212,6 +212,22 @@ namespace OpDoc_Manager.Controllers
                     RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
                     RecipientSigneeName = "Ferenczy Sándor",
                     RecipientSigneePosition = "Emelõgép-ügyintézõ"
+                },
+                Adapter = new Forklift.AdapterInformation
+                {
+                    Name = "3A",
+                    AdapterList = new List<Forklift.AdapterRecord>
+                    {
+                        new Forklift.AdapterRecord
+                        {
+                            OrderId = 1,
+                            Name = "3300mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1222001S330001",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        }
+                    }
                 }
             };
 
@@ -220,6 +236,8 @@ namespace OpDoc_Manager.Controllers
             if (test.Operator.LeaseInformation != null)
                 _context.LeaseInformation.Add(test.Operator.LeaseInformation);
             _context.UserManualInformation.Add(test.UserManual);
+            _context.AdapterInformation.Add(test.Adapter);
+            _context.Adapters.AddRange(test.Adapter.AdapterList);
             _context.SaveChanges();
         }
 

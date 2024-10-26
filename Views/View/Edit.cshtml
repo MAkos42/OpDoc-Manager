@@ -1,24 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Forklift Editor";
-
-    var forkliftTypeSelector = new List<SelectListItem> {
-        new SelectListItem("Emelőtargonca", "LIFT"),
-        new SelectListItem("Vontatótargonca","TOW"),
-        new SelectListItem("Szállítótargonca", "TRANSPORT")};
-
-    var operatorTypeSelector = new List<SelectListItem> {
-        new SelectListItem("Vezetőüles", "SEATED"),
-        new SelectListItem("Vezetőállás", "STANDING"),
-        new SelectListItem("Gyalogkíséret", "PEDESTRIAN")
-    };
-
-    var powerSourceSelector = new List<SelectListItem> {
-        new SelectListItem("Dízel", "DIESEL"),
-        new SelectListItem("Benzin", "GASOLINE"),
-        new SelectListItem("Földgáz", "NATGAS"),
-        new SelectListItem("Elektromos", "ELECTRIC"),
-
-    };
 }
 
 @using OpDoc_Manager.Models
@@ -42,7 +23,10 @@
                 <a href="#manual" class="nav-link" id="manual-tab" role="tab" data-bs-toggle="tab" aria-controls="manual">Használati Utasítás</a>
             </li>
             <li class="nav-item">
-                <a href="#technical" class="nav-link active" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
+                <a href="#modeldata" class="nav-link" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
+            </li>
+            <li class="nav-item">
+                <a href="#adapter" class="nav-link active" id="adapter-tab" role="tab" data-bs-toggle="tab" aria-controls="adapter">Adapter</a>
             </li>
         </ul>
     </nav>
@@ -64,7 +48,8 @@
         <!-- Technical Information -->
         @await Html.PartialAsync("_ModelDataTab", Model.General.Model)
 
-
+        <!-- Adapter Information -->
+        @await Html.PartialAsync("_AdapterTab", Model.Adapter)
 
 
         <!-- Add more tab content sections as needed -->

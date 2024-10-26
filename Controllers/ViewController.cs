@@ -38,13 +38,17 @@ namespace OpDoc_Manager.Controllers
         // GET: View/guid/Edit
         public async Task<IActionResult> Edit(Guid id)
         {
-            var forklift = await _context.Forklifts
-                .FirstOrDefaultAsync(f => f.UniqueId == id);
+            var forklift = await _context.Forklifts.FirstOrDefaultAsync(f => f.UniqueId == id);
             if (forklift == null)
             {
                 return NotFound("Forklift");
             }
-            var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(f => f.Id == id);
+            var forkliftModel = await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Id == forklift.General.ModelId);
+            if (forkliftModel == null)
+            {
+                return NotFound("Forklift Model");
+            }
+            var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(oi => oi.Id == id);
             if (operatorInfo == null)
             {
                 return NotFound("Operator Information");
@@ -54,16 +58,25 @@ namespace OpDoc_Manager.Controllers
             {
                 forklift.Operator.LeaseInformation = tempLeaseInformation;
             }
-            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(f => f.Id == id);
+            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(um => um.Id == id);
             if (userManualInfo == null)
             {
                 return NotFound("User Manual");
             }
-
+            var adapterInfo = await _context.AdapterInformation.FirstOrDefaultAsync(ai => ai.Id == id);
+            if (adapterInfo == null)
+            {
+                return NotFound("Adapter Information");
+            }
+            var adapters = await _context.Adapters.Where(a => a.AdapterId == id).OrderBy(a => a.OrderId).ToListAsync();
+            if (adapters.Count == 0)
+            {
+                return NotFound("Adapter Records");
+            }
 
             List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
 
-            List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem(m.Name, m.Id.ToString())).ToList();
+            List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem(m.Manufacturer + " " + m.Type, m.Id.ToString())).ToList();
 
             ViewBag.ModelNames = modelNames;
 

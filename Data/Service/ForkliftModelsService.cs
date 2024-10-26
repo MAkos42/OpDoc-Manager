@@ -17,8 +17,9 @@ namespace OpDoc_Manager.Data.Service
             return await _context.ForkliftModels.Select(t => new ForkliftModelSelectorDTO
             {
                 Id = t.Id,
-                Name = t.Manufacturer + " " + t.Type
-            }).OrderBy(m => m.Name).ToListAsync();
+                Manufacturer = t.Manufacturer,
+                Type = t.Type
+            }).OrderBy(m => m.Manufacturer).ThenBy(m => m.Type).ToListAsync();
         }
 
         public async Task<Forklift.ModelInformation?> GetModelByIndexAsync(string manufacturer, string type)

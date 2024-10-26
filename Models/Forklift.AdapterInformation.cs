@@ -1,19 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
-        [Owned]
         public class AdapterInformation
         {
+            [ForeignKey("Forklift")]
             public Guid Id { get; set; }
 
-            public string ForkliftAdapter { get; set; }
+            [Required]
+            public string Name { get; set; }
 
-            public List<Adapter> AdapterList { get; set; }
-
-            //public List<ServiceDocument> AdapterDocumentation { get; set; }
+            public List<AdapterRecord> AdapterList { get; set; }
 
         }
     }

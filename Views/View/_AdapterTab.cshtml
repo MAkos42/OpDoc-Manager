@@ -1,0 +1,89 @@
+﻿@{
+    var forkliftTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Emelőtargonca", "LIFT"),
+        new SelectListItem("Vontatótargonca","TOW"),
+        new SelectListItem("Szállítótargonca", "TRANSPORT")};
+
+    var operatorTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Vezetőüles", "SEATED"),
+        new SelectListItem("Vezetőállás", "STANDING"),
+        new SelectListItem("Gyalogkíséret", "PEDESTRIAN")
+    };
+
+    var powerSourceSelector = new List<SelectListItem> {
+        new SelectListItem("Dízel", "DIESEL"),
+        new SelectListItem("Benzin", "GASOLINE"),
+        new SelectListItem("Földgáz", "NATGAS"),
+        new SelectListItem("Elektromos", "ELECTRIC"),
+
+    };
+}
+
+@model Forklift.AdapterInformation
+
+<div class="tab-pane fade col-11 show active" id="adapter" role="tabpanel" aria-labelled-by="adapter-tab">
+
+
+    <div class="row mb-3">
+
+        <div class="col-md-7">
+            <div class="input-group">
+                <span class="input-group-text col-md-6">
+                    @Html.LabelFor(a=>a.Name, "Targoncához rendszeresített adapter:")
+                </span>
+                @Html.TextBoxFor(a=>a.Name, new {@class = "form-control"})
+                @Html.ValidationMessageFor(a=>a.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1 align-content-center  bg-light">Sorszám</th>
+                <th class="col-md-3 align-content-center">Név</th>
+                <th class="col-md-2 align-content-center">Típus</th>
+                <th class="col-md-3 align-content-center">Gyártási szám</th>
+                <th class="col-md-1 align-content-center">Saját Tömeg (kg)</th>
+                <th class="col-md-2 align-content-center">A tömegközéppont távolsága a felfogólaptól (mm)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AdapterList != null && Model.AdapterList.Count > 0)
+            {
+                for(int i = 0;i < Model.AdapterList.Count(); i++)
+                {
+                    <tr class="row">
+                        <td class="col-md-1 text-center bg-light">@Model.AdapterList[i].OrderId</td>
+
+                        <td class="p-1 col-md-3">
+                            @Html.TextBoxFor(a=>a.AdapterList[i].Name, new {@class = "form-control border-0", @required=""})
+                        </td>
+                        <td class="p-1 col-md-2">
+                            @Html.TextBoxFor(a=>a.AdapterList[i].Type, new {@class = "form-control border-0", @required=""})
+                        </td>
+                        <td class="p-1 col-md-3">
+                            @Html.TextBoxFor(a=>a.AdapterList[i].SerialNumber, new {@class = "form-control border-0", @required=""})
+                        </td>
+                        <td class="p-1 col-md-1">
+                            @Html.TextBoxFor(a=>a.AdapterList[i].Weight, new {@class = "form-control border-0", @required=""})
+                        </td>
+                        <td class="p-1 col-md-2">
+                            @Html.TextBoxFor(a=>a.AdapterList[i].LoadCenterDistance, new {@class = "form-control border-0", @required=""})
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No records found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+

@@ -1,25 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
-        public class Adapter
+        public class AdapterRecord
         {
-            [Key]
-            public Guid UniqueId { get; set; }
+            public Guid Id { get; set; }
+
+            [ForeignKey("AdapterInformation")]
+            public Guid AdapterId { get; set; }
+
             [Required]
-            public int Id { get; set; }
+            public int OrderId { get; set; }
             [Required]
             public string Name { get; set; }
             [Required]
             public string Type { get; set; }
             [Required]
-            public string ProductionNumber { get; set; }
+            public string SerialNumber { get; set; }
             [Required]
             public int Weight { get; set; }
             [Required]
-            public int CenterOfMassOffset { get; set; }
+            public int LoadCenterDistance { get; set; }
         }
     }
 }

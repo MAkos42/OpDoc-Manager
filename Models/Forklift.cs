@@ -13,9 +13,7 @@ namespace OpDoc_Manager.Models
 
         public UserManualInformation UserManual { get; set; }
 
-        //public AdapterInformation Adapter { get; set; }
-
-        //public ServiceDocumentList ServiceDocumentation { get; set; }
+        public AdapterInformation Adapter { get; set; }
 
         //public PeriodicInspectionInformation PeriodicInspection { get; set; }
 
