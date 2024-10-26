@@ -119,10 +119,10 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("date")
                                 .HasColumnName("EntryIntoService");
 
-                            b1.Property<string>("ForkliftType")
+                            b1.Property<string>("OperationMode")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("ForkliftType");
+                                .HasColumnName("OperationMode");
 
                             b1.Property<string>("Manufacturer")
                                 .IsRequired()

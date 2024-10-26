@@ -12,14 +12,13 @@ namespace OpDoc_Manager.Data.Service
             _context = context;
         }
 
-        public async Task<List<ForkliftModelSelectorDTO>> GetModelTypesAsync()
+        public async Task<List<ForkliftModelSelectorDTO>> GetModelNamesAsync()
         {
             return await _context.ForkliftModels.Select(t => new ForkliftModelSelectorDTO
             {
                 Id = t.Id,
-                Manufacturer = t.Manufacturer,
-                Type = t.Type
-            }).ToListAsync();
+                Name = t.Manufacturer + " " + t.Type
+            }).OrderBy(m => m.Name).ToListAsync();
         }
 
         public async Task<Forklift.ModelInformation?> GetModelByIndexAsync(string manufacturer, string type)

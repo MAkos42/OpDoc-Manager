@@ -30,7 +30,7 @@ namespace OpDoc_Manager.Models
             [Required]
             public string EngineManufacturer { get; set; }
             [Required]
-            public int EngineOutput { get; set; }
+            public double EngineOutput { get; set; }
             [Required]
             public int EngineRPM { get; set; }
 
@@ -39,7 +39,7 @@ namespace OpDoc_Manager.Models
             [Required]
             public string InverterType { get; set; }
             [Required]
-            public int InverterPerformance { get; set; }
+            public string InverterPerformance { get; set; }
 
             [Required]
             public string FrequencyConverterManufacturer { get; set; }

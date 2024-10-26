@@ -1,17 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Data;
+using OpDoc_Manager.Data.Service;
 using OpDoc_Manager.Models;
 
 namespace OpDoc_Manager.Controllers
 {
     public class ViewController : Controller
     {
-        private readonly ApplicationDbContext _context;
 
-        public ViewController(ApplicationDbContext context)
+        private readonly ILogger<ViewController> _logger;
+        private readonly ApplicationDbContext _context;
+        private readonly IForkliftModelsService _modelService;
+
+        public ViewController(ILogger<ViewController> logger, ApplicationDbContext context, IForkliftModelsService modelService)
         {
+            _logger = logger;
             _context = context;
+            _modelService = modelService;
         }
 
 
@@ -32,32 +39,36 @@ namespace OpDoc_Manager.Controllers
         public async Task<IActionResult> Edit(Guid id)
         {
             var forklift = await _context.Forklifts
-                .FirstOrDefaultAsync(m => m.UniqueId == id);
+                .FirstOrDefaultAsync(f => f.UniqueId == id);
             if (forklift == null)
             {
-                return NotFound("forklift");
+                return NotFound("Forklift");
             }
-            var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(m => m.Id == id);
+            var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(f => f.Id == id);
             if (operatorInfo == null)
             {
-                return NotFound("operator information");
+                return NotFound("Operator Information");
             }
             var tempLeaseInformation = new Forklift.LeaseInformation();
             if (operatorInfo.LeaseInformation == null)
             {
                 forklift.Operator.LeaseInformation = tempLeaseInformation;
             }
-            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(m => m.Id == id);
+            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(f => f.Id == id);
             if (userManualInfo == null)
             {
-                return NotFound("user manual");
+                return NotFound("User Manual");
             }
 
 
+            List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
+
+            List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem(m.Name, m.Id.ToString())).ToList();
+
+            ViewBag.ModelNames = modelNames;
+
             return View(forklift);
         }
-
-
 
 
         private bool ForkliftExists(string id)

@@ -40,8 +40,8 @@ namespace OpDoc_Manager.Models
             [Column("TrackWidthBack")]
             public int TrackWidthBack { get; set; }
             [Required]
-            [Column("RideHeight")]
-            public int RideHeight { get; set; }
+            [Column("GroundClearance")]
+            public int GroundClearance { get; set; }
             [Required]
             [Column("TopSpeedWithLoad")]
             public double TopSpeedWithLoad { get; set; }
@@ -49,8 +49,8 @@ namespace OpDoc_Manager.Models
             [Column("TopSpeedWithoutLoad")]
             public double TopSpeedWithoutLoad { get; set; }
             [Required]
-            [Column("TractiveForce")]
-            public int TractiveForce { get; set; }
+            [Column("DrawbarPull")]
+            public int DrawbarPull { get; set; }
             [Required]
             [Column("FrontWheelCount")]
             public int FrontWheelCount { get; set; }

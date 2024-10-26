@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -34,11 +33,11 @@ namespace OpDoc_Manager.Migrations
                     BatteryVoltage = table.Column<int>(type: "integer", nullable: false),
                     BatteryCellCount = table.Column<int>(type: "integer", nullable: false),
                     EngineManufacturer = table.Column<string>(type: "text", nullable: false),
-                    EngineOutput = table.Column<int>(type: "integer", nullable: false),
+                    EngineOutput = table.Column<double>(type: "double precision", nullable: false),
                     EngineRPM = table.Column<int>(type: "integer", nullable: false),
                     InverterManufacturer = table.Column<string>(type: "text", nullable: false),
                     InverterType = table.Column<string>(type: "text", nullable: false),
-                    InverterPerformance = table.Column<int>(type: "integer", nullable: false),
+                    InverterPerformance = table.Column<string>(type: "text", nullable: false),
                     FrequencyConverterManufacturer = table.Column<string>(type: "text", nullable: false),
                     FrequencyConverterType = table.Column<string>(type: "text", nullable: false),
                     FrequencyConverterPerformance = table.Column<string>(type: "text", nullable: false)
@@ -80,10 +79,10 @@ namespace OpDoc_Manager.Migrations
                     Wheelbase = table.Column<int>(type: "integer", nullable: false),
                     TrackWidthFront = table.Column<int>(type: "integer", nullable: false),
                     TrackWidthBack = table.Column<int>(type: "integer", nullable: false),
-                    RideHeight = table.Column<int>(type: "integer", nullable: false),
+                    GroundClearance = table.Column<int>(type: "integer", nullable: false),
                     TopSpeedWithLoad = table.Column<double>(type: "double precision", nullable: false),
                     TopSpeedWithoutLoad = table.Column<double>(type: "double precision", nullable: false),
-                    TractiveForce = table.Column<int>(type: "integer", nullable: false),
+                    DrawbarPull = table.Column<int>(type: "integer", nullable: false),
                     FrontWheelCount = table.Column<int>(type: "integer", nullable: false),
                     BackWheelCount = table.Column<int>(type: "integer", nullable: false),
                     FrontWheelSize = table.Column<string>(type: "text", nullable: false),

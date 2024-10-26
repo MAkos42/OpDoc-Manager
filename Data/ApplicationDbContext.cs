@@ -15,7 +15,6 @@ namespace OpDoc_Manager.Data
         public DbSet<OperatorInformation> OperatorInformation { get; set; }
         public DbSet<LeaseInformation> LeaseInformation { get; set; }
         public DbSet<UserManualInformation> UserManualInformation { get; set; }
-        public DbSet<TechnicalInformation> TechnicalInformation { get; set; }
 
         public DbSet<ModelInformation> ForkliftModels { get; set; }
         public DbSet<Engine> Engines { get; set; }
@@ -23,6 +22,11 @@ namespace OpDoc_Manager.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Forklift>().OwnsOne(f => f.General, general =>
+            {
+                general.HasOne(g => g.Model).WithMany().HasForeignKey(g => g.ModelId);
+            });
+
             builder.Entity<Forklift>().HasOne(f => f.Operator).WithOne().HasForeignKey<OperatorInformation>(o => o.Id);
             builder.Entity<OperatorInformation>().HasOne(f => f.LeaseInformation).WithOne().HasForeignKey<LeaseInformation>(li => li.Id).IsRequired(false);
             builder.Entity<Forklift>().HasOne(f => f.UserManual).WithOne().HasForeignKey<UserManualInformation>(mi => mi.Id);
@@ -32,9 +36,6 @@ namespace OpDoc_Manager.Data
             builder.Entity<InternalCombustionEngine>().ToTable("ICEngine");
             builder.Entity<ModelInformation>().HasOne(m => m.Engine).WithOne().HasForeignKey<ModelInformation>(mi => mi.EngineId);
 
-
-            builder.Entity<Forklift>().HasOne(f => f.Technical).WithOne().HasForeignKey<TechnicalInformation>(ti => ti.Id);
-            builder.Entity<TechnicalInformation>().HasOne(ti => ti.Model).WithMany().HasForeignKey(ti => ti.ModelId);
         }
     }
 }

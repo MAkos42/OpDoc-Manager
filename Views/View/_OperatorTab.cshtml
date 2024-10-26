@@ -1,32 +1,27 @@
-﻿
-@model Forklift.OperatorInformation
+﻿@model Forklift.OperatorInformation
 
 <div class="tab-pane fade col-11" id="operator" role="tabpanel" aria-labelled-by="operator-tab">
 
 
 
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <div class="input-group">
-                <span class="input-group-text unified-label-width">
-                    @Html.LabelFor(o=>o.Owner, "Tulajdonos neve:")
-                </span>
-                @Html.TextBoxFor(o=>o.Owner, new {@class = "form-control"})
-                @Html.ValidationMessageFor(o=>o.Owner, "", new { @class = "text-danger" })
-            </div>
+    <div class="row col-md-6 mb-3">
+        <div class="input-group">
+            <span class="input-group-text unified-label-width">
+                @Html.LabelFor(o=>o.Owner, "Tulajdonos neve:")
+            </span>
+            @Html.TextBoxFor(o=>o.Owner, new {@class = "form-control"})
+            @Html.ValidationMessageFor(o=>o.Owner, "", new { @class = "text-danger" })
         </div>
     </div>
 
 
-    <div class="row mb-3">
-        <div class="col-md-8">
-            <div class="input-group">
-                <span class="input-group-text unified-label-width">
-                    @Html.LabelFor(o=>o.OwnerAddress, "Tulajdonos címe:")
-                </span>
-                @Html.TextBoxFor(o=>o.OwnerAddress, new {@class = "form-control"})
-                @Html.ValidationMessageFor(o=>o.OwnerAddress, "", new { @class = "text-danger" })
-            </div>
+    <div class="row col-md-8 mb-3">
+        <div class="input-group">
+            <span class="input-group-text unified-label-width">
+                @Html.LabelFor(o=>o.OwnerAddress, "Tulajdonos címe:")
+            </span>
+            @Html.TextBoxFor(o=>o.OwnerAddress, new {@class = "form-control"})
+            @Html.ValidationMessageFor(o=>o.OwnerAddress, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -55,15 +50,13 @@
     </div>
 
 
-    <div class="row mb-3">
-        <div class="col-md-8">
-            <div class="input-group">
-                <span class="input-group-text unified-label-width">
-                    @Html.LabelFor(o=>o.OperatorAddress, "Üzemeltető címe:")
-                </span>
-                @Html.TextBoxFor(o=>o.OperatorAddress, new {@class = "form-control different-operator-only"})
-                @Html.ValidationMessageFor(o=>o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
-            </div>
+    <div class="row col-md-8 mb-3">
+        <div class="input-group">
+            <span class="input-group-text unified-label-width">
+                @Html.LabelFor(o=>o.OperatorAddress, "Üzemeltető címe:")
+            </span>
+            @Html.TextBoxFor(o=>o.OperatorAddress, new {@class = "form-control different-operator-only"})
+            @Html.ValidationMessageFor(o=>o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
         </div>
     </div>
 
@@ -223,26 +216,40 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const checkbox = document.getElementById('IsDifferentOperator');
-            const inputs = document.querySelectorAll('.different-operator-only');
             const leaseDiv = document.getElementById('LeaseOnly');
+            const operatorInput = document.getElementById('Operator');
+            const operatorAddressInput = document.getElementById('OperatorAddress');
+            const inputs = document.querySelectorAll('.different-operator-only');
 
             checkbox.addEventListener('change', function () {
 
-                if (checkbox.checked)
+                if (checkbox.checked) {
                     leaseDiv.classList.add('show');
-                else
+                    operatorInput.value = '';
+                    operatorAddressInput.value = '';
+                }
+                else {
                     leaseDiv.classList.remove('show');
-
+                    operatorInput.value = $('#Owner').val();
+                    operatorAddressInput.value = $('#OwnerAddress').val();
+                }
 
                 inputs.forEach(input => {
                     input.disabled = !checkbox.checked;
                 });
+
             });
 
-            if (checkbox.checked)
+            if (checkbox.checked) {
                 leaseDiv.classList.add('show');
-            else
+                operatorInput.value = '';
+                operatorAddressInput.value = '';
+            }
+            else {
                 leaseDiv.classList.remove('show');
+                operatorInput.value = $('#Owner').val();
+                operatorAddressInput.value = $('#OwnerAddress').val();
+            }
 
             inputs.forEach(input => {
                 input.disabled = !checkbox.checked;

@@ -2,7 +2,7 @@
 {
     public partial class Forklift
     {
-        public enum ForkliftType
+        public enum OperationMode
         {
             LIFT,
             TOW,

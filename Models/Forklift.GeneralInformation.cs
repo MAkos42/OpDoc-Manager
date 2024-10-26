@@ -12,12 +12,13 @@ namespace OpDoc_Manager.Models
             [Required]
             [Column("Name")]
             public string Name { get; set; }
-            [Required]
-            [Column("Manufacturer")]
-            public string Manufacturer { get; set; }
-            [Required]
-            [Column("Model")]
-            public string Model { get; set; }
+
+            [ForeignKey("ModelInformation")]
+            [Column("ModelId")]
+            public Guid ModelId { get; set; }
+
+            public ModelInformation Model { get; set; }
+
             [Required]
             [Column("ManufacturingYear")]
             public int ManufacturingYear { get; set; }
@@ -28,14 +29,9 @@ namespace OpDoc_Manager.Models
             [Column("EntryIntoService")]
             public DateOnly EntryIntoService { get; set; }
             [Required]
-            [Column("ForkliftType", TypeName = "text")]
-            public ForkliftType ForkliftType { get; set; }
-            [Required]
-            [Column("OperatorType", TypeName = "text")]
-            public OperatorType OperatorType { get; set; }
-            [Required]
-            [Column("PowerSource", TypeName = "text")]
-            public PowerSource PowerSource { get; set; }
+            [Column("EngineProductionNumber")]
+            public string EngineProductionNumber { get; set; }
+
         }
     }
 }

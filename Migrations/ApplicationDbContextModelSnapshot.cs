@@ -113,6 +113,21 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("OperationMode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("OperationMode");
+
+                    b.Property<string>("OperatorType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("OperatorType");
+
+                    b.Property<string>("PowerSource")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("PowerSource");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
@@ -150,9 +165,11 @@ namespace OpDoc_Manager.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Operator")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("OperatorAddress")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Owner")
@@ -188,25 +205,6 @@ namespace OpDoc_Manager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("OperatorInformation");
-                });
-
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+TechnicalInformation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EngineProductionNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("ModelId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModelId");
-
-                    b.ToTable("TechnicalInformation");
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+UserManualInformation", b =>
@@ -289,8 +287,8 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("EngineOutput")
-                        .HasColumnType("integer");
+                    b.Property<double>("EngineOutput")
+                        .HasColumnType("double precision");
 
                     b.Property<int>("EngineRPM")
                         .HasColumnType("integer");
@@ -311,8 +309,9 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("InverterPerformance")
-                        .HasColumnType("integer");
+                    b.Property<string>("InverterPerformance")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("InverterType")
                         .IsRequired()
@@ -364,43 +363,26 @@ namespace OpDoc_Manager.Migrations
                             b1.Property<Guid>("ForkliftUniqueId")
                                 .HasColumnType("uuid");
 
+                            b1.Property<string>("EngineProductionNumber")
+                                .IsRequired()
+                                .HasColumnType("text")
+                                .HasColumnName("EngineProductionNumber");
+
                             b1.Property<DateOnly>("EntryIntoService")
                                 .HasColumnType("date")
                                 .HasColumnName("EntryIntoService");
-
-                            b1.Property<string>("ForkliftType")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("ForkliftType");
-
-                            b1.Property<string>("Manufacturer")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Manufacturer");
 
                             b1.Property<int>("ManufacturingYear")
                                 .HasColumnType("integer")
                                 .HasColumnName("ManufacturingYear");
 
-                            b1.Property<string>("Model")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("Model");
+                            b1.Property<Guid>("ModelId")
+                                .HasColumnType("uuid");
 
                             b1.Property<string>("Name")
                                 .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("Name");
-
-                            b1.Property<string>("OperatorType")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("OperatorType");
-
-                            b1.Property<string>("PowerSource")
-                                .IsRequired()
-                                .HasColumnType("text")
-                                .HasColumnName("PowerSource");
 
                             b1.Property<string>("ProductionNumber")
                                 .IsRequired()
@@ -409,10 +391,20 @@ namespace OpDoc_Manager.Migrations
 
                             b1.HasKey("ForkliftUniqueId");
 
+                            b1.HasIndex("ModelId");
+
                             b1.ToTable("Forklifts");
 
                             b1.WithOwner()
                                 .HasForeignKey("ForkliftUniqueId");
+
+                            b1.HasOne("OpDoc_Manager.Models.Forklift+ModelInformation", "Model")
+                                .WithMany()
+                                .HasForeignKey("ModelId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+
+                            b1.Navigation("Model");
                         });
 
                     b.Navigation("General")
@@ -509,6 +501,10 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("BreakingForce");
 
+                            b1.Property<int>("DrawbarPull")
+                                .HasColumnType("integer")
+                                .HasColumnName("DrawbarPull");
+
                             b1.Property<int>("FrontWheelCount")
                                 .HasColumnType("integer")
                                 .HasColumnName("FrontWheelCount");
@@ -521,6 +517,10 @@ namespace OpDoc_Manager.Migrations
                                 .IsRequired()
                                 .HasColumnType("text")
                                 .HasColumnName("FrontWheelSize");
+
+                            b1.Property<int>("GroundClearance")
+                                .HasColumnType("integer")
+                                .HasColumnName("GroundClearance");
 
                             b1.Property<int>("HeightMastLowered")
                                 .HasColumnType("integer")
@@ -554,10 +554,6 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("ParkingBreakForce");
 
-                            b1.Property<int>("RideHeight")
-                                .HasColumnType("integer")
-                                .HasColumnName("RideHeight");
-
                             b1.Property<double>("TopSpeedWithLoad")
                                 .HasColumnType("double precision")
                                 .HasColumnName("TopSpeedWithLoad");
@@ -573,10 +569,6 @@ namespace OpDoc_Manager.Migrations
                             b1.Property<int>("TrackWidthFront")
                                 .HasColumnType("integer")
                                 .HasColumnName("TrackWidthFront");
-
-                            b1.Property<int>("TractiveForce")
-                                .HasColumnType("integer")
-                                .HasColumnName("TractiveForce");
 
                             b1.Property<int>("Wheelbase")
                                 .HasColumnType("integer")
@@ -612,23 +604,6 @@ namespace OpDoc_Manager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OpDoc_Manager.Models.Forklift+TechnicalInformation", b =>
-                {
-                    b.HasOne("OpDoc_Manager.Models.Forklift", null)
-                        .WithOne("Technical")
-                        .HasForeignKey("OpDoc_Manager.Models.Forklift+TechnicalInformation", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpDoc_Manager.Models.Forklift+ModelInformation", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Model");
-                });
-
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+UserManualInformation", b =>
                 {
                     b.HasOne("OpDoc_Manager.Models.Forklift", null)
@@ -659,9 +634,6 @@ namespace OpDoc_Manager.Migrations
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift", b =>
                 {
                     b.Navigation("Operator")
-                        .IsRequired();
-
-                    b.Navigation("Technical")
                         .IsRequired();
 
                     b.Navigation("UserManual")

@@ -18,6 +18,18 @@ namespace OpDoc_Manager.Models
             [Required]
             public string Type { get; set; }
 
+            [Required]
+            [Column("OperationMode", TypeName = "text")]
+            public OperationMode OperationMode { get; set; }
+
+            [Required]
+            [Column("OperatorType", TypeName = "text")]
+            public OperatorType OperatorType { get; set; }
+
+            [Required]
+            [Column("PowerSource", TypeName = "text")]
+            public PowerSource PowerSource { get; set; }
+
             public LiftMechanism LiftMechanism { get; set; }
 
             public RoadInformation RoadInformation { get; set; }

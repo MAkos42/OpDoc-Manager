@@ -371,10 +371,10 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("date")
                                 .HasColumnName("EntryIntoService");
 
-                            b1.Property<string>("ForkliftType")
+                            b1.Property<string>("OperationMode")
                                 .IsRequired()
                                 .HasColumnType("text")
-                                .HasColumnName("ForkliftType");
+                                .HasColumnName("OperationMode");
 
                             b1.Property<string>("Manufacturer")
                                 .IsRequired()
@@ -557,9 +557,9 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("ParkingBreakForce");
 
-                            b1.Property<int>("RideHeight")
+                            b1.Property<int>("GroundClearance")
                                 .HasColumnType("integer")
-                                .HasColumnName("RideHeight");
+                                .HasColumnName("GroundClearance");
 
                             b1.Property<double>("TopSpeedWithLoad")
                                 .HasColumnType("double precision")
@@ -577,9 +577,9 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("integer")
                                 .HasColumnName("TrackWidthFront");
 
-                            b1.Property<int>("TractiveForce")
+                            b1.Property<int>("DrawbarPull")
                                 .HasColumnType("integer")
-                                .HasColumnName("TractiveForce");
+                                .HasColumnName("DrawbarPull");
 
                             b1.Property<int>("Wheelbase")
                                 .HasColumnType("integer")

@@ -20,8 +20,8 @@ namespace OpDoc_Manager.Controllers
 
         public IActionResult Index()
         {
-            //if (_context.Forklifts.Count() == 0)
-            GenerateTestData();
+            if (_context.Forklifts.Count() == 0)
+                GenerateTestData();
 
             Forklift[] forklifts = _context.Forklifts.ToArray();
             return View(forklifts);
@@ -29,11 +29,15 @@ namespace OpDoc_Manager.Controllers
 
         private void GenerateTestData()
         {
+
             _context.ForkliftModels.RemoveRange(_context.ForkliftModels);
-            Forklift.ModelInformation testModel = new Forklift.ModelInformation
+            Forklift.ModelInformation testModel1 = new Forklift.ModelInformation
             {
                 Manufacturer = "CAT",
-                Type = "DP20-35N3",
+                Type = "DP35N3-3300S",
+                OperatorType = Forklift.OperatorType.SEATED,
+                OperationMode = Forklift.OperationMode.LIFT,
+                PowerSource = Forklift.PowerSource.DIESEL,
 
                 LiftMechanism = new Forklift.LiftMechanism
                 {
@@ -41,7 +45,7 @@ namespace OpDoc_Manager.Controllers
                     FreeLift = 145,
                     NominalLiftHeight = 3300,
                     MaxLiftHeight = 3445,
-                    MaxHeightMaxLoad = 2.4,
+                    MaxHeightMaxLoad = 3.5,
                     LiftSpeedUnloaded = 0.41,
                     LiftSpeedLoaded = 0.43,
                     MastForwardTiltAngle = 6,
@@ -56,14 +60,14 @@ namespace OpDoc_Manager.Controllers
                     HeightMastLowered = 2300,
                     HeightMastRaised = 4355,
                     OuterTurningCircle = 2440,
-                    InnerTurningCircle = 500,
+                    InnerTurningCircle = 780,
                     Wheelbase = 1700,
                     TrackWidthFront = 1060,
                     TrackWidthBack = 980,
-                    RideHeight = 120,
+                    GroundClearance = 135,
                     TopSpeedWithLoad = 16.5,
                     TopSpeedWithoutLoad = 18.0,
-                    TractiveForce = 15000,
+                    DrawbarPull = 15900,
                     FrontWheelCount = 2,
                     BackWheelCount = 2,
                     FrontWheelSize = "250-15-12PR",
@@ -86,7 +90,83 @@ namespace OpDoc_Manager.Controllers
                     FuelCapacity = 10
                 }
             };
-            _context.ForkliftModels.Add(testModel);
+
+            Forklift.ModelInformation testModel2 = new Forklift.ModelInformation
+            {
+                Manufacturer = "CAT",
+                Type = "EP25N-3300S",
+                OperatorType = Forklift.OperatorType.SEATED,
+                OperationMode = Forklift.OperationMode.LIFT,
+                PowerSource = Forklift.PowerSource.DIESEL,
+
+                LiftMechanism = new Forklift.LiftMechanism
+                {
+                    LoadCapacity = 2.5,
+                    FreeLift = 100,
+                    NominalLiftHeight = 3300,
+                    MaxLiftHeight = 3400,
+                    MaxHeightMaxLoad = 2.5,
+                    LiftSpeedUnloaded = 0.5,
+                    LiftSpeedLoaded = 0.65,
+                    MastForwardTiltAngle = 6,
+                    MastBackwardTiltAngle = 8
+                },
+
+                RoadInformation = new Forklift.RoadInformation
+                {
+                    Width = 1190,
+                    Length = 3600,
+                    HeightTransportPosition = 2145,
+                    HeightMastLowered = 2300,
+                    HeightMastRaised = 4355,
+                    OuterTurningCircle = 2064,
+                    InnerTurningCircle = 160,
+                    Wheelbase = 1730,
+                    TrackWidthFront = 985,
+                    TrackWidthBack = 970,
+                    GroundClearance = 122,
+                    TopSpeedWithLoad = 20.0,
+                    TopSpeedWithoutLoad = 20.0,
+                    DrawbarPull = 9700,
+                    FrontWheelCount = 2,
+                    BackWheelCount = 2,
+                    FrontWheelSize = "23x9-10",
+                    BackWheelSize = "18x7-8",
+                    FrontWheelPressure = 2.3,
+                    BackWheelPressure = 2.5,
+                    OperationalWeight = 4700,
+                    BatteryWeight = 1893,
+                    BreakingForce = 30000,
+                    ParkingBreakForce = 40000
+                },
+
+                Engine = new Forklift.ElectricEngine
+                {
+                    EngineType = Forklift.EngineType.ELECTRIC,
+
+                    BatteryType = "",
+                    BatteryManufacturer = "",
+                    NominalBatteryCapacity = 775,
+                    BatteryVoltage = 80,
+                    BatteryCellCount = 12,
+
+                    EngineManufacturer = "",
+                    EngineOutput = 8.0,
+                    EngineRPM = 2000,
+
+                    InverterManufacturer = "",
+                    InverterType = "",
+                    InverterPerformance = "",
+
+                    FrequencyConverterManufacturer = "",
+                    FrequencyConverterType = "",
+                    FrequencyConverterPerformance = ""
+
+                }
+            };
+
+            _context.ForkliftModels.Add(testModel1);
+            _context.ForkliftModels.Add(testModel2);
             _context.SaveChanges();
 
 
@@ -94,23 +174,23 @@ namespace OpDoc_Manager.Controllers
 
             Forklift test = new Forklift
             {
-                UniqueId = new Guid(),
                 General = new Forklift.GeneralInformation
                 {
                     Name = "TestForklift1",
-                    Manufacturer = "CAT",
-                    Model = "DP20-35N3",
-                    OperatorType = Forklift.OperatorType.SEATED,
                     ManufacturingYear = 2022,
                     ProductionNumber = "CTZXAB1222001",
-                    ForkliftType = Forklift.ForkliftType.LIFT,
-                    PowerSource = Forklift.PowerSource.DIESEL,
+
+                    Model = testModel1,
+                    EngineProductionNumber = "TEST0101",
+
                     EntryIntoService = new DateOnly(2022, 10, 11)
                 },
                 Operator = new Forklift.OperatorInformation
                 {
                     Owner = "Targonca Operations Kft.",
                     OwnerAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    Operator = "Targonca Operations Kft.",
+                    OperatorAddress = "3501 Miskolc, Tesztpálya út. 31.",
                     IsDifferentOperator = false,
                     OperationArea = "Raktár A1",
                     UserName = "Tóth Béla",
@@ -132,11 +212,6 @@ namespace OpDoc_Manager.Controllers
                     RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
                     RecipientSigneeName = "Ferenczy Sándor",
                     RecipientSigneePosition = "Emelõgép-ügyintézõ"
-                },
-                Technical = new Forklift.TechnicalInformation
-                {
-                    Model = testModel,
-                    EngineProductionNumber = "TEST0101"
                 }
             };
 
@@ -145,7 +220,6 @@ namespace OpDoc_Manager.Controllers
             if (test.Operator.LeaseInformation != null)
                 _context.LeaseInformation.Add(test.Operator.LeaseInformation);
             _context.UserManualInformation.Add(test.UserManual);
-            _context.TechnicalInformation.Add(test.Technical);
             _context.SaveChanges();
         }
 

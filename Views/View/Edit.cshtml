@@ -1,16 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Forklift Editor";
+
+    var forkliftTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Emelőtargonca", "LIFT"),
+        new SelectListItem("Vontatótargonca","TOW"),
+        new SelectListItem("Szállítótargonca", "TRANSPORT")};
+
+    var operatorTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Vezetőüles", "SEATED"),
+        new SelectListItem("Vezetőállás", "STANDING"),
+        new SelectListItem("Gyalogkíséret", "PEDESTRIAN")
+    };
+
+    var powerSourceSelector = new List<SelectListItem> {
+        new SelectListItem("Dízel", "DIESEL"),
+        new SelectListItem("Benzin", "GASOLINE"),
+        new SelectListItem("Földgáz", "NATGAS"),
+        new SelectListItem("Elektromos", "ELECTRIC"),
+
+    };
 }
 
 @using OpDoc_Manager.Models
 @model Forklift
+
 
 @using (Html.BeginForm("Save", "ViewController", FormMethod.Post))
 {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a href="#general" class="nav-link active" id="general-tab" role="tab" data-bs-toggle="tab" aria-controls="general" aria-selected="true">Általános</a>
+                <a href="#general" class="nav-link" id="general-tab" role="tab" data-bs-toggle="tab" aria-controls="general" aria-selected="true">Általános</a>
             </li>
             <li class="nav-item">
                 <a href="#operator" class="nav-link" id="operator-tab" role="tab" data-bs-toggle="tab" aria-controls="operator">Tulajdonos</a>
@@ -20,6 +40,9 @@
             </li>
             <li class="nav-item">
                 <a href="#manual" class="nav-link" id="manual-tab" role="tab" data-bs-toggle="tab" aria-controls="manual">Használati Utasítás</a>
+            </li>
+            <li class="nav-item">
+                <a href="#technical" class="nav-link active" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
             </li>
         </ul>
     </nav>
@@ -37,6 +60,10 @@
 
         <!-- User Manual -->
         @await Html.PartialAsync("_UserManualTab", Model.UserManual)
+
+        <!-- Technical Information -->
+        @await Html.PartialAsync("_ModelDataTab", Model.General.Model)
+
 
 
 

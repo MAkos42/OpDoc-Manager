@@ -16,8 +16,10 @@ namespace OpDoc_Manager.Models
 
             [Required]
             public bool IsDifferentOperator { get; set; } = false;
-            public string? Operator { get; set; }
-            public string? OperatorAddress { get; set; }
+            [Required]
+            public string Operator { get; set; }
+            [Required]
+            public string OperatorAddress { get; set; }
             public DateOnly? TransferDate { get; set; }
             public string? TransferID { get; set; }
 

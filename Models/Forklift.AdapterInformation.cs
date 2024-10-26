@@ -1,13 +1,19 @@
-﻿namespace OpDoc_Manager.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
+        [Owned]
         public class AdapterInformation
         {
-            public string AdapterClassification { get; set; }
-            ICollection<Adapter> AdapterList { get; set; }
+            public Guid Id { get; set; }
 
-            public ServiceDocumentList AdapterServiceDocumentation { get; set; }
+            public string ForkliftAdapter { get; set; }
+
+            public List<Adapter> AdapterList { get; set; }
+
+            //public List<ServiceDocument> AdapterDocumentation { get; set; }
 
         }
     }
