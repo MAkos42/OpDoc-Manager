@@ -220,7 +220,7 @@ namespace OpDoc_Manager.Controllers
                     {
                         new Forklift.AdapterRecord
                         {
-                            OrderId = 1,
+                            Number = 1,
                             Name = "3300mm Simplex Carriage",
                             Type = "Simplex",
                             SerialNumber = "CTZXAB1222001S330001",

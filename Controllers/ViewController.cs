@@ -68,7 +68,7 @@ namespace OpDoc_Manager.Controllers
             {
                 return NotFound("Adapter Information");
             }
-            var adapters = await _context.Adapters.Where(a => a.AdapterId == id).OrderBy(a => a.OrderId).ToListAsync();
+            var adapters = await _context.Adapters.Where(a => a.AdapterId == id).OrderBy(a => a.Number).ToListAsync();
             if (adapters.Count == 0)
             {
                 return NotFound("Adapter Records");

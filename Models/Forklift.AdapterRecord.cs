@@ -13,7 +13,7 @@ namespace OpDoc_Manager.Models
             public Guid AdapterId { get; set; }
 
             [Required]
-            public int OrderId { get; set; }
+            public int Number { get; set; }
             [Required]
             public string Name { get; set; }
             [Required]
