@@ -12,18 +12,25 @@ namespace OpDoc_Manager.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IForkliftModelsService _modelsService;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, ForkliftModelsService modelsService)
         {
             _logger = logger;
             _context = context;
+            _modelsService = modelsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (_context.Forklifts.Count() == 0)
                 GenerateTestData();
 
             Forklift[] forklifts = _context.Forklifts.ToArray();
+
+            List<ForkliftModelSelectorDTO> modelList = await _modelsService.GetModelNamesAsync();
+
+
+            ViewBag.ModelList = modelList;
+
             return View(forklifts);
         }
 

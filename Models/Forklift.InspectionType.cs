@@ -2,7 +2,7 @@
 {
     public partial class Forklift
     {
-        public enum PeriodicInspectionType
+        public enum InspectionType
         {
             MANUFACTURER,
             MSZ9721,

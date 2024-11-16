@@ -16,8 +16,11 @@ namespace OpDoc_Manager.Data
         public DbSet<LeaseInformation> LeaseInformation { get; set; }
         public DbSet<UserManualInformation> UserManualInformation { get; set; }
         public DbSet<AdapterInformation> AdapterInformation { get; set; }
+        public DbSet<PeriodicInspectionInformation> PeriodicInspectionInformation { get; set; }
 
         public DbSet<AdapterRecord> Adapters { get; set; }
+        public DbSet<CustomInspectionPeriod> CustomInspectionPeriods { get; set; }
+        public DbSet<PeriodicInspectionResult> periodicInspections { get; set; }
 
         public DbSet<ModelInformation> ForkliftModels { get; set; }
         public DbSet<Engine> Engines { get; set; }

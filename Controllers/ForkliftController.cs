@@ -7,14 +7,14 @@ using OpDoc_Manager.Models;
 
 namespace OpDoc_Manager.Controllers
 {
-    public class ViewController : Controller
+    public class ForkliftController : Controller
     {
 
-        private readonly ILogger<ViewController> _logger;
+        private readonly ILogger<ForkliftController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly IForkliftModelsService _modelService;
 
-        public ViewController(ILogger<ViewController> logger, ApplicationDbContext context, IForkliftModelsService modelService)
+        public ForkliftController(ILogger<ForkliftController> logger, ApplicationDbContext context, IForkliftModelsService modelService)
         {
             _logger = logger;
             _context = context;

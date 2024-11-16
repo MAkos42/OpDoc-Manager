@@ -12,8 +12,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IForkliftModelsService, ForkliftModelsService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-
-
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 var app = builder.Build();
@@ -33,16 +31,13 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
+app.MapControllerRoute(
     name: "EditRoute",
     pattern: "{controller}/{id}/{action}",
     defaults: new { controller = "View", action = "edit" });
 
-    endpoints.MapControllerRoute(
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/");
-});
 
 app.Run();
