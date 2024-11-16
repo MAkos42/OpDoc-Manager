@@ -15,7 +15,7 @@ namespace OpDoc_Manager.Models
 
         public AdapterInformation Adapter { get; set; }
 
-        //public PeriodicInspectionInformation PeriodicInspection { get; set; }
+        public PeriodicInspectionInformation PeriodicInspection { get; set; }
 
         //public ICollection<OperationRecordElement> OperationRecord {  get; set; }
 

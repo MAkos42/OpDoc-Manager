@@ -35,9 +35,14 @@ namespace OpDoc_Manager.Data
 
             builder.Entity<Forklift>().HasOne(f => f.Operator).WithOne().HasForeignKey<OperatorInformation>(o => o.Id);
             builder.Entity<OperatorInformation>().HasOne(f => f.LeaseInformation).WithOne().HasForeignKey<LeaseInformation>(li => li.Id).IsRequired(false);
-            builder.Entity<Forklift>().HasOne(f => f.UserManual).WithOne().HasForeignKey<UserManualInformation>(mi => mi.Id);
+            builder.Entity<Forklift>().HasOne(f => f.UserManual).WithOne().HasForeignKey<UserManualInformation>(umi => umi.Id);
             builder.Entity<Forklift>().HasOne(f => f.Adapter).WithOne().HasForeignKey<AdapterInformation>(ai => ai.Id);
+            builder.Entity<Forklift>().HasOne(f => f.PeriodicInspection).WithOne().HasForeignKey<PeriodicInspectionInformation>(pi => pi.Id);
+
             builder.Entity<AdapterInformation>().HasMany(ai => ai.AdapterList).WithOne().HasForeignKey(ar => ar.AdapterId);
+
+            builder.Entity<PeriodicInspectionInformation>().HasMany(pi => pi.CustomInspectionPeriodRecord).WithOne().HasForeignKey(cip => cip.ForkliftId);
+            builder.Entity<PeriodicInspectionInformation>().HasMany(pi => pi.InspectionResults).WithOne().HasForeignKey(ir => ir.ForkliftId);
 
             builder.Entity<ElectricEngine>().ToTable("ElectricEngines");
             builder.Entity<InternalCombustionEngine>().ToTable("ICEngine");
