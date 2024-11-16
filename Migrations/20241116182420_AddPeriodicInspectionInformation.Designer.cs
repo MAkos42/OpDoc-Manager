@@ -12,7 +12,7 @@ using OpDoc_Manager.Data;
 namespace OpDoc_Manager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241116174758_AddPeriodicInspectionInformation")]
+    [Migration("20241116182420_AddPeriodicInspectionInformation")]
     partial class AddPeriodicInspectionInformation
     {
         /// <inheritdoc />
@@ -311,6 +311,10 @@ namespace OpDoc_Manager.Migrations
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
+
+                    b.Property<string>("InspectionCategory")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateOnly>("LastInspectionDate")
                         .HasColumnType("date");

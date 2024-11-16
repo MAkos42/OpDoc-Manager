@@ -309,6 +309,10 @@ namespace OpDoc_Manager.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("InspectionCategory")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateOnly>("LastInspectionDate")
                         .HasColumnType("date");
 

@@ -57,7 +57,7 @@ namespace OpDoc_Manager.Models
 
             [Required]
             [Column(TypeName = "text")]
-            InspectionType InspectionType { get; set; }
+            public InspectionCategory InspectionCategory { get; set; }
             public string? ManufacturerInspectionId { get; set; }
             public string? OperatorInspectionId { get; set; }
 

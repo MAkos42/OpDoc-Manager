@@ -12,7 +12,8 @@ namespace OpDoc_Manager.Models
             [ForeignKey("PeriodicInspectionInformation")]
             public Guid ForkliftId { get; set; }
             [Required]
-            public string Type { get; set; }
+            [Column(TypeName = "text")]
+            public InspectionType Type { get; set; }
             [Required]
             public int RequiredOperationHours { get; set; }
             [Required]

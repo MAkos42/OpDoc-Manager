@@ -18,6 +18,7 @@ namespace OpDoc_Manager.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     OperatingHours = table.Column<int>(type: "integer", nullable: false),
                     LastInspectionDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    InspectionCategory = table.Column<string>(type: "text", nullable: false),
                     ManufacturerInspectionId = table.Column<string>(type: "text", nullable: true),
                     OperatorInspectionId = table.Column<string>(type: "text", nullable: true),
                     MSZ9750InspectionGroupId = table.Column<int>(type: "integer", nullable: true),

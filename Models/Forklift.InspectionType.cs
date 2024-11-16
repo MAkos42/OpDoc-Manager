@@ -4,9 +4,10 @@
     {
         public enum InspectionType
         {
-            MANUFACTURER,
-            MSZ9721,
-            MSZ9721CUSTOM
+            INSPECTION,
+            STRUCTURAL,
+            MAIN
         }
     }
+
 }
