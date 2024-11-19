@@ -1,16 +1,66 @@
 ﻿@{
     ViewData["Title"] = "Forklift Editor";
 }
+
 @using OpDoc_Manager.Models
 @model Forklift
 
-@using (Html.BeginForm("Save", "Editor", FormMethod.Post))
+
+@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post))
 {
-    <div class="row">
-        <div class="col-md-3">
-        @Html.LabelFor(forklift=>forklift.General.Name, new {@class = "form-label"})
-        @Html.TextBoxFor(forklift=>forklift.General.Name, new {@class = "form-control", @readonly="readonly"})
-        @Html.ValidationMessageFor(forklift=>forklift.General.Name, "", new { @class = "text-danger" })
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a href="#general" class="nav-link" id="general-tab" role="tab" data-bs-toggle="tab" aria-controls="general" aria-selected="true">Általános</a>
+            </li>
+            <li class="nav-item">
+                <a href="#operator" class="nav-link" id="operator-tab" role="tab" data-bs-toggle="tab" aria-controls="operator">Tulajdonos</a>
+            </li>
+            <li class="nav-item">
+                <a href="#operation" class="nav-link" id="operation-tab" role="tab" data-bs-toggle="tab" aria-controls="operation">Üzemeltetés</a>
+            </li>
+            <li class="nav-item">
+                <a href="#manual" class="nav-link" id="manual-tab" role="tab" data-bs-toggle="tab" aria-controls="manual">Használati Utasítás</a>
+            </li>
+            <li class="nav-item">
+                <a href="#modeldata" class="nav-link" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
+            </li>
+            <li class="nav-item">
+                <a href="#adapter" class="nav-link active" id="adapter-tab" role="tab" data-bs-toggle="tab" aria-controls="adapter">Adapter</a>
+            </li>
+            <li class="align-content-end">
+                <button type="submit" class="btn btn-primary">Mentés</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="tab-content">
+
+        <!-- General Information -->
+        @await Html.PartialAsync("_GeneralTab", Model.General)
+        @* @Html.EditorFor(m => m.General, "_GeneralTab") *@
+
+        <!-- Operator -->
+        @await Html.PartialAsync("_OperatorTab", Model.Operator)
+
+        <!-- Operation -->
+        @await Html.PartialAsync("_OperationTab", Model.Operator)
+
+        <!-- User Manual -->
+        @await Html.PartialAsync("_UserManualTab", Model.UserManual)
+
+        <!-- Technical Information -->
+        @await Html.PartialAsync("_ModelDataTab", Model.General.Model)
+
+        <!-- Adapter Information -->
+        @await Html.PartialAsync("_AdapterTab", Model.Adapter)
+
+
+        <!-- Add more tab content sections as needed -->
+
+
     </div>
+
 }
+
+@Html.ValidationSummary(true)

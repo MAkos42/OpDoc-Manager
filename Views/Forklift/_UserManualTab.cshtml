@@ -1,4 +1,6 @@
 ﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "UserManual";
+
     var webManualSelector = new List<SelectListItem> {
         new SelectListItem("Átadta", "false"),
         new SelectListItem("Nem adta át (alábbi internetcímen elérhető)", "true")
@@ -30,27 +32,27 @@
             <div class="col-md-5 mb-3">
                 <div class="input-group">
                     <span class="input-group-text col-md-6">
-                        @Html.LabelFor(um=>um.DateOfTransfer, "Átadás dátuma:")
+                        @Html.LabelFor(um => um.DateOfTransfer, "Átadás dátuma:")
                     </span>
-                    @Html.TextBoxFor(um=>um.DateOfTransfer,"{0:yyyy-MM-dd}", new {@class = "form-control", type="date"})
-                    @Html.ValidationMessageFor(um=>um.DateOfTransfer, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(um => um.DateOfTransfer, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(um => um.DateOfTransfer, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="input-group mb-3">
                 <span class="input-group-text col-md-5">
-                    @Html.LabelFor(um=>um.IsOnlineManual, "A használati utasítást az átadó:")
+                    @Html.LabelFor(um => um.IsOnlineManual, "A használati utasítást az átadó:")
                 </span>
-                @Html.DropDownListFor(um=>um.IsOnlineManual, webManualSelector , new {@class = "form-select"})
-                @Html.ValidationMessageFor(um=>um.IsOnlineManual, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(um => um.IsOnlineManual, webManualSelector, new { @class = "form-select" })
+                @Html.ValidationMessageFor(um => um.IsOnlineManual, "", new { @class = "text-danger" })
             </div>
 
             <div class="input-group mb-3" id="WebsiteInput">
                 <span class="input-group-text col-md-2">
-                    @Html.LabelFor(um=>um.ManualWebsite, "Webcím:")
+                    @Html.LabelFor(um => um.ManualWebsite, "Webcím:")
                 </span>
-                @Html.TextBoxFor(um=>um.ManualWebsite,"", new {@class = "form-control"})
-                @Html.ValidationMessageFor(um=>um.ManualWebsite, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(um => um.ManualWebsite, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(um => um.ManualWebsite, "", new { @class = "text-danger" })
             </div>
 
             <div class="row">
@@ -63,26 +65,26 @@
                         <div class="card-body">
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.SupplierType, "Átadó típusa:")
+                                    @Html.LabelFor(um => um.SupplierType, "Átadó típusa:")
                                 </span>
-                                @Html.DropDownListFor(um=>um.SupplierType, manualSupplierSelector, new {@class = "form-select"})
-                                @Html.ValidationMessageFor(um=>um.SupplierType, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(um => um.SupplierType, manualSupplierSelector, new { @class = "form-select" })
+                                @Html.ValidationMessageFor(um => um.SupplierType, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.SupplierSigneeName, "Képviselő neve:")
+                                    @Html.LabelFor(um => um.SupplierSigneeName, "Képviselő neve:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.SupplierSigneeName, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.SupplierSigneeName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.SupplierSigneeName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.SupplierSigneeName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.SupplierSigneePosition, "Beosztása:")
+                                    @Html.LabelFor(um => um.SupplierSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.SupplierSigneePosition, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.SupplierSigneePosition, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.SupplierSigneePosition, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.SupplierSigneePosition, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -96,26 +98,26 @@
                         <div class="card-body">
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.RecipientType, "Átvevő típusa:")
+                                    @Html.LabelFor(um => um.RecipientType, "Átvevő típusa:")
                                 </span>
-                                @Html.DropDownListFor(um=>um.RecipientType, manualRecipientSelector, new {@class = "form-select"})
-                                @Html.ValidationMessageFor(um=>um.RecipientType, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(um => um.RecipientType, manualRecipientSelector, new { @class = "form-select" })
+                                @Html.ValidationMessageFor(um => um.RecipientType, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.RecipientSigneeName, "Képviselő neve:\n ")
+                                    @Html.LabelFor(um => um.RecipientSigneeName, "Képviselő neve:\n ")
                                 </span>
-                                @Html.TextBoxFor(um=>um.RecipientSigneeName, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.RecipientSigneeName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.RecipientSigneeName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.RecipientSigneeName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.RecipientSigneePosition, "Beosztása:")
+                                    @Html.LabelFor(um => um.RecipientSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.RecipientSigneePosition, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.RecipientSigneePosition, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.RecipientSigneePosition, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.RecipientSigneePosition, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
@@ -141,10 +143,10 @@
             <div class="col-md-5 mb-3">
                 <div class="input-group">
                     <span class="input-group-text col-md-6">
-                        @Html.LabelFor(um=>um.LeaseReturnDate, "Visszaadás dátuma:")
+                        @Html.LabelFor(um => um.LeaseReturnDate, "Visszaadás dátuma:")
                     </span>
-                    @Html.TextBoxFor(um=>um.LeaseReturnDate,"{0:yyyy-MM-dd}", new {@class = "form-control", type="date"})
-                    @Html.ValidationMessageFor(um=>um.LeaseReturnDate, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(um => um.LeaseReturnDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(um => um.LeaseReturnDate, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -160,18 +162,18 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.LeaseeSigneeName, "Képviselő neve:\n ")
+                                    @Html.LabelFor(um => um.LeaseeSigneeName, "Képviselő neve:\n ")
                                 </span>
-                                @Html.TextBoxFor(um=>um.LeaseeSigneeName, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.LeaseeSigneeName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.LeaseeSigneeName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.LeaseeSigneeName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.LeaseeSigneePosition, "Beosztása:")
+                                    @Html.LabelFor(um => um.LeaseeSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.LeaseeSigneePosition, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.LeaseeSigneePosition, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.LeaseeSigneePosition, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.LeaseeSigneePosition, "", new { @class = "text-danger" })
                             </div>
 
                         </div>
@@ -187,18 +189,18 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.LeaserSigneeName, "Képviselő neve:")
+                                    @Html.LabelFor(um => um.LeaserSigneeName, "Képviselő neve:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.LeaserSigneeName, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.LeaserSigneeName, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.LeaserSigneeName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.LeaserSigneeName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="input-group">
                                 <span class="input-group-text col-md-5">
-                                    @Html.LabelFor(um=>um.LeaserSigneePosition, "Beosztása:")
+                                    @Html.LabelFor(um => um.LeaserSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um=>um.LeaserSigneePosition, new {@class = "form-control"})
-                                @Html.ValidationMessageFor(um=>um.LeaserSigneePosition, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(um => um.LeaserSigneePosition, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(um => um.LeaserSigneePosition, "", new { @class = "text-danger" })
                             </div>
 
                         </div>
@@ -212,68 +214,64 @@
 
     </div>
 
-    <script>
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const checkbox = document.getElementById('IsDifferentOperator');
-            const supplierDropdown = document.getElementById('SupplierType');
-            const recipientDropdown = document.getElementById('RecipientType');
-            const manualReturnDiv = document.getElementById(('ForkliftManualReturn'));
-
-            let prevSupplierType = 'MANUFACTURER';
-            let prevRecipientType = 'OPERATOR';
-
-            checkbox.addEventListener('change', function () {
-
-                supplierDropdown.disabled = checkbox.checked;
-                recipientDropdown.disabled = checkbox.checked;
 
 
-                if (checkbox.checked) {
-                    manualReturnDiv.classList.add('show');
-
-                    prevSupplierType = supplierDropdown.value;
-                    prevRecipientType = recipientDropdown.value;
-
-                    supplierDropdown.value = 'LEASER';
-                    recipientDropdown.value = 'LEASEE';
-                }
-                else {
-                    manualReturnDiv.classList.remove('show');
-
-                    supplierDropdown.value = prevSupplierType;
-                    recipientDropdown.value = prevRecipientType;
-
-                }
-
-            });
+</div>
 
 
-            if (checkbox.checked)
-                manualReturnDiv.classList.add('show');
-            else
-                manualReturnDiv.classList.remove('show');
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkbox = document.getElementById('Operator_IsDifferentOperator');
+        const supplierDropdown = document.getElementById('UserManual_SupplierType');
+        const recipientDropdown = document.getElementById('UserManual_RecipientType');
+        const manualReturnDiv = document.getElementById(('ForkliftManualReturn'));
+
+        let prevSupplierType = 'MANUFACTURER';
+        let prevRecipientType = 'OPERATOR';
+
+        checkbox.addEventListener('change', function () {
 
             supplierDropdown.disabled = checkbox.checked;
             recipientDropdown.disabled = checkbox.checked;
+
+
+            if (checkbox.checked) {
+                manualReturnDiv.classList.add('show');
+
+                prevSupplierType = supplierDropdown.value;
+                prevRecipientType = recipientDropdown.value;
+
+                supplierDropdown.value = 'LEASER';
+                recipientDropdown.value = 'LEASEE';
+            }
+            else {
+                manualReturnDiv.classList.remove('show');
+
+                supplierDropdown.value = prevSupplierType;
+                recipientDropdown.value = prevRecipientType;
+
+            }
+
         });
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+        if (checkbox.checked)
+            manualReturnDiv.classList.add('show');
+        else
+            manualReturnDiv.classList.remove('show');
 
-            const dropdown = document.getElementById('IsOnlineManual');
-            const div = document.getElementById('WebsiteInput');
+        supplierDropdown.disabled = checkbox.checked;
+        recipientDropdown.disabled = checkbox.checked;
+    });
 
-            dropdown.addEventListener('change', function () {
 
-                if (dropdown.value === 'true') {
-                    div.style.display = 'flex';
-                }
-                else {
-                    div.style.display = 'none';
-                }
+    document.addEventListener('DOMContentLoaded', function () {
 
-            });
+        const dropdown = document.getElementById('UserManual_IsOnlineManual');
+        const div = document.getElementById('WebsiteInput');
+
+        dropdown.addEventListener('change', function () {
 
             if (dropdown.value === 'true') {
                 div.style.display = 'flex';
@@ -281,10 +279,15 @@
             else {
                 div.style.display = 'none';
             }
+
         });
 
-    </script>
+        if (dropdown.value === 'true') {
+            div.style.display = 'flex';
+        }
+        else {
+            div.style.display = 'none';
+        }
+    });
 
-
-</div>
-
+</script>

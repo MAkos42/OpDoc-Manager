@@ -1,4 +1,6 @@
-﻿
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Operator";
+}
 @model Forklift.OperatorInformation
 
 <div class="tab-pane fade col-11" id="operation" role="tabpanel" aria-labelled-by="operation-tab">
@@ -9,10 +11,10 @@
         <div class="col-md-8">
             <div class="input-group">
                 <span class="input-group-text col-md-3">
-                    @Html.LabelFor(o=>o.OperationArea, "Üzemeltetés helye:")
+                    @Html.LabelFor(o => o.OperationArea, "Üzemeltetés helye:")
                 </span>
-                @Html.TextBoxFor(o=>o.OperationArea, new {@class = "form-control"})
-                @Html.ValidationMessageFor(o=>o.OperationArea, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(o => o.OperationArea, new { @class = "form-control" })
+                @Html.ValidationMessageFor(o => o.OperationArea, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -28,17 +30,17 @@
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.UserName, "Név:")
+                            @Html.LabelFor(o => o.UserName, "Név:")
                         </span>
-                        @Html.TextBoxFor(o=>o.UserName, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(o=>o.UserName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(o => o.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.UserName, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.UserPosition, "Pozíció:")
+                            @Html.LabelFor(o => o.UserPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o=>o.UserPosition, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(o=>o.UserPosition, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(o => o.UserPosition, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.UserPosition, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -52,17 +54,17 @@
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.TechnicianName, "Név:")
+                            @Html.LabelFor(o => o.TechnicianName, "Név:")
                         </span>
-                        @Html.TextBoxFor(o=>o.TechnicianName, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(o=>o.TechnicianName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(o => o.TechnicianName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.TechnicianName, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.TechnicianPosition, "Pozíció:")
+                            @Html.LabelFor(o => o.TechnicianPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o=>o.TechnicianPosition, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(o=>o.TechnicianPosition, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(o => o.TechnicianPosition, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.TechnicianPosition, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -76,57 +78,30 @@
                 <div class="card-body" id="AdminDiv">
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.ForkliftAdministrator, "Név:")
+                            @Html.LabelFor(o => o.ForkliftAdministrator, "Név:")
                         </span>
-                        @Html.TextBoxFor(o=>o.ForkliftAdministrator, new {@class = "form-control lifter-only"})
-                        @Html.ValidationMessageFor(o=>o.ForkliftAdministrator, "", new { @class = "text-danger lifter-only" })
+                        @Html.TextBoxFor(o => o.ForkliftAdministrator, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.ForkliftAdministrator, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
-                            @Html.LabelFor(o=>o.ForkliftAdminPosition, "Pozíció:")
+                            @Html.LabelFor(o => o.ForkliftAdminPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o=>o.ForkliftAdminPosition, new {@class = "form-control lifter-only"})
-                        @Html.ValidationMessageFor(o=>o.ForkliftAdminPosition, "", new { @class = "text-danger lifter-only" })
+                        @Html.TextBoxFor(o => o.ForkliftAdminPosition, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(o => o.ForkliftAdminPosition, "", new { @class = "text-danger" })
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-5">
-                            @Html.LabelFor(o=>o.ForkliftAdminContact, "Elérhetőség:")
+                            @Html.LabelFor(o => o.ForkliftAdminContact, "Elérhetőség:")
                         </span>
-                        @Html.TextBoxFor(o=>o.ForkliftAdminContact, new {@class = "form-control lifter-only", placeholder="+36(xx)123 4567"})
-                        @Html.ValidationMessageFor(o=>o.ForkliftAdminContact, "", new { @class = "text-danger lifter-only" })
+                        @Html.TextBoxFor(o => o.ForkliftAdminContact, new { @class = "form-control", Type = "tel", placeholder = "+36 00 123 4567" })
+                        @Html.ValidationMessageFor(o => o.ForkliftAdminContact, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="card-footer">Csak emelőtargoncáknál szükséges</div>
             </div>
         </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const dropdown = document.getElementById('ForkliftType');
-                const div = document.getElementById('AdminDiv');
-                const inputs = document.querySelectorAll('.lifter-only');
-
-                dropdown.addEventListener('change', function () {
-
-                    if (dropdown.value != "LIFT")
-                        div.classList.add("bg-light");
-                    else
-                        div.classList.remove("bg-light");
-
-                    inputs.forEach(input => {
-                        input.disabled = dropdown.value != "LIFT";
-                    });
-                });
-
-                if (dropdown.value != "LIFT")
-                    div.classList.add("bg-light");
-
-                inputs.forEach(input => {
-                    input.disabled = dropdown.value != "LIFT";
-                });
-            });
-
-        </script>
 
     </div>
 

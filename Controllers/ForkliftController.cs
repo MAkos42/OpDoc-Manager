@@ -22,71 +22,158 @@ namespace OpDoc_Manager.Controllers
         }
 
 
-        // GET: View/guid
-        public async Task<IActionResult> Index(Guid id)
+        // GET: Forklift/guid
+        public async Task<IActionResult> Index(Forklift forklift)
         {
-            var forklift = await _context.Forklifts
-                .FirstOrDefaultAsync(m => m.UniqueId == id);
-            if (forklift == null)
-            {
-                return NotFound();
-            }
-
             return View(forklift);
         }
 
-        // GET: View/guid/Edit
+        // GET: Forklift/guid/Edit
         public async Task<IActionResult> Edit(Guid id)
         {
-            var forklift = await _context.Forklifts.FirstOrDefaultAsync(f => f.UniqueId == id);
+            Forklift forklift = await _context.Forklifts.FirstOrDefaultAsync(f => f.UniqueId == id);
             if (forklift == null)
             {
                 return NotFound("Forklift");
             }
-            var forkliftModel = await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Id == forklift.General.ModelId);
-            if (forkliftModel == null)
+
+            var general = await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Id == forklift.General.ModelId);
+            if (forklift.General.Model == null)
             {
                 return NotFound("Forklift Model");
             }
-            var operatorInfo = await _context.OperatorInformation.FirstOrDefaultAsync(oi => oi.Id == id);
-            if (operatorInfo == null)
+
+            var operation = await _context.OperatorInformation.Include(oi => oi.LeaseInformation).FirstOrDefaultAsync(oi => oi.Id == id);
+            if (forklift.Operator == null)
             {
                 return NotFound("Operator Information");
             }
+
             var tempLeaseInformation = new Forklift.LeaseInformation();
-            if (operatorInfo.LeaseInformation == null)
+            if (forklift.Operator.LeaseInformation == null)
             {
                 forklift.Operator.LeaseInformation = tempLeaseInformation;
             }
-            var userManualInfo = await _context.UserManualInformation.FirstOrDefaultAsync(um => um.Id == id);
-            if (userManualInfo == null)
+
+            var manual = await _context.UserManualInformation.FirstOrDefaultAsync(um => um.Id == id);
+            if (forklift.UserManual == null)
             {
                 return NotFound("User Manual");
             }
-            var adapterInfo = await _context.AdapterInformation.FirstOrDefaultAsync(ai => ai.Id == id);
-            if (adapterInfo == null)
+
+            var adapter = await _context.AdapterInformation.Include(ai => ai.AdapterList).FirstOrDefaultAsync(ai => ai.Id == id);
+            if (forklift.Adapter == null)
             {
                 return NotFound("Adapter Information");
             }
-            var adapters = await _context.Adapters.Where(a => a.AdapterId == id).OrderBy(a => a.Number).ToListAsync();
-            if (adapters.Count == 0)
+            if (adapter.AdapterList == null)
             {
-                return NotFound("Adapter Records");
+                adapter.AdapterList = new List<Forklift.AdapterRecord>();
             }
 
+            adapter.AdapterList = adapter.AdapterList.OrderBy(ar => ar.Number).ToList();
+            adapter.AdapterList.ForEach(ar => ar.Number = adapter.AdapterList.IndexOf(ar) + 1);
+
+            var inspection = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(pi => pi.Id == id);
+            if (forklift.PeriodicInspection == null)
+            {
+                return NotFound("Periodic Inspection");
+            }
+
+
+            await GetModelNamesList();
+
+            ViewBag.MSZ9750CAT = Json(Forklift.PeriodicInspectionInformation.MSZ9750CATEGORIES);
+
+            adapter.AdapterList.Select(x => x.Id).ToArray();
+
+            return View(forklift);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveChanges(Forklift forklift)
+        {
+            forklift.Operator.Id = forklift.UniqueId;
+            forklift.UserManual.Id = forklift.UniqueId;
+            forklift.Adapter.Id = forklift.UniqueId;
+            //forklift.PeriodicInspection.Id = forklift.UniqueId;
+            foreach (var record in forklift.Adapter.AdapterList)
+            {
+                record.AdapterId = forklift.UniqueId;
+                record.Number = forklift.Adapter.AdapterList.IndexOf(record) + 1;
+            }
+
+
+            if (ModelState.IsValid)
+            {
+
+                return Json(new { success = true, message = "Változások sikeresen elmentve." });
+            }
+
+            await GetModelNamesList();
+
+
+            return View("Edit", forklift);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAdapter(Guid id, Guid[] adapterList, Guid deleteId)
+        {
+            var adapter = await _context.AdapterInformation.FirstOrDefaultAsync(a => a.Id == id);
+
+            var templist = new List<Forklift.AdapterRecord>();
+
+            for (int i = 0; i < adapterList.Length; i++)
+            {
+                var adapterRecord = await _context.Adapters.Where(ar => ar.Id == adapterList[i] && ar.AdapterId == id).FirstOrDefaultAsync();
+                templist.Add(adapterRecord);
+            }
+            templist.RemoveAll(x => x is null);
+
+            templist.RemoveAll(ar => ar.Id == deleteId);
+            templist = templist.OrderBy(ar => ar.Number).ToList();
+            templist.ForEach(ar => ar.Number = templist.IndexOf(ar) + 1);
+
+            adapter.AdapterList = templist;
+
+            return PartialView("_AdapterTab", adapter);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddAdapter(Guid id, Guid[] adapterList)
+        {
+            var adapter = await _context.AdapterInformation.FirstOrDefaultAsync(a => a.Id == id);
+            var templist = new List<Forklift.AdapterRecord>();
+            for (int i = 0; i < adapterList.Length; i++)
+            {
+                var adapterRecord = await _context.Adapters.Where(ar => ar.Id == adapterList[i] && ar.AdapterId == id).FirstOrDefaultAsync();
+                templist.Add(adapterRecord);
+            }
+            templist.RemoveAll(x => x is null);
+
+            templist = templist.OrderBy(ar => ar.Number).ToList();
+
+            var newAdapter = new Forklift.AdapterRecord()
+            {
+                AdapterId = id
+            };
+            templist.Add(newAdapter);
+
+            templist.ForEach(ar => ar.Number = templist.IndexOf(ar) + 1);
+
+            adapter.AdapterList = templist;
+            return PartialView("_AdapterTab", adapter);
+        }
+
+
+        private async Task GetModelNamesList()
+        {
             List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
 
             List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem(m.Manufacturer + " " + m.Type, m.Id.ToString())).ToList();
 
             ViewBag.ModelNames = modelNames;
-
-            return View(forklift);
-        }
-
-
-        private bool ForkliftExists(string id)
-        {
-            return _context.Forklifts.Any(e => e.UniqueId == Guid.Parse(id));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OpDoc_Manager.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IForkliftModelsService _modelsService;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, ForkliftModelsService modelsService)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IForkliftModelsService modelsService)
         {
             _logger = logger;
             _context = context;
@@ -210,7 +210,7 @@ namespace OpDoc_Manager.Controllers
                 },
                 UserManual = new Forklift.UserManualInformation
                 {
-                    DateOfTransfer = new DateOnly(2022, 10, 14),
+                    DateOfTransfer = new DateOnly(2022, 10, 10),
                     IsOnlineManual = true,
                     ManualWebsite = "https://www.niketrans.hu/site/assets/files/1081/chbc2037-d.pdf",
                     SupplierType = Forklift.UserManualInformation.Supplier.DISTRIBUTOR,
@@ -233,6 +233,61 @@ namespace OpDoc_Manager.Controllers
                             SerialNumber = "CTZXAB1222001S330001",
                             Weight = 85,
                             LoadCenterDistance = 500
+                        },
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 2,
+                            Name = "3000mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1222001S300001",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        }
+                    }
+                },
+                PeriodicInspection = new Forklift.PeriodicInspectionInformation
+                {
+                    OperatingHours = 4755,
+                    LastInspectionDate = new DateOnly(2024, 10, 11),
+                    InspectionCategory = Forklift.InspectionCategory.MSZ9721,
+                    MSZ9750InspectionGroupId = 1,
+                    StructuralInspectionOpHours = 1600,
+                    StructuralInspectionMonths = 8,
+                    MainInspectionPeriodOpHours = 4800,
+                    MainInspectionPeriodMonths = 24,
+                    InspectionResults = new List<Forklift.PeriodicInspectionResult>
+                    {
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 1600,
+                            CurrentOperatingHours= 1531,
+                            RequiredInspectionDate = new DateOnly(2023, 6, 11),
+                            InspectionDate = new DateOnly(2023, 6, 5),
+                            InspectionReportId = "CTZXAB1222001-2023-06-05-001",
+                            HasPassedInspection = true
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 3200,
+                            CurrentOperatingHours= 3022,
+                            RequiredInspectionDate = new DateOnly(2024, 2, 5),
+                            InspectionDate = new DateOnly(2024, 1, 26),
+                            InspectionReportId = "CTZXAB1222001-2024-01-26-001",
+                            HasPassedInspection = true
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.MAIN,
+                            RequiredOperationHours = 4800,
+                            CurrentOperatingHours= 4751,
+                            RequiredInspectionDate = new DateOnly(2024, 10, 11),
+                            InspectionDate = new DateOnly(2024, 10, 2),
+                            InspectionReportId = "CTZXAB1222001-2024-10-02-001",
+                            HasPassedInspection = true
                         }
                     }
                 }
@@ -245,6 +300,8 @@ namespace OpDoc_Manager.Controllers
             _context.UserManualInformation.Add(test.UserManual);
             _context.AdapterInformation.Add(test.Adapter);
             _context.Adapters.AddRange(test.Adapter.AdapterList);
+            _context.PeriodicInspectionInformation.Add(test.PeriodicInspection);
+            _context.periodicInspections.AddRange(test.PeriodicInspection.InspectionResults);
             _context.SaveChanges();
         }
 

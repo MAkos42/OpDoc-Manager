@@ -1,4 +1,7 @@
 ﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Adapter";
+
+
     var forkliftTypeSelector = new List<SelectListItem> {
         new SelectListItem("Emelőtargonca", "LIFT"),
         new SelectListItem("Vontatótargonca","TOW"),
@@ -18,10 +21,9 @@
 
     };
 }
-
 @model Forklift.AdapterInformation
 
-<div class="tab-pane fade col-11 show active" id="adapter" role="tabpanel" aria-labelled-by="adapter-tab">
+<div class="tab-pane fade" id="adapter" role="tabpanel" aria-labelled-by="adapter-tab">
 
 
     <div class="row mb-3">
@@ -29,10 +31,10 @@
         <div class="col-md-7">
             <div class="input-group">
                 <span class="input-group-text col-md-6">
-                    @Html.LabelFor(a=>a.Name, "Targoncához rendszeresített adapter:")
+                    @Html.LabelFor(a => a.Name, "Targoncához rendszeresített adapter:")
                 </span>
-                @Html.TextBoxFor(a=>a.Name, new {@class = "form-control"})
-                @Html.ValidationMessageFor(a=>a.Name, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -43,47 +45,137 @@
             <tr class="row">
                 <th class="col-md-1 align-content-center  bg-light">Sorszám</th>
                 <th class="col-md-3 align-content-center">Név</th>
-                <th class="col-md-2 align-content-center">Típus</th>
+                <th class="col-md-1 align-content-center">Típus</th>
                 <th class="col-md-3 align-content-center">Gyártási szám</th>
                 <th class="col-md-1 align-content-center">Saját Tömeg (kg)</th>
                 <th class="col-md-2 align-content-center">A tömegközéppont távolsága a felfogólaptól (mm)</th>
+                <th class="col-md-1 align-content-center text-center bg-light"><button id="AddAdapter">Új</button></th>
             </tr>
         </thead>
         <tbody>
             @if (Model.AdapterList != null && Model.AdapterList.Count > 0)
             {
-                for(int i = 0;i < Model.AdapterList.Count(); i++)
+                for (int i = 0; i < Model.AdapterList.Count(); i++)
                 {
                     <tr class="row">
+                        @Html.HiddenFor(a => a.AdapterList[i].Id)
                         <td class="col-md-1 text-center bg-light">@Model.AdapterList[i].Number</td>
 
                         <td class="p-1 col-md-3">
-                            @Html.TextBoxFor(a=>a.AdapterList[i].Name, new {@class = "form-control border-0", @required=""})
-                        </td>
-                        <td class="p-1 col-md-2">
-                            @Html.TextBoxFor(a=>a.AdapterList[i].Type, new {@class = "form-control border-0", @required=""})
-                        </td>
-                        <td class="p-1 col-md-3">
-                            @Html.TextBoxFor(a=>a.AdapterList[i].SerialNumber, new {@class = "form-control border-0", @required=""})
+                            @Html.TextBoxFor(a => a.AdapterList[i].Name, new { @class = "form-control border-0", @required = "" })
                         </td>
                         <td class="p-1 col-md-1">
-                            @Html.TextBoxFor(a=>a.AdapterList[i].Weight, new {@class = "form-control border-0", @required=""})
+                            @Html.TextBoxFor(a => a.AdapterList[i].Type, new { @class = "form-control border-0", @required = "" })
+                        </td>
+                        <td class="p-1 col-md-3">
+                            @Html.TextBoxFor(a => a.AdapterList[i].SerialNumber, new { @class = "form-control border-0", @required = "" })
+                        </td>
+                        <td class="p-1 col-md-1">
+                            @Html.TextBoxFor(a => a.AdapterList[i].Weight, new { @class = "form-control border-0", @required = "" })
                         </td>
                         <td class="p-1 col-md-2">
-                            @Html.TextBoxFor(a=>a.AdapterList[i].LoadCenterDistance, new {@class = "form-control border-0", @required=""})
+                            @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, new { @class = "form-control border-0", @required = "" })
+                        </td>
+                        <td class="p-1 col-md-1 text-center align-content-center">
+                            <button class="btn btn-danger delete-button" data-id="@Model.AdapterList[i].Id">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                </svg>
+                            </button>
                         </td>
                     </tr>
                 }
             }
             else
             {
-                <tr>
-                    <td colspan="6" class="text-center">No records found.</td>
+                <tr class="row">
+                    <td colspan="7" class="text-center">No records found.</td>
                 </tr>
             }
         </tbody>
     </table>
 
 
+
+
 </div>
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        initAdapterPartial();
+    });
+
+    function initAdapterPartial(){
+        const tab = document.getElementById("adapter");
+        const addButton = document.getElementById("AddAdapter");
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        addButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            var url = window.location.href.split("/");
+            url.pop();
+            var forklift = url.pop();
+            //get every id from the list
+            var adapterList = getIdValues();
+            $.ajax({
+                url: '@Url.Action("AddAdapter", "Forklift")', // URL of the action that returns the partial view
+                type: 'POST',
+                data: { id: forklift, adapterList: adapterList },
+                success: function (result) {
+                    // Replace the contents of the tab with the new results
+                    let doc = new DOMParser().parseFromString(result, "text/html");
+                    tab.innerHTML = doc.getElementById('adapter').innerHTML;
+                    initAdapterPartial();
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+
+
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                var url = window.location.href.split("/");
+                url.pop();
+                var forklift = url.pop();
+                //get every id from the list
+                var adapterList = getIdValues();
+                var deleteId = $(this).data('id');
+
+                console.log(adapterList)
+
+                $.ajax({
+                    url: '@Url.Action("DeleteAdapter", "Forklift")', // URL of the action that returns the partial view
+                    type: 'POST',
+                    data: { id: forklift, adapterList: adapterList, deleteId: deleteId },
+                    success: function (result) {
+                        // Replace the contents of the tab with the new results
+
+                        let doc = new DOMParser().parseFromString(result, "text/html");
+                        tab.innerHTML = doc.getElementById('adapter').innerHTML;
+                        initAdapterPartial();
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            });
+        });
+        }
+
+    function getIdValues() {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        let arr = []
+
+        deleteButtons.forEach(function (button) {
+            var id = $(button).data('id');
+            arr.push(id);
+        });
+
+        return arr;
+    }
+</script>

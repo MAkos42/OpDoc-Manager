@@ -1,0 +1,252 @@
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "PeriodicInspection";
+
+    List<SelectListItem> categorySelector = new(){
+        new SelectListItem("Időszakos vizsgálatok a gyártói utasítás szerint","MANUFACTURER"),
+        new SelectListItem("Időszakos vizsgálatok az MSZ9721 szabványsorozat szerint","MSZ9721"),
+        new SelectListItem("Időszakos vizsgálatok a gyártói utasítás átütemezésével","MSZ9721CUSTOM"),
+    };
+
+    List<SelectListItem> categoryNumber = new(){
+        new SelectListItem("1","1"),
+        new SelectListItem("2","2"),
+        new SelectListItem("3","3"),
+        new SelectListItem("4","4"),
+        new SelectListItem("5","5"),
+    };
+
+}
+
+@model Forklift.PeriodicInspectionInformation
+
+<div class="tab-pane fade col-11 show active" id="inspection" role="tabpanel" aria-labelled-by="inspection-tab">
+
+    <div class="card mb-3">
+        <div class="card-header input-group">
+            <span class="input-group-text col-md-4">
+                @Html.LabelFor(pi => pi.InspectionCategory, "Időszakos vizsgálatok végzési rendje:")
+            </span>
+            @Html.DropDownListFor(pi => pi.InspectionCategory, categorySelector, new { @class = "form-select" })
+        </div>
+        <div class="card-body">
+
+            <div id="ManufacturerInspection">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(pi => pi.ManufacturerInspectionId, "Vizsgálati utasítás azonosítója a gyártónál:")
+                        </span>
+                        @Html.TextBoxFor(pi => pi.ManufacturerInspectionId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(pi => pi.ManufacturerInspectionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-7">
+                            @Html.LabelFor(pi => pi.OperatorInspectionId, "Vizsgálati utasítás azonosítója az üzemeltetőnél, ha gyártói azonosító nincs:")
+                        </span>
+                        @Html.TextBoxFor(pi => pi.OperatorInspectionId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(pi => pi.OperatorInspectionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="MSZ9721Inspection" class="">
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(pi => pi.MSZ9750InspectionGroupId, "Vizsgálati csoportszám az MSZ 9750 szerint:")
+                        </span>
+                        @Html.DropDownListFor(pi => pi.MSZ9750InspectionGroupId, categoryNumber, new { @class = "form-select" })
+                        @Html.ValidationMessageFor(pi => pi.MSZ9750InspectionGroupId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card">
+                <table class="table table-bordered m-0">
+                    <thead class="card-header text-center">
+                        <tr>
+                            <th colspan="2">Szerkezeti vizsgálat</th>
+                            <th colspan="2">Fővizsgálat</th>
+                        </tr>
+                        <tr>
+                            <th>@Html.LabelFor(pi => pi.StructuralInspectionOpHours, "Üzemóra")</th>
+                            <th>@Html.LabelFor(pi => pi.StructuralInspectionMonths, "Hónap")</th>
+                            <th>@Html.LabelFor(pi => pi.MainInspectionPeriodOpHours, "Üzemóra")</th>
+                            <th>@Html.LabelFor(pi => pi.MainInspectionPeriodMonths, "Hónap")</th>
+                        </tr>
+                    </thead>
+                    <tbody class="card-body">
+                        <tr>
+                            <td class="p-1">
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input" })
+                            </td>
+                            <td class="p-1">
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input" })
+                            </td>
+                            <td class="p-1">
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input" })
+
+                            </td>
+                            <td class="p-1">
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input" })
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="card col-md-7 mb-3">
+        <div class="card-header">
+            Targonca jelenlegi állapota
+        </div>
+
+        <div class="card-body row">
+
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text col-md-6">
+                        @Html.LabelFor(pi => pi.OperatingHours, "Üzemóra:")
+                    </span>
+                    @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(pi => pi.OperatingHours, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="input-group">
+                    <span class="input-group-text col-md-7">
+                        @Html.LabelFor(pi => pi.LastInspectionDate, "Utolsó vizsgálat dátuma:")
+                    </span>
+                    @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const category = document.getElementById('PeriodicInspection_InspectionCategory');
+        const manufacturerDiv = document.getElementById('ManufacturerInspection');
+        const msz9721Div = document.getElementById('MSZ9721Inspection');
+
+        const msz9750Input = document.getElementById('PeriodicInspection_MSZ9750InspectionGroupId');
+        const inputs = document.querySelectorAll('.period-input');
+
+        category.addEventListener('change', function () {
+            switch(category.value){
+                case 'MANUFACTURER':
+                    manufacturerDiv.classList.remove('visually-hidden');
+                    msz9721Div.classList.add('visually-hidden');
+
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+
+
+                break;
+
+                case 'MSZ9721':
+                case 'MSZ9721CUSTOM':
+                    msz9721Div.classList.remove('visually-hidden');
+                    manufacturerDiv.classList.add('visually-hidden');
+
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+
+                    setInspectionHours(msz9750Input.value);
+                break;
+
+                default:
+                    msz9721Div.classList.add('visually-hidden');
+                    manufacturerDiv.classList.add('visually-hidden');
+                break;
+            }
+        });
+
+        msz9750Input.addEventListener('change', function () {
+            setInspectionTime(msz9750Input.value)
+        })
+
+
+            switch(category.value){
+                case 'MANUFACTURER':
+                    manufacturerDiv.classList.remove('visually-hidden');
+                    msz9721Div.classList.add('visually-hidden');
+
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+
+                break;
+
+                case 'MSZ9721':
+                case 'MSZ9721CUSTOM':
+                    msz9721Div.classList.remove('visually-hidden');
+                    manufacturerDiv.classList.add('visually-hidden');
+
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                    });
+
+                    setInspectionTime(msz9750Input.value);
+                break;
+
+                default:
+                    msz9721Div.classList.add('visually-hidden');
+                    manufacturerDiv.classList.add('visually-hidden');
+                break;
+            }
+    });
+
+
+    function setInspectionTime(id){
+        const MSZ9750CatInfo = @Json.Serialize(ViewBag.MSZ9750CAT);
+
+        console.log(MSZ9750CatInfo.value[1]);
+
+        const structuralOH = document.getElementById('PeriodicInspection_StructuralInspectionOpHours');
+        const structuralMonth = document.getElementById('PeriodicInspection_StructuralInspectionMonths');
+        const mainOH = document.getElementById('PeriodicInspection_MainInspectionPeriodOpHours');
+        const mainMonths = document.getElementById('PeriodicInspection_MainInspectionPeriodMonths');
+
+        if(id > 0, id < 6){
+            structuralOH.value = MSZ9750CatInfo.value[id].structuralInspectionOpHours;
+            structuralMonth.value = MSZ9750CatInfo.value[id].structuralInspectionMonths;
+            mainOH.value = MSZ9750CatInfo.value[id].mainInspectionPeriodOpHours;
+            mainMonths.value = MSZ9750CatInfo.value[id].mainInspectionPeriodMonths;
+        }
+        else{
+            structuralOH.value = '';
+            structuralMonth.value = '';
+            mainOH.value = '';
+            mainMonths.value = '';
+        }
+    }
+
+</script>

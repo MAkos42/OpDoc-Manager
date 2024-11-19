@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IForkliftModelsService, ForkliftModelsService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true); ;
 
 var app = builder.Build();
 
@@ -34,7 +34,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "EditRoute",
     pattern: "{controller}/{id}/{action}",
-    defaults: new { controller = "View", action = "edit" });
+    defaults: new { controller = "View" });
 
 app.MapControllerRoute(
     name: "default",

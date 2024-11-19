@@ -1,4 +1,7 @@
-﻿@model Forklift.OperatorInformation
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Operator";
+}
+@model Forklift.OperatorInformation
 
 <div class="tab-pane fade col-11" id="operator" role="tabpanel" aria-labelled-by="operator-tab">
 
@@ -7,10 +10,10 @@
     <div class="row col-md-6 mb-3">
         <div class="input-group">
             <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o=>o.Owner, "Tulajdonos neve:")
+                @Html.LabelFor(o => o.Owner, "Tulajdonos neve:")
             </span>
-            @Html.TextBoxFor(o=>o.Owner, new {@class = "form-control"})
-            @Html.ValidationMessageFor(o=>o.Owner, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(o => o.Owner, new { @class = "form-control" })
+            @Html.ValidationMessageFor(o => o.Owner, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -18,10 +21,10 @@
     <div class="row col-md-8 mb-3">
         <div class="input-group">
             <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o=>o.OwnerAddress, "Tulajdonos címe:")
+                @Html.LabelFor(o => o.OwnerAddress, "Tulajdonos címe:")
             </span>
-            @Html.TextBoxFor(o=>o.OwnerAddress, new {@class = "form-control"})
-            @Html.ValidationMessageFor(o=>o.OwnerAddress, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(o => o.OwnerAddress, new { @class = "form-control" })
+            @Html.ValidationMessageFor(o => o.OwnerAddress, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -33,18 +36,18 @@
         <div class="col-md-6">
             <div class="input-group">
                 <span class="input-group-text unified-label-width">
-                    @Html.LabelFor(o=>o.Operator, "Üzelemtető neve:")
+                    @Html.LabelFor(o => o.Operator, "Üzelemtető neve:")
 
                 </span>
-                @Html.TextBoxFor(o=>o.Operator, new {@class = "form-control different-operator-only"})
-                @Html.ValidationMessageFor(o=>o.Operator, "", new { @class = "text-danger different-operator-only"})
+                @Html.TextBoxFor(o => o.Operator, new { @class = "form-control different-operator-only" })
+                @Html.ValidationMessageFor(o => o.Operator, "", new { @class = "text-danger different-operator-only" })
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="form-check">
-                @Html.CheckBoxFor(o=>o.IsDifferentOperator, new {@class = "form-check-input"})
-                @Html.LabelFor(o=>o.IsDifferentOperator, "Eltér a tulajadonostól", new {@class = "form-check-label"})
+                @Html.CheckBoxFor(o => o.IsDifferentOperator, new { @class = "form-check-input" })
+                @Html.LabelFor(o => o.IsDifferentOperator, "Eltér a tulajadonostól", new { @class = "form-check-label" })
             </div>
         </div>
     </div>
@@ -53,35 +56,35 @@
     <div class="row col-md-8 mb-3">
         <div class="input-group">
             <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o=>o.OperatorAddress, "Üzemeltető címe:")
+                @Html.LabelFor(o => o.OperatorAddress, "Üzemeltető címe:")
             </span>
-            @Html.TextBoxFor(o=>o.OperatorAddress, new {@class = "form-control different-operator-only"})
-            @Html.ValidationMessageFor(o=>o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
+            @Html.TextBoxFor(o => o.OperatorAddress, new { @class = "form-control different-operator-only" })
+            @Html.ValidationMessageFor(o => o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
         </div>
     </div>
 
     <div class="card mb-3 col-md-8">
         <div class="card-header">
-            Üzemeltetői feladatok átruházásáról szóló szerzodés adatai
+            Üzemeltetői feladatok átruházásáról szóló szerződés adatai
         </div>
         <div class="card-body row">
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text unified-label-width">
-                        @Html.LabelFor(o=>o.TransferDate, "Szerződés dátuma:")
+                        @Html.LabelFor(o => o.TransferDate, "Szerződés dátuma:")
                     </span>
-                    @Html.TextBoxFor(o=>o.TransferDate,"{0:yyyy-MM-dd}", new {@class = "form-control different-operator-only", type="date"})
-                    @Html.ValidationMessageFor(o=>o.TransferDate, "", new { @class = "text-danger different-operator-only" })
+                    @Html.TextBoxFor(o => o.TransferDate, "{0:yyyy-MM-dd}", new { @class = "form-control different-operator-only", type = "date" })
+                    @Html.ValidationMessageFor(o => o.TransferDate, "", new { @class = "text-danger different-operator-only" })
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text unified-label-width">
-                        @Html.LabelFor(o=>o.TransferID, "Szerződés száma:")
+                        @Html.LabelFor(o => o.TransferID, "Szerződés száma:")
                     </span>
-                    @Html.TextBoxFor(o=>o.TransferID, new {@class = "form-control different-operator-only"})
-                    @Html.ValidationMessageFor(o=>o.TransferID, "", new { @class = "text-danger different-operator-only" })
+                    @Html.TextBoxFor(o => o.TransferID, new { @class = "form-control different-operator-only" })
+                    @Html.ValidationMessageFor(o => o.TransferID, "", new { @class = "text-danger different-operator-only" })
                 </div>
             </div>
         </div>
@@ -105,10 +108,10 @@
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaserCompany, "Szervezet neve:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaserCompany, "Szervezet neve:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaserCompany, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaserCompany, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserCompany, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserCompany, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="row mb-3">
@@ -117,34 +120,34 @@
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaserName, "Neve:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaserName, "Neve:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaserName, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaserName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaserOrgUnit, "Szervezeti egység:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaserOrgUnit, "Szervezeti egység:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaserOrgUnit, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaserOrgUnit, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserOrgUnit, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserOrgUnit, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaserPosition, "Beosztás:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaserPosition, "Beosztás:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaserPosition, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaserPosition, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserPosition, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserPosition, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaserContact, "Elérhetőség:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaserContact, "Elérhetőség:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaserContact, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaserContact, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserContact, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserContact, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -160,10 +163,10 @@
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaseeCompany, "Szervezet neve:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaseeCompany, "Szervezet neve:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaseeCompany, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaseeCompany, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeCompany, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeCompany, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="row mb-3">
@@ -172,34 +175,34 @@
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaseeName, "Neve:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaseeName, "Neve:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaseeName, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaseeName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeName, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaseeOrgUnit, "Szervezeti egység:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaseeOrgUnit, "Szervezeti egység:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaseeOrgUnit, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaseeOrgUnit, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeOrgUnit, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeOrgUnit, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaseePosition, "Beosztás:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaseePosition, "Beosztás:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaseePosition, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaseePosition, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseePosition, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseePosition, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="input-group row mb-3">
                             <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o=>o.LeaseInformation.LeaseeContact, "Elérhetőség:")
+                                @Html.LabelFor(o => o.LeaseInformation.LeaseeContact, "Elérhetőség:")
                             </span>
-                            @Html.TextBoxFor(o=>o.LeaseInformation.LeaseeContact, new {@class = "form-control"})
-                            @Html.ValidationMessageFor(o=>o.LeaseInformation.LeaseeContact, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeContact, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeContact, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -213,32 +216,20 @@
     </div>
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const checkbox = document.getElementById('IsDifferentOperator');
-            const leaseDiv = document.getElementById('LeaseOnly');
-            const operatorInput = document.getElementById('Operator');
-            const operatorAddressInput = document.getElementById('OperatorAddress');
-            const inputs = document.querySelectorAll('.different-operator-only');
 
-            checkbox.addEventListener('change', function () {
+</div>
 
-                if (checkbox.checked) {
-                    leaseDiv.classList.add('show');
-                    operatorInput.value = '';
-                    operatorAddressInput.value = '';
-                }
-                else {
-                    leaseDiv.classList.remove('show');
-                    operatorInput.value = $('#Owner').val();
-                    operatorAddressInput.value = $('#OwnerAddress').val();
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const checkbox = document.getElementById('Operator_IsDifferentOperator');
+        const leaseDiv = document.getElementById('LeaseOnly');
+        const operatorInput = document.getElementById('Operator_Operator');
+        const operatorAddressInput = document.getElementById('Operator_OperatorAddress');
+        const ownerInput = document.getElementById('Operator_Owner');
+        const ownerAddressInput = document.getElementById('Operator_OwnerAddress');
+        const inputs = document.querySelectorAll('.different-operator-only');
 
-                inputs.forEach(input => {
-                    input.disabled = !checkbox.checked;
-                });
-
-            });
+        checkbox.addEventListener('change', function () {
 
             if (checkbox.checked) {
                 leaseDiv.classList.add('show');
@@ -247,14 +238,29 @@
             }
             else {
                 leaseDiv.classList.remove('show');
-                operatorInput.value = $('#Owner').val();
-                operatorAddressInput.value = $('#OwnerAddress').val();
+                operatorInput.value = ownerInput.value;
+                operatorAddressInput.value = ownerAddressInput.value;
             }
 
             inputs.forEach(input => {
                 input.disabled = !checkbox.checked;
             });
-        });
-    </script>
 
-</div>
+        });
+
+        if (checkbox.checked) {
+            leaseDiv.classList.add('show');
+            operatorInput.value = '';
+            operatorAddressInput.value = '';
+        }
+        else {
+            leaseDiv.classList.remove('show');
+            operatorInput.value = ownerInput.value;
+            operatorAddressInput.value = ownerAddressInput.value;
+        }
+
+        inputs.forEach(input => {
+            input.disabled = !checkbox.checked;
+        });
+    });
+</script>
