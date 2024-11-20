@@ -25,13 +25,14 @@ namespace OpDoc_Manager.Controllers
         // GET: Forklift/guid
         public async Task<IActionResult> Index(Forklift forklift)
         {
-            return View(forklift);
+            return await Task.FromResult(View(forklift));
         }
 
         // GET: Forklift/guid/Edit
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            Forklift forklift = await _context.Forklifts.FirstOrDefaultAsync(f => f.UniqueId == id);
+            Forklift? forklift = await _context.Forklifts.FirstOrDefaultAsync(f => f.UniqueId == id);
             if (forklift == null)
             {
                 return NotFound("Forklift");
@@ -66,7 +67,7 @@ namespace OpDoc_Manager.Controllers
             {
                 return NotFound("Adapter Information");
             }
-            if (adapter.AdapterList == null)
+            if (adapter!.AdapterList == null)
             {
                 adapter.AdapterList = new List<Forklift.AdapterRecord>();
             }
@@ -96,74 +97,63 @@ namespace OpDoc_Manager.Controllers
             forklift.Operator.Id = forklift.UniqueId;
             forklift.UserManual.Id = forklift.UniqueId;
             forklift.Adapter.Id = forklift.UniqueId;
-            //forklift.PeriodicInspection.Id = forklift.UniqueId;
+            forklift.PeriodicInspection.Id = forklift.UniqueId;
             foreach (var record in forklift.Adapter.AdapterList)
             {
                 record.AdapterId = forklift.UniqueId;
                 record.Number = forklift.Adapter.AdapterList.IndexOf(record) + 1;
             }
 
+            forklift.General.Model = await _context.ForkliftModels.Where(m => m.Id == forklift.General.ModelId).Include(m => m.Engine).FirstOrDefaultAsync();
+
+            if (!forklift.Operator.IsDifferentOperator)
+            {
+                forklift.Operator.Operator = forklift.Operator.Owner;
+                forklift.Operator.OperatorAddress = forklift.Operator.OwnerAddress;
+                forklift.Operator.LeaseInformation = null;
+            }
+            ModelState.Clear();
+            TryValidateModel(forklift);
 
             if (ModelState.IsValid)
             {
+                if (forklift.UniqueId == Guid.Empty)
+                {
+                    _context.Add(forklift);
+                }
+                else
+                {
+                    _context.Update(forklift);
+                }
+                await _context.SaveChangesAsync();
 
                 return Json(new { success = true, message = "Változások sikeresen elmentve." });
             }
 
-            await GetModelNamesList();
+            var errorList = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
 
-
-            return View("Edit", forklift);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteAdapter(Guid id, Guid[] adapterList, Guid deleteId)
-        {
-            var adapter = await _context.AdapterInformation.FirstOrDefaultAsync(a => a.Id == id);
-
-            var templist = new List<Forklift.AdapterRecord>();
-
-            for (int i = 0; i < adapterList.Length; i++)
-            {
-                var adapterRecord = await _context.Adapters.Where(ar => ar.Id == adapterList[i] && ar.AdapterId == id).FirstOrDefaultAsync();
-                templist.Add(adapterRecord);
-            }
-            templist.RemoveAll(x => x is null);
-
-            templist.RemoveAll(ar => ar.Id == deleteId);
-            templist = templist.OrderBy(ar => ar.Number).ToList();
-            templist.ForEach(ar => ar.Number = templist.IndexOf(ar) + 1);
-
-            adapter.AdapterList = templist;
-
-            return PartialView("_AdapterTab", adapter);
+            return BadRequest(new { success = false, message = "Validation failed.", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAdapter(Guid id, Guid[] adapterList)
+        public async Task<IActionResult> AddAdapter(Guid id, int number)
         {
-            var adapter = await _context.AdapterInformation.FirstOrDefaultAsync(a => a.Id == id);
-            var templist = new List<Forklift.AdapterRecord>();
-            for (int i = 0; i < adapterList.Length; i++)
-            {
-                var adapterRecord = await _context.Adapters.Where(ar => ar.Id == adapterList[i] && ar.AdapterId == id).FirstOrDefaultAsync();
-                templist.Add(adapterRecord);
-            }
-            templist.RemoveAll(x => x is null);
-
-            templist = templist.OrderBy(ar => ar.Number).ToList();
 
             var newAdapter = new Forklift.AdapterRecord()
             {
-                AdapterId = id
+                AdapterId = id,
+                Number = number
             };
-            templist.Add(newAdapter);
 
-            templist.ForEach(ar => ar.Number = templist.IndexOf(ar) + 1);
+            List<Forklift.AdapterRecord?> returnList = new();
 
-            adapter.AdapterList = templist;
-            return PartialView("_AdapterTab", adapter);
+            for (int i = 0; i < number - 1; i++)
+            {
+                returnList.Add(null);
+            }
+            returnList.Add(newAdapter);
+
+            return await Task.FromResult(PartialView("_AdapterRecord", returnList));
         }
 
 

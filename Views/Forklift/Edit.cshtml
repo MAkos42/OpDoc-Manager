@@ -6,7 +6,7 @@
 @model Forklift
 
 
-@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post))
+@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post,new { @id="form"}))
 {
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
         <ul class="nav nav-tabs" role="tablist">
@@ -62,14 +62,33 @@
         <!-- Periodic Inspection Information -->
         @await Html.PartialAsync("_InspectionTab", Model.PeriodicInspection)
 
-
         <!-- Add more tab content sections as needed -->
 
-
     </div>
-
 
     @Html.HiddenFor(m => m.UniqueId)
 }
 
 @Html.ValidationSummary(true)
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: form.getAttribute('action'),
+                data: new FormData(form),
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    alert('Success: ' + response.message);
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        });
+    });
+</script>

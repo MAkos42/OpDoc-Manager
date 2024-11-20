@@ -38,7 +38,9 @@ namespace OpDoc_Manager.Models
 
             public string? ForkliftAdministrator { get; set; }
             public string? ForkliftAdminPosition { get; set; }
-            [RegularExpression(@"^\+|(00)36[\d]{8,9}", ErrorMessage = "A telefonszám formátuma nem megfelelő (+36XX1234567)")]
+
+            [Required]
+            [RegularExpression(@"^(\+|(00))36[\d]{8,9}$", ErrorMessage = "A telefonszám formátuma nem megfelelő (+36XX1234567)")]
             public string? ForkliftAdminContact { get; set; }
         }
     }

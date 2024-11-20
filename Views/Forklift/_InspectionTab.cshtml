@@ -228,8 +228,6 @@
     function setInspectionTime(id){
         const MSZ9750CatInfo = @Json.Serialize(ViewBag.MSZ9750CAT);
 
-        console.log(MSZ9750CatInfo.value[1]);
-
         const structuralOH = document.getElementById('PeriodicInspection_StructuralInspectionOpHours');
         const structuralMonth = document.getElementById('PeriodicInspection_StructuralInspectionMonths');
         const mainOH = document.getElementById('PeriodicInspection_MainInspectionPeriodOpHours');
