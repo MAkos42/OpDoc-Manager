@@ -113,7 +113,26 @@ namespace OpDoc_Manager.Controllers
             return View(forklift);
         }
 
+        // GET: Forklift/guid/Create
+        [HttpGet]
+        public async Task<IActionResult> Create(Guid id)
+        {
+            Forklift forklift = new();
+            forklift.UniqueId = Guid.Empty;
+            forklift.General = new();
+            forklift.Operator = new();
+            forklift.Operator.LeaseInformation = new();
+            forklift.UserManual = new();
+            forklift.Adapter = new();
+            forklift.Adapter.AdapterList = new();
+            forklift.PeriodicInspection = new();
 
+            await GetModelNamesList();
+
+            ViewBag.MSZ9750CAT = Json(Forklift.PeriodicInspectionInformation.MSZ9750CATEGORIES);
+
+            return View("Edit", forklift);
+        }
 
         [HttpPost]
         public async Task<IActionResult> SaveChanges(Forklift forklift)

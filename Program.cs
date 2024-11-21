@@ -34,10 +34,18 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "EditRoute",
     pattern: "{controller}/{id}/{action}",
-    defaults: new { controller = "View" });
+    defaults: new { controller = "View" }
+    );
+
+app.MapControllerRoute(
+    name: "CreateRoute",
+    pattern: "{controller}/{id}/{action}",
+    defaults: new { controller = "View" }
+    );
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/");
+    pattern: "{controller=Home}/{action=Index}/"
+    );
 
 app.Run();

@@ -26,7 +26,8 @@
 @model Forklift.ModelInformation
 
 <div class="tab-pane fade col-11 show active" id="modeldata" role="tabpanel" aria-labelled-by="modeldata-tab">
-
+    @if(Model is not null)
+    {
     <div class="card mb-3">
         <div class="card-header">Általános adatok</div>
         <div class="card-body row">
@@ -662,5 +663,11 @@
 
         </div>
     </div>
+    }
+    else{
+        <div class="text-center">
+        A modell nem legjeleníthető.
+        </div>
+    }
 
 </div>

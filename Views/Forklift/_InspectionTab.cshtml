@@ -25,7 +25,7 @@
             <span class="input-group-text col-md-4">
                 @Html.LabelFor(pi => pi.InspectionCategory, "Időszakos vizsgálatok végzési rendje:")
             </span>
-            @Html.DropDownListFor(pi => pi.InspectionCategory, categorySelector, new { @class = "form-select", @required = "" })
+            @Html.DropDownListFor(pi => pi.InspectionCategory, categorySelector, new { @class = "form-select" })
         </div>
         <div class="card-body">
 
@@ -59,7 +59,7 @@
                         <span class="input-group-text col-md-8">
                             @Html.LabelFor(pi => pi.MSZ9750InspectionGroupId, "Vizsgálati csoportszám az MSZ 9750 szerint:")
                         </span>
-                        @Html.DropDownListFor(pi => pi.MSZ9750InspectionGroupId, categoryNumber, new { @class = "form-select" })
+                        @Html.DropDownListFor(pi => pi.MSZ9750InspectionGroupId, categoryNumber, "", new { @class = "form-select" })
                         @Html.ValidationMessageFor(pi => pi.MSZ9750InspectionGroupId, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -82,17 +82,17 @@
                     <tbody class="card-body">
                         <tr>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input", @required = "" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input", @required = "" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input", @required = "" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input" })
 
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input", @required = "" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input" })
                             </td>
                         </tr>
                     </tbody>
@@ -178,7 +178,7 @@
                     else
                     {
                         <tr>
-                        <td colspan="8">NEm található vizsgálati jelentés.</td>
+                        <td colspan="8">Nem található vizsgálati jelentés.</td>
                         </tr>
                     }
                 </tbody>
