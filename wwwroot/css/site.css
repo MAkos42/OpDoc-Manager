@@ -49,9 +49,16 @@ select option:disabled {
     display: none;
 }
 
+input[aria-invalid="true"] {
+    border-color: red;
+}
 
-/* Select2 match the bootstrap input height */
-.select2-container--default .select2-selection--single {
+.track-width{
+    width: 37.5%
+}
+
+    /* Select2 match the bootstrap input height */
+    .select2-container--default .select2-selection--single {
     height: calc(2.25rem + 2px); /* Match Bootstrap input height */
     border: 1px solid #ced4da; /* Match Bootstrap border */
     border-radius: 0.25rem; /* Match Bootstrap border-radius */
@@ -81,3 +88,4 @@ select option:disabled {
     max-height: 200px; /* Set max height for the dropdown */
     overflow-y: auto; /* Enable scrolling if necessary */
 }
+

@@ -28,11 +28,11 @@ namespace OpDoc_Manager.Models
             public int BatteryCellCount { get; set; }
 
             [Required]
-            public string EngineManufacturer { get; set; }
+            public string MotorManufacturer { get; set; }
             [Required]
-            public double EngineOutput { get; set; }
+            public double MotorOutput { get; set; }
             [Required]
-            public int EngineRPM { get; set; }
+            public int MotorRPM { get; set; }
 
             [Required]
             public string InverterManufacturer { get; set; }

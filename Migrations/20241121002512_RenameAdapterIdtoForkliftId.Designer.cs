@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OpDoc_Manager.Data;
@@ -11,9 +12,11 @@ using OpDoc_Manager.Data;
 namespace OpDoc_Manager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241121002512_RenameAdapterIdtoForkliftId")]
+    partial class RenameAdapterIdtoForkliftId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -491,6 +494,16 @@ namespace OpDoc_Manager.Migrations
                     b.Property<int>("BatteryVoltage")
                         .HasColumnType("integer");
 
+                    b.Property<string>("EngineManufacturer")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("EngineOutput")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("EngineRPM")
+                        .HasColumnType("integer");
+
                     b.Property<string>("FrequencyConverterManufacturer")
                         .IsRequired()
                         .HasColumnType("text");
@@ -514,16 +527,6 @@ namespace OpDoc_Manager.Migrations
                     b.Property<string>("InverterType")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<string>("MotorManufacturer")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("MotorOutput")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("MotorRPM")
-                        .HasColumnType("integer");
 
                     b.Property<int>("NominalBatteryCapacity")
                         .HasColumnType("integer");
@@ -738,7 +741,7 @@ namespace OpDoc_Manager.Migrations
                                 .HasColumnType("text")
                                 .HasColumnName("BackWheelSize");
 
-                            b1.Property<int?>("BatteryWeight")
+                            b1.Property<int>("BatteryWeight")
                                 .HasColumnType("integer")
                                 .HasColumnName("BatteryWeight");
 

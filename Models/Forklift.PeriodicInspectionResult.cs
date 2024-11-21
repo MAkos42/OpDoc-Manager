@@ -26,6 +26,8 @@ namespace OpDoc_Manager.Models
             public string InspectionReportId { get; set; }
             [Required]
             public bool HasPassedInspection { get; set; }
+            [Required]
+            public string Performer { get; set; }
         }
     }
 }

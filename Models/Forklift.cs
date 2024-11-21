@@ -23,6 +23,5 @@ namespace OpDoc_Manager.Models
 
         //public ICollection<ManagerInformation> MaintenanceTechnicianRecord { get; set; }
 
-        //public ICollection<MaintenanceRecordElement> RepairsAndPartReplacements { get; set; }
     }
 }

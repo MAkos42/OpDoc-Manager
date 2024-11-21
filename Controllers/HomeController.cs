@@ -82,7 +82,7 @@ namespace OpDoc_Manager.Controllers
                     FrontWheelPressure = 2.3,
                     BackWheelPressure = 2.5,
                     OperationalWeight = 4820,
-                    BatteryWeight = 0,
+                    BatteryWeight = null,
                     BreakingForce = 30000,
                     ParkingBreakForce = 40000
                 },
@@ -157,9 +157,9 @@ namespace OpDoc_Manager.Controllers
                     BatteryVoltage = 80,
                     BatteryCellCount = 12,
 
-                    EngineManufacturer = "",
-                    EngineOutput = 8.0,
-                    EngineRPM = 2000,
+                    MotorManufacturer = "",
+                    MotorOutput = 8.0,
+                    MotorRPM = 2000,
 
                     InverterManufacturer = "",
                     InverterType = "",
@@ -265,7 +265,8 @@ namespace OpDoc_Manager.Controllers
                             RequiredInspectionDate = new DateOnly(2023, 6, 11),
                             InspectionDate = new DateOnly(2023, 6, 5),
                             InspectionReportId = "CTZXAB1222001-2023-06-05-001",
-                            HasPassedInspection = true
+                            HasPassedInspection = true,
+                            Performer = "Székely József"
                         },
 
                         new Forklift.PeriodicInspectionResult
@@ -276,7 +277,8 @@ namespace OpDoc_Manager.Controllers
                             RequiredInspectionDate = new DateOnly(2024, 2, 5),
                             InspectionDate = new DateOnly(2024, 1, 26),
                             InspectionReportId = "CTZXAB1222001-2024-01-26-001",
-                            HasPassedInspection = true
+                            HasPassedInspection = true,
+                            Performer = "Székely József"
                         },
 
                         new Forklift.PeriodicInspectionResult
@@ -287,7 +289,17 @@ namespace OpDoc_Manager.Controllers
                             RequiredInspectionDate = new DateOnly(2024, 10, 11),
                             InspectionDate = new DateOnly(2024, 10, 2),
                             InspectionReportId = "CTZXAB1222001-2024-10-02-001",
-                            HasPassedInspection = true
+                            HasPassedInspection = true,
+                            Performer = "Székely József"
+                        }
+                    },
+                    MaintenanceReports = new List<Forklift.MaintenanceReport>
+                    {
+                        new Forklift.MaintenanceReport
+                        {
+                            Date = new DateOnly(2024, 6, 5),
+                            OperatingHours = 3520,
+                            RepairDetails = "Bal elsõ kerékgumi sérülés okozta cseréje."
                         }
                     }
                 }

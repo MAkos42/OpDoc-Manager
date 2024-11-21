@@ -49,7 +49,7 @@ namespace OpDoc_Manager.Models
             [ForeignKey("Forklift")]
             public Guid Id { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "A mező kitöltése kötelező!")]
             public int OperatingHours { get; set; }
             [Required]
             public DateOnly LastInspectionDate { get; set; }
@@ -57,6 +57,7 @@ namespace OpDoc_Manager.Models
             [Required]
             [Column(TypeName = "text")]
             public InspectionCategory InspectionCategory { get; set; }
+
             public string? ManufacturerInspectionId { get; set; }
             public string? OperatorInspectionId { get; set; }
 
@@ -75,6 +76,9 @@ namespace OpDoc_Manager.Models
             public List<CustomInspectionPeriod>? CustomInspectionPeriodRecord { get; set; }
 
             public List<PeriodicInspectionResult>? InspectionResults { get; set; }
+
+            public List<MaintenanceReport>? MaintenanceReports { get; set; }
+
         }
     }
 

@@ -10,7 +10,7 @@ namespace OpDoc_Manager.Models
             public Guid Id { get; set; }
 
             [ForeignKey("AdapterInformation")]
-            public Guid AdapterId { get; set; }
+            public Guid ForkliftId { get; set; }
 
             [Required]
             public int Number { get; set; }

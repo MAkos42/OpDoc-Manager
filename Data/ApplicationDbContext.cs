@@ -21,6 +21,7 @@ namespace OpDoc_Manager.Data
         public DbSet<AdapterRecord> Adapters { get; set; }
         public DbSet<CustomInspectionPeriod> CustomInspectionPeriods { get; set; }
         public DbSet<PeriodicInspectionResult> periodicInspections { get; set; }
+        public DbSet<MaintenanceReport> MaintenanceReports { get; set; }
 
         public DbSet<ModelInformation> ForkliftModels { get; set; }
         public DbSet<Engine> Engines { get; set; }
@@ -39,10 +40,11 @@ namespace OpDoc_Manager.Data
             builder.Entity<Forklift>().HasOne(f => f.Adapter).WithOne().HasForeignKey<AdapterInformation>(ai => ai.Id);
             builder.Entity<Forklift>().HasOne(f => f.PeriodicInspection).WithOne().HasForeignKey<PeriodicInspectionInformation>(pi => pi.Id);
 
-            builder.Entity<AdapterInformation>().HasMany(ai => ai.AdapterList).WithOne().HasForeignKey(ar => ar.AdapterId);
+            builder.Entity<AdapterInformation>().HasMany(ai => ai.AdapterList).WithOne().HasForeignKey(ar => ar.ForkliftId);
 
             builder.Entity<PeriodicInspectionInformation>().HasMany(pi => pi.CustomInspectionPeriodRecord).WithOne().HasForeignKey(cip => cip.ForkliftId);
             builder.Entity<PeriodicInspectionInformation>().HasMany(pi => pi.InspectionResults).WithOne().HasForeignKey(ir => ir.ForkliftId);
+            builder.Entity<PeriodicInspectionInformation>().HasMany(pi => pi.MaintenanceReports).WithOne().HasForeignKey(mr => mr.ForkliftId);
 
             builder.Entity<ElectricEngine>().ToTable("ElectricEngines");
             builder.Entity<InternalCombustionEngine>().ToTable("ICEngine");

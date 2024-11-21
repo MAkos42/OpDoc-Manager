@@ -1,5 +1,5 @@
 ﻿@{
-    var forkliftTypeSelector = new List<SelectListItem> {
+    var operationModeSelector = new List<SelectListItem> {
         new SelectListItem("Emelőtargonca", "LIFT"),
         new SelectListItem("Vontatótargonca","TOW"),
         new SelectListItem("Szállítótargonca", "TRANSPORT")};
@@ -15,13 +15,652 @@
         new SelectListItem("Benzin", "GASOLINE"),
         new SelectListItem("Földgáz", "NATGAS"),
         new SelectListItem("Elektromos", "ELECTRIC"),
+    };
 
+    var engineSelector = new List<SelectListItem>{
+        new SelectListItem("Villamos hajtás", "ELECTRIC"),
+        new SelectListItem("Belső égésű hajtás", "ICE")
     };
 }
 
 @model Forklift.ModelInformation
 
-<div class="tab-pane fade col-11" id="modeldata" role="tabpanel" aria-labelled-by="modeldata-tab">
-    k
-</div>
+<div class="tab-pane fade col-11 show active" id="modeldata" role="tabpanel" aria-labelled-by="modeldata-tab">
 
+    <div class="card mb-3">
+        <div class="card-header">Általános adatok</div>
+        <div class="card-body row">
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-5 ">
+                        @Html.LabelFor(m => m.OperationMode, "Targonca típus:")
+                    </span>
+                    @Html.DropDownListFor(m => m.OperationMode, operationModeSelector, new { @class = "form-select" })
+                    @Html.ValidationMessageFor(m => m.OperationMode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-5 ">
+                        @Html.LabelFor(m => m.OperatorType, "Kezelés módja:")
+                    </span>
+                    @Html.DropDownListFor(m => m.OperatorType, operatorTypeSelector, new { @class = "form-select" })
+                    @Html.ValidationMessageFor(m => m.OperatorType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-6 ">
+                        @Html.LabelFor(m => m.PowerSource, "Működtetőenergia:")
+                    </span>
+                    @Html.DropDownListFor(m => m.PowerSource, powerSourceSelector, new { @class = "form-select" })
+                    @Html.ValidationMessageFor(m => m.PowerSource, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">Emelőmű</div>
+        <div class="card-body row">
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <div class=" input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.LoadCapacity, "Névleges teherbítás: (t)")
+                    </div>
+                    @Html.TextBoxFor(m => m.LiftMechanism.LoadCapacity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.LoadCapacity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.NominalLiftHeight, "Névleges emelési magasság: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.NominalLiftHeight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.NominalLiftHeight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.MaxHeightMaxLoad, "Teherbírás legnagyobb emelési magasságnál: (t)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.MaxHeightMaxLoad, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.MaxHeightMaxLoad, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.MaxLiftHeight, "Legnagyobb emelési magasság: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.MaxLiftHeight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.MaxLiftHeight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.LiftSpeedLoaded, "Emelési sebesség teherrel: (m/s)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.LiftSpeedLoaded, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.LiftSpeedLoaded, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.LiftSpeedUnloaded, "Emelési sebesség teher nélkül: (m/s)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.LiftSpeedUnloaded, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.LiftSpeedUnloaded, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.MastForwardTiltAngle, "Oszlop döntés szöge előre: (°)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.MastForwardTiltAngle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.MastForwardTiltAngle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.MastBackwardTiltAngle, "Oszlop döntés szöge hátra: (°)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.MastBackwardTiltAngle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.MastBackwardTiltAngle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.LiftMechanism.FreeLift, "Szabad emelési magasság: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.LiftMechanism.FreeLift, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LiftMechanism.FreeLift, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">Haladómű</div>
+        <div class="card-body row">
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.Width, "Haladási szélesség: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.Width, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.Width, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.Length, "Üzemi Hossz: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.Length, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.Length, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.OperationalWeight, "Saját tömeg üzemkész állapotban: (kg)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.OperationalWeight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.OperationalWeight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.GroundClearance, "Út feletti szabad magasság: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.GroundClearance, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.GroundClearance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.HeightTransportPosition, "Magasság teherfogó szállítási helyzetében: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.HeightTransportPosition, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.HeightTransportPosition, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.HeightMastLowered, "Legnagyobb szerkezeti magasság szállításkor: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.HeightMastLowered, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.HeightMastLowered, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-8 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.HeightMastRaised, "Legnagyobb szerkezeti magasság legnagyobb emelési magasságnál: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.HeightMastRaised, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.HeightMastRaised, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-9">
+                        @Html.LabelFor(m => m.RoadInformation.GroundClearance, "Út feletti magasság: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.GroundClearance, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.GroundClearance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.InnerTurningCircle, "Legkisebb belső fordulósugár: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.InnerTurningCircle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.InnerTurningCircle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.OuterTurningCircle, "Legkisebb külső fordulósugár: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.OuterTurningCircle, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.OuterTurningCircle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.Wheelbase, "Tengelytáv: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.Wheelbase, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.Wheelbase, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="track-width mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-9">
+                        @Html.LabelFor(m => m.RoadInformation.TrackWidthFront, "Nyomtáv mellső tengelynél: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.TrackWidthFront, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.TrackWidthFront, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="track-width mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-9">
+                        @Html.LabelFor(m => m.RoadInformation.TrackWidthBack, "Nyomtáv hátsó tengelynél: (mm)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.TrackWidthBack, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.TrackWidthBack, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.FrontWheelCount, "Első kerekek száma:")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.FrontWheelCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.FrontWheelCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.FrontWheelSize, "Első kerekek mérete:")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.FrontWheelSize, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.FrontWheelSize, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-9">
+                        @Html.LabelFor(m => m.RoadInformation.FrontWheelPressure, "Első kerekek nyomása: (bar)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.FrontWheelPressure, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.FrontWheelPressure, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.BackWheelCount, "Hátsó kerekek száma:")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.BackWheelCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.BackWheelCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-5 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.BackWheelSize, "Hátsó kerekek mérete:")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.BackWheelSize, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.BackWheelSize, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-9">
+                        @Html.LabelFor(m => m.RoadInformation.BackWheelPressure, "Hátsó kerekek nyomása: (bar)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.BackWheelPressure, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.BackWheelPressure, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.DrawbarPull, "Legnagyobb vonóerő: (N)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.DrawbarPull, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.DrawbarPull, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.BreakingForce, "Üzemi fékrendszer: (N)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.BreakingForce, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.BreakingForce, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-8">
+                        @Html.LabelFor(m => m.RoadInformation.ParkingBreakForce, "Rögzítő fékrendszer: (N)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.ParkingBreakForce, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.ParkingBreakForce, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text col-md-10">
+                        @Html.LabelFor(m => m.RoadInformation.BatteryWeight, "Akkumulátor súlya [elektromos meghajtsnál]: (kg)")
+                    </span>
+                    @Html.TextBoxFor(m => m.RoadInformation.BatteryWeight, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoadInformation.BatteryWeight, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="col-md-3">
+                @Html.DropDownListFor(m => m.Engine.EngineType, engineSelector, new { @class = "form-select" })
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.Engine is Forklift.ElectricEngine electricEngine)
+            {
+                <div id="ElectricEngine" class="visually-hidden row">
+                    <div class="card">
+                        <div class="card-header">Akkumulátor</div>
+                        <div class="card-body">
+
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.BatteryType, "Típusa:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.BatteryType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.BatteryType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.BatteryManufacturer, "Gyártó:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.BatteryManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.BatteryManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.BatteryManufacturer, "Névleges kapacitás:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.BatteryManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.BatteryManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.BatteryManufacturer, "Kapocsfeszültség:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.BatteryManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.BatteryManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.BatteryManufacturer, "Cellák száma:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.BatteryManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.BatteryManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">Hajtómotor</div>
+                        <div class="card-body">
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.MotorOutput, "Teljesítmény: (kW)")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.MotorOutput, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.MotorOutput, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.MotorRPM, "Fordulatszám: (1/perc)")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.MotorRPM, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.MotorRPM, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.MotorManufacturer, "Gyártó:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.MotorManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.MotorManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">Áramátalakító</div>
+                        <div class="card-body">
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.InverterType, "Típus:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.InverterType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.InverterType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.InverterManufacturer, "Gyártó:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.InverterManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.InverterManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.InverterPerformance, "Teljesítmény:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.InverterPerformance, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.InverterPerformance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">Frekvenciaváltó</div>
+                        <div class="card-body">
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.FrequencyConverterType, "Típus:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.FrequencyConverterType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.FrequencyConverterType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.FrequencyConverterManufacturer, "Gyártó:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.FrequencyConverterManufacturer, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.FrequencyConverterManufacturer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text col-md-4">
+                                        @Html.LabelFor(m => electricEngine.FrequencyConverterPerformance, "Teljesítmény:")
+                                    </span>
+                                    @Html.TextBoxFor(m => electricEngine.FrequencyConverterPerformance, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => electricEngine.FrequencyConverterPerformance, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+            @if (Model.Engine is Forklift.InternalCombustionEngine ICEngine)
+            {
+                <div id="ICEngine" class="visually-hidden row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.Manufacturer, "Gyártó:")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.Manufacturer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.Manufacturer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.Type, "Típus:")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.Type, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.Type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.RatedOutput, "Teljesítmény: (kW)")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.RatedOutput, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.RatedOutput, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.CylinderVolume, "Összes lökettérfogat: (cm3)")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.CylinderVolume, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.CylinderVolume, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.FuelCapacity, "Üzemanyagtartály: (l)")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.FuelCapacity, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.FuelCapacity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.EnviromentalClassification, "Környezetvédelmi besorolás:")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.EnviromentalClassification, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.EnviromentalClassification, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.CatalyticConverter, "Katalizátor típusa [ha van]:")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.CatalyticConverter, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.CatalyticConverter, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-4">
+                                @Html.LabelFor(m => ICEngine.NatGasSafetyValveType, "Biztonsági szelep azonosítója [gázüzem esetén]:")
+                            </span>
+                            @Html.TextBoxFor(m => ICEngine.NatGasSafetyValveType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => ICEngine.NatGasSafetyValveType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

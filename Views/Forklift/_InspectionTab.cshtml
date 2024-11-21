@@ -2,31 +2,30 @@
     Html.ViewData.TemplateInfo.HtmlFieldPrefix = "PeriodicInspection";
 
     List<SelectListItem> categorySelector = new(){
-        new SelectListItem("Időszakos vizsgálatok a gyártói utasítás szerint","MANUFACTURER"),
-        new SelectListItem("Időszakos vizsgálatok az MSZ9721 szabványsorozat szerint","MSZ9721"),
-        new SelectListItem("Időszakos vizsgálatok a gyártói utasítás átütemezésével","MSZ9721CUSTOM"),
-    };
+            new SelectListItem("Időszakos vizsgálatok a gyártói utasítás szerint","MANUFACTURER"),
+            new SelectListItem("Időszakos vizsgálatok az MSZ9721 szabványsorozat szerint","MSZ9721"),
+            new SelectListItem("Időszakos vizsgálatok a gyártói utasítás átütemezésével","MSZ9721CUSTOM"),
+        };
 
     List<SelectListItem> categoryNumber = new(){
-        new SelectListItem("1","1"),
-        new SelectListItem("2","2"),
-        new SelectListItem("3","3"),
-        new SelectListItem("4","4"),
-        new SelectListItem("5","5"),
-    };
+            new SelectListItem("1","1"),
+            new SelectListItem("2","2"),
+            new SelectListItem("3","3"),
+            new SelectListItem("4","4"),
+            new SelectListItem("5","5"),
+        };
 
 }
+    @model Forklift.PeriodicInspectionInformation
 
-@model Forklift.PeriodicInspectionInformation
-
-<div class="tab-pane fade col-11 show active" id="inspection" role="tabpanel" aria-labelled-by="inspection-tab">
+<div class="tab-pane fade col-11" id="inspection" role="tabpanel" aria-labelled-by="inspection-tab">
 
     <div class="card mb-3">
         <div class="card-header input-group">
             <span class="input-group-text col-md-4">
                 @Html.LabelFor(pi => pi.InspectionCategory, "Időszakos vizsgálatok végzési rendje:")
             </span>
-            @Html.DropDownListFor(pi => pi.InspectionCategory, categorySelector, new { @class = "form-select" })
+            @Html.DropDownListFor(pi => pi.InspectionCategory, categorySelector, new { @class = "form-select", @required = "" })
         </div>
         <div class="card-body">
 
@@ -54,7 +53,7 @@
             </div>
 
 
-            <div id="MSZ9721Inspection" class="">
+            <div id="MSZ9721Inspection" class="visually-hidden">
                 <div class="col-md-6 mb-3">
                     <div class="input-group">
                         <span class="input-group-text col-md-8">
@@ -65,9 +64,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
             <div class="card">
                 <table class="table table-bordered m-0">
@@ -86,17 +82,17 @@
                     <tbody class="card-body">
                         <tr>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input", @required = "" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input", @required = "" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input", @required = "" })
 
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input", @required = "" })
                             </td>
                         </tr>
                     </tbody>
@@ -104,10 +100,7 @@
             </div>
 
         </div>
-
-
     </div>
-
 
     <div class="card col-md-7 mb-3">
         <div class="card-header">
@@ -121,17 +114,18 @@
                     <span class="input-group-text col-md-6">
                         @Html.LabelFor(pi => pi.OperatingHours, "Üzemóra:")
                     </span>
+
                     @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control" })
                     @Html.ValidationMessageFor(pi => pi.OperatingHours, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="col-md-8">
-                <div class="input-group">
-                    <span class="input-group-text col-md-7">
+                <div class="input-group ">
+                    <span class="input-group-text col-md-7 ">
                         @Html.LabelFor(pi => pi.LastInspectionDate, "Utolsó vizsgálat dátuma:")
                     </span>
-                    @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                     @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -139,14 +133,144 @@
         </div>
     </div>
 
+    <div class="card mb-3">
+        <div class="card-header d-flex">
+            <div class="flex-fill">
+                Vizsgálat eredmények
+            </div>
+            <div>
+                <button type="button" id="toggleResultTable" class="btn-sm m-0 border-0 align-self-end bg-transparent">
+                    <i class="bi bi-chevron-compact-down"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <table id="ResultTable" class="table table-bordered m-0 visually-hidden">
+                <thead class=" bg-light text-center">
+                    <tr>
+                        <th>Sorszám</th>
+                        <th>Inspection Type</th>
+                        <th>Előírt üzemóra</th>
+                        <th>Tényleges üzemóra</th>
+                        <th>Végzés ideje az MSZ9721 szerint (előírt/tényleges)</th>
+                        <th>Jegyzőkönyv, munkalap száma</th>
+                        <th>Megállapítás</th>
+                        <th>Vizsgálatot végrehajtó személy</th>
+                    </tr>
+                </thead>
+                <tbody class="align-content-center text-center">
+                    @if (Model.InspectionResults is not null && Model.InspectionResults.Count > 0)
+                    {
+                        @foreach (var result in Model.InspectionResults)
+                        {
+                            <tr>
+                                <td>@(Model.InspectionResults.IndexOf(result) + 1)</td>
+                                <td>@result.Type</td>
+                                <td>@result.RequiredOperationHours</td>
+                                <td>@result.CurrentOperatingHours</td>
+                                <td>@result.RequiredInspectionDate.ToString("yyyy-MM-dd") / @result.InspectionDate.ToString("yyyy-MM-dd")</td>
+                                <td>@result.InspectionReportId</td>
+                                <td>@(result.HasPassedInspection ? "Megfelelő" : "Nem felelt meg")</td>
+                                <td>@result.Performer</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                        <td colspan="8">NEm található vizsgálati jelentés.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-
-
-
-
+    <div class="card mb-3">
+        <div class="card-header d-flex">
+            <div class="flex-fill">
+                Javítások, cserék
+            </div>
+            <div>
+                <button type="button" id="toggleMaintenanceTable" class="btn-sm m-0 border-0 align-self-end bg-transparent">
+                    <i class="bi bi-chevron-compact-down"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <table id="MaintenanceTable" class="table table-bordered m-0 visually-hidden">
+                <thead class=" bg-light text-center">
+                    <tr>
+                        <th class="col-md-1">Sorszám</th>
+                        <th class="col-md-2">Dátum</th>
+                        <th class="col-md-1">Üzemóra</th>
+                        <th class="col-md-8">Javítás részletei</th>
+                    </tr>
+                </thead>
+                <tbody class="align-content-center text-center">
+                    @if (Model.MaintenanceReports is not null && Model.MaintenanceReports.Count > 0)
+                    {
+                        @foreach (var report in Model.MaintenanceReports)
+                        {
+                            <tr>
+                                <td class="col-md-1">@(Model.MaintenanceReports.IndexOf(report) + 1)</td>
+                                <td class="col-md-2">@report.Date.ToString("yyyy-MM-dd")</td>
+                                <td class="col-md-1">@report.OperatingHours</td>
+                                <td class="col-md-8">@report.RepairDetails</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                        <td colspan="4">Nem található javítás</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleMaintenanceButton = document.getElementById('toggleMaintenanceTable');
+        const maintenanceTable = document.getElementById('MaintenanceTable');
+        const toggleMaintenanceIcon = toggleMaintenanceButton.querySelector('i');
+
+        toggleMaintenanceButton.addEventListener('click', function () {
+            maintenanceTable.classList.toggle('visually-hidden');
+            if (maintenanceTable.classList.contains('visually-hidden')) {
+                toggleMaintenanceIcon.classList.remove('bi-chevron-compact-up');
+                toggleMaintenanceIcon.classList.add('bi-chevron-compact-down');
+            } else {
+                toggleMaintenanceIcon.classList.remove('bi-chevron-compact-down');
+                toggleMaintenanceIcon.classList.add('bi-chevron-compact-up');
+            }
+        });
+
+        });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById('toggleResultTable');
+        const resultTable = document.getElementById('ResultTable');
+        const toggleIcon = toggleButton.querySelector('i');
+
+        toggleButton.addEventListener('click', function () {
+            resultTable.classList.toggle('visually-hidden');
+            if (resultTable.classList.contains('visually-hidden')) {
+                toggleIcon.classList.remove('bi-chevron-compact-up');
+                toggleIcon.classList.add('bi-chevron-compact-down');
+            } else {
+                toggleIcon.classList.remove('bi-chevron-compact-down');
+                toggleIcon.classList.add('bi-chevron-compact-up');
+            }
+        });
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

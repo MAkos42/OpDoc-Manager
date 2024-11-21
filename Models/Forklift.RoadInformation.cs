@@ -72,9 +72,8 @@ namespace OpDoc_Manager.Models
             [Required]
             [Column("OperationalWeight")]
             public int OperationalWeight { get; set; }
-            [Required]
             [Column("BatteryWeight")]
-            public int BatteryWeight { get; set; }
+            public int? BatteryWeight { get; set; }
             [Required]
             [Column("BreakingForce")]
             public int BreakingForce { get; set; }

@@ -5,8 +5,7 @@
 @using OpDoc_Manager.Models
 @model Forklift
 
-
-@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post,new { @id="form"}))
+@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post, new { @id = "form" }))
 {
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
         <ul class="nav nav-tabs" role="tablist">
@@ -23,13 +22,13 @@
                 <a href="#manual" class="nav-link" id="manual-tab" role="tab" data-bs-toggle="tab" aria-controls="manual">Használati Utasítás</a>
             </li>
             <li class="nav-item">
-                <a href="#modeldata" class="nav-link" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
+                <a href="#modeldata" class="nav-link active" id="modeldata-tab" role="tab" data-bs-toggle="tab" aria-controls="modeldata">Műszaki Adatok</a>
             </li>
             <li class="nav-item">
                 <a href="#adapter" class="nav-link" id="adapter-tab" role="tab" data-bs-toggle="tab" aria-controls="adapter">Adapter</a>
             </li>
             <li class="nav-item">
-                <a href="#inspection" class="nav-link active" id="inspection-tab" role="tab" data-bs-toggle="tab" aria-controls="inspection">Időszakos vizsgálatok</a>
+                <a href="#inspection" class="nav-link" id="inspection-tab" role="tab" data-bs-toggle="tab" aria-controls="inspection">Időszakos vizsgálatok</a>
             </li>
             <li class="flex-fill">
             </li>
@@ -42,10 +41,10 @@
     <div class="tab-content">
 
         <!-- General Information -->
-        @await Html.PartialAsync("_GeneralTab",Model.General)
+        @await Html.PartialAsync("_GeneralTab", Model.General)
 
         <!-- Operator -->
-        @await Html.PartialAsync("_OperatorTab",Model.Operator)
+        @await Html.PartialAsync("_OperatorTab", Model.Operator)
 
         <!-- Operation -->
         @await Html.PartialAsync("_OperationTab", Model.Operator)
@@ -71,11 +70,14 @@
 
 @Html.ValidationSummary(true)
 
+@* 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('form');
         form.addEventListener('submit', function (event) {
             event.preventDefault();
+            var isValid = $('#form').valid();
+            console.log(isValid);
             $.ajax({
                 type: 'POST',
                 url: form.getAttribute('action'),
@@ -92,3 +94,4 @@
         });
     });
 </script>
+*@
