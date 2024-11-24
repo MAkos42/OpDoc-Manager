@@ -53,6 +53,19 @@ input[aria-invalid="true"] {
     border-color: red;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.form-control[readonly]{
+    background: white;
+}
+
+.form-select-disabled[disabled]{
+    background-color: white;
+}
+
 .track-width{
     width: 37.5%
 }

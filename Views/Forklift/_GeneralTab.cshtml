@@ -1,6 +1,8 @@
 ﻿@{
     Html.ViewData.TemplateInfo.HtmlFieldPrefix = "General";
     List<SelectListItem> modelSelector = (List<SelectListItem>)ViewBag.ModelNames;
+
+    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
 }
 
 @model Forklift.GeneralInformation;
@@ -14,7 +16,7 @@
                     @Html.LabelFor(g => g.Name, "Azonosító:")
                 </span>
                 @Html.TextBoxFor(g => g.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(g => g.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(g => g.Name, "", validationAttributes)
             </div>
         </div>
     </div>
@@ -26,7 +28,7 @@
                     @Html.LabelFor(g => g.ModelId, "Targonca Típus:")
                 </span>
                 @Html.DropDownListFor(g => g.ModelId, modelSelector,"", new { @class = "form-dropdown select2" })
-                @Html.ValidationMessageFor(g => g.ModelId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(g => g.ModelId, "", validationAttributes)
             </div>
         </div>
     </div>
@@ -38,7 +40,7 @@
                     @Html.LabelFor(g => g.ProductionNumber, "Gyártási szám:")
                 </span>
                 @Html.TextBoxFor(g => g.ProductionNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(g => g.ProductionNumber, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(g => g.ProductionNumber, "", validationAttributes)
             </div>
         </div>
 
@@ -48,7 +50,7 @@
                     @Html.LabelFor(g => g.EngineProductionNumber, "Motorszám:")
                 </span>
                 @Html.TextBoxFor(g => g.EngineProductionNumber, new { @class = "form-control" })
-                @Html.ValidationMessageFor(g => g.EngineProductionNumber, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(g => g.EngineProductionNumber, "", validationAttributes)
             </div>
         </div>
     </div>
@@ -59,8 +61,8 @@
                 <span class="input-group-text col-md-7">
                     @Html.LabelFor(g => g.EntryIntoService, "Első üzembehelyezés:")
                 </span>
-                @Html.TextBoxFor(g => g.EntryIntoService, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", placeholder="éééé-hh-nn" })
-                @Html.ValidationMessageFor(g => g.EntryIntoService, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(g => g.EntryIntoService, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.ValidationMessageFor(g => g.EntryIntoService, "", validationAttributes)
             </div>
         </div>
 
@@ -70,7 +72,7 @@
                     @Html.LabelFor(g => g.ManufacturingYear, "Gyártás éve:")
                 </span>
                 @Html.TextBoxFor(g => g.ManufacturingYear, new { @class = "form-control hide-input", type = "number" })
-                @Html.ValidationMessageFor(g => g.ManufacturingYear, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(g => g.ManufacturingYear, "", validationAttributes)
             </div>
         </div>
     </div>

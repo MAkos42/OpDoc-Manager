@@ -15,6 +15,8 @@
             new SelectListItem("5","5"),
         };
 
+    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+
 }
     @model Forklift.PeriodicInspectionInformation
 
@@ -36,7 +38,7 @@
                             @Html.LabelFor(pi => pi.ManufacturerInspectionId, "Vizsgálati utasítás azonosítója a gyártónál:")
                         </span>
                         @Html.TextBoxFor(pi => pi.ManufacturerInspectionId, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(pi => pi.ManufacturerInspectionId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(pi => pi.ManufacturerInspectionId, "", validationAttributes)
                     </div>
                 </div>
 
@@ -46,7 +48,7 @@
                             @Html.LabelFor(pi => pi.OperatorInspectionId, "Vizsgálati utasítás azonosítója az üzemeltetőnél, ha gyártói azonosító nincs:")
                         </span>
                         @Html.TextBoxFor(pi => pi.OperatorInspectionId, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(pi => pi.OperatorInspectionId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(pi => pi.OperatorInspectionId, "", validationAttributes)
                     </div>
                 </div>
 
@@ -60,7 +62,7 @@
                             @Html.LabelFor(pi => pi.MSZ9750InspectionGroupId, "Vizsgálati csoportszám az MSZ 9750 szerint:")
                         </span>
                         @Html.DropDownListFor(pi => pi.MSZ9750InspectionGroupId, categoryNumber, "", new { @class = "form-select" })
-                        @Html.ValidationMessageFor(pi => pi.MSZ9750InspectionGroupId, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(pi => pi.MSZ9750InspectionGroupId, "", validationAttributes)
                     </div>
                 </div>
             </div>
@@ -82,17 +84,17 @@
                     <tbody class="card-body">
                         <tr>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionOpHours, new { @class = "form-control period-input", @type = "number" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.StructuralInspectionMonths, new { @class = "form-control period-input", @type = "number" })
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodOpHours, new { @class = "form-control period-input", @type = "number" })
 
                             </td>
                             <td class="p-1">
-                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input" })
+                                @Html.TextBoxFor(pi => pi.MainInspectionPeriodMonths, new { @class = "form-control period-input", @type = "number" })
                             </td>
                         </tr>
                     </tbody>
@@ -115,8 +117,8 @@
                         @Html.LabelFor(pi => pi.OperatingHours, "Üzemóra:")
                     </span>
 
-                    @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(pi => pi.OperatingHours, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control", @type = "number" })
+                    @Html.ValidationMessageFor(pi => pi.OperatingHours, "", validationAttributes)
                 </div>
             </div>
 
@@ -126,7 +128,7 @@
                         @Html.LabelFor(pi => pi.LastInspectionDate, "Utolsó vizsgálat dátuma:")
                     </span>
                     @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                    @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", validationAttributes)
                 </div>
             </div>
 

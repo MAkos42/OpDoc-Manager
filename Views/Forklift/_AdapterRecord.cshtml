@@ -21,10 +21,10 @@
         @Html.TextBoxFor(al => al[i]!.SerialNumber, new { @class = "form-control border-0 record-value", @required = "" })
     </td>
     <td class="p-1 col-md-1">
-        @Html.TextBoxFor(al => al[i]!.Weight, new { @class = "form-control border-0 record-value", @required = "" })
+        @Html.TextBoxFor(al => al[i]!.Weight, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
     </td>
     <td class="p-1 col-md-2">
-        @Html.TextBoxFor(al => al[i]!.LoadCenterDistance, new { @class = "form-control border-0 record-value", @required = "" })
+        @Html.TextBoxFor(al => al[i]!.LoadCenterDistance, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
     </td>
     <td class="p-1 col-md-1 text-center align-content-center">
         <button class="btn btn-danger delete-button">

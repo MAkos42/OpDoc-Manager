@@ -1,6 +1,8 @@
 ﻿@{
     Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Adapter";
 
+    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+
 }
 @model Forklift.AdapterInformation
 
@@ -15,7 +17,7 @@
                     @Html.LabelFor(a => a.Name, "Targoncához rendszeresített adapter:")
                 </span>
                 @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(a => a.Name, "", validationAttributes)
             </div>
         </div>
 
@@ -53,10 +55,10 @@
                             @Html.TextBoxFor(a => a.AdapterList[i].SerialNumber, new { @class = "form-control border-0 record-value", @required = "" })
                         </td>
                         <td class="p-1 col-md-1">
-                            @Html.TextBoxFor(a => a.AdapterList[i].Weight, new { @class = "form-control border-0 record-value", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].Weight, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
                         </td>
                         <td class="p-1 col-md-2">
-                            @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, new { @class = "form-control border-0 record-value", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
                         </td>
                         <td class="p-1 col-md-1 text-center align-content-center">
                             <button class="btn btn-danger delete-button">
