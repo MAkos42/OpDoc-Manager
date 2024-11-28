@@ -1,0 +1,99 @@
+﻿@{
+    var numInputAttributes = (object)ViewBag.numInputAttributes;
+    var textboxAttributes = (object)ViewBag.textboxAttributes;
+    var validationAttributes = (object)ViewBag.validationAttributes;
+}
+
+@model Forklift.Engine
+
+<div id="icengine" class="row">
+
+    <div class="row mb-3">
+
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-text col-md-3">
+                    @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).Manufacturer, "Gyártó:")
+                </span>
+                @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).Manufacturer, textboxAttributes)
+                @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).Manufacturer, "", validationAttributes)
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="input-group">
+                <span class="input-group-text col-md-3">
+                    @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).Type, "Típus:")
+                </span>
+                @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).Type, textboxAttributes)
+                @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).Type, "", validationAttributes)
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row mb-3">
+
+        <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <span class="input-group-text col-md-9">
+                    @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).RatedOutput, "Teljesítmény: (kW)")
+                </span>
+                @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).RatedOutput, numInputAttributes)
+                @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).RatedOutput, "", validationAttributes)
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <span class="input-group-text col-md-9">
+                    @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).CylinderVolume, "Összes lökettérfogat: (cm3)")
+                </span>
+                @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).CylinderVolume, numInputAttributes)
+                @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).CylinderVolume, "", validationAttributes)
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="input-group">
+                <span class="input-group-text col-md-9">
+                    @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).FuelCapacity, "Üzemanyagtartály: (l)")
+                </span>
+                @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).FuelCapacity, numInputAttributes)
+                @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).FuelCapacity, "", validationAttributes)
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8 mb-3">
+        <div class="input-group">
+            <span class="input-group-text col-md-5">
+                @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).EnviromentalClassification, "Környezetvédelmi besorolás:")
+            </span>
+            @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).EnviromentalClassification, textboxAttributes)
+            @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).EnviromentalClassification, "", validationAttributes)
+        </div>
+    </div>
+
+    <div class="col-md-8 mb-3">
+        <div class="input-group">
+            <span class="input-group-text col-md-5">
+                @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).CatalyticConverter, "Katalizátor típusa [ha van]:")
+            </span>
+            @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).CatalyticConverter, textboxAttributes)
+            @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).CatalyticConverter, "", validationAttributes)
+        </div>
+    </div>
+
+    <div class="col-md-8 mb-3">
+        <div class="input-group">
+            <span class="input-group-text col-md-7">
+                @Html.LabelFor(m => ((Forklift.InternalCombustionEngine)m).NatGasSafetyValveType, "Biztonsági szelep azonosítója [gázüzem esetén]:")
+            </span>
+            @Html.TextBoxFor(m => ((Forklift.InternalCombustionEngine)m).NatGasSafetyValveType, textboxAttributes)
+            @Html.ValidationMessageFor(m => ((Forklift.InternalCombustionEngine)m).NatGasSafetyValveType, "", validationAttributes)
+        </div>
+    </div>
+</div>

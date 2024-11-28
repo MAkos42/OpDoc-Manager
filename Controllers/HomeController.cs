@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using OpDoc_Manager.Data;
-using OpDoc_Manager.Data.Service;
 using OpDoc_Manager.Models;
+using OpDoc_Manager.Models.DTO;
+using OpDoc_Manager.Service;
 using System.Diagnostics;
 
 namespace OpDoc_Manager.Controllers
@@ -104,7 +105,7 @@ namespace OpDoc_Manager.Controllers
                 Type = "EP25N-3300S",
                 OperatorType = Forklift.OperatorType.SEATED,
                 OperationMode = Forklift.OperationMode.LIFT,
-                PowerSource = Forklift.PowerSource.DIESEL,
+                PowerSource = Forklift.PowerSource.ELECTRIC,
 
                 LiftMechanism = new Forklift.LiftMechanism
                 {

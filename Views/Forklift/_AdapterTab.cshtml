@@ -36,7 +36,7 @@
             </tr>
         </thead>
         <tbody id="AdapterTable">
-            @if (Model.AdapterList != null && Model.AdapterList.Count > 0)
+            @if (Model is not null && Model.AdapterList is not null && Model.AdapterList.Count > 0)
             {
 
                 for (int i = 0; i < Model.AdapterList.Count(); i++)
@@ -70,7 +70,7 @@
             }
             else
             {
-                <tr class="row">
+                <tr id="error-row">
                     <td colspan="7" class="text-center">Adapter lista üres.</td>
                 </tr>
             }
@@ -98,6 +98,7 @@
             var url = window.location.href.split("/");
             url.pop();
             var forklift = url.pop();
+
             var number = document.querySelectorAll('tr.row').length;
 
             $.ajax({
@@ -106,11 +107,14 @@
                 data: { id: forklift, number: number },
                 success: function (result) {
                     //Add the new row to the end of the table
+                    var errorRow = adapterTable.querySelector('#error-row')
+                    if(errorRow != null)
+                        errorRow.remove();
+
                     adapterTable.innerHTML += result;
 
                     //assign the delete function to the button
                     var buttons = document.querySelectorAll('.delete-button')
-                    console.log(buttons)
                     buttons.forEach(button => addDeleteButton(button))
                 },
                 error: function (xhr, status, error) {
@@ -125,18 +129,22 @@
         }
 
     function addDeleteButton(button){
+        const adapterTable = document.getElementById('AdapterTable');
+
         button.addEventListener('click', function (event) {
             event.preventDefault();
             var row = button.closest('tr');
             row.remove();
 
             reorderRecords();
+
+            if (adapterTable.querySelectorAll('tr.row').length === 0)
+                adapterTable.innerHTML = '<tr id="error-row"><td colspan="7" class="text-center">Adapter lista üres.</td></tr>';
         });
     }
 
     function reorderRecords(){
         const rows = document.querySelectorAll('#AdapterTable tr')
-        const numbers = document.querySelectorAll('.number-col')
 
         rows.forEach((row, index) =>{
             inputs = row.querySelectorAll('.record-value')

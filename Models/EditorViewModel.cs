@@ -1,4 +1,4 @@
-﻿using OpDoc_Manager.Data.Service;
+﻿using OpDoc_Manager.Models.DTO;
 
 namespace OpDoc_Manager.Models
 {

@@ -9,30 +9,32 @@
 <div class="tab-pane fade col-11" id="operator" role="tabpanel" aria-labelled-by="operator-tab">
 
 
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text unified-label-width">
+                    @Html.LabelFor(o => o.Owner, "Tulajdonos neve:")
+                </span>
+                @Html.TextBoxFor(o => o.Owner, new { @class = "form-control" })
+                @Html.ValidationMessageFor(o => o.Owner, "", validationAttributes)
+            </div>
+        </div>
+    </div>
 
-    <div class="row col-md-6 mb-3">
-        <div class="input-group">
-            <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o => o.Owner, "Tulajdonos neve:")
-            </span>
-            @Html.TextBoxFor(o => o.Owner, new { @class = "form-control" })
-            @Html.ValidationMessageFor(o => o.Owner, "", validationAttributes)
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="input-group">
+                <span class="input-group-text unified-label-width">
+                    @Html.LabelFor(o => o.OwnerAddress, "Tulajdonos címe:")
+                </span>
+                @Html.TextBoxFor(o => o.OwnerAddress, new { @class = "form-control" })
+                @Html.ValidationMessageFor(o => o.OwnerAddress, "", validationAttributes)
+            </div>
         </div>
     </div>
 
 
-    <div class="row col-md-8 mb-3">
-        <div class="input-group">
-            <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o => o.OwnerAddress, "Tulajdonos címe:")
-            </span>
-            @Html.TextBoxFor(o => o.OwnerAddress, new { @class = "form-control" })
-            @Html.ValidationMessageFor(o => o.OwnerAddress, "", validationAttributes)
-        </div>
-    </div>
-
-
-    <div class="row mb-3"></div>
+    <div class="mb-3"></div>
 
 
     <div class="row mb-3">
@@ -50,18 +52,23 @@
         <div class="col-md-4">
             <div class="form-check">
                 @Html.CheckBoxFor(o => o.IsDifferentOperator, new { @class = "form-check-input" })
+                <span>
+                    @Html.LabelFor(o => o.IsDifferentOperator, "Eltér a tulajdonostól")
+                </span>
             </div>
         </div>
     </div>
 
 
-    <div class="row col-md-8 mb-3">
-        <div class="input-group">
-            <span class="input-group-text unified-label-width">
-                @Html.LabelFor(o => o.OperatorAddress, "Üzemeltető címe:")
-            </span>
-            @Html.TextBoxFor(o => o.OperatorAddress, new { @class = "form-control different-operator-only" })
-            @Html.ValidationMessageFor(o => o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="input-group">
+                <span class="input-group-text unified-label-width">
+                    @Html.LabelFor(o => o.OperatorAddress, "Üzemeltető címe:")
+                </span>
+                @Html.TextBoxFor(o => o.OperatorAddress, new { @class = "form-control different-operator-only" })
+                @Html.ValidationMessageFor(o => o.OperatorAddress, "", new { @class = "text-danger different-operator-only" })
+            </div>
         </div>
     </div>
 

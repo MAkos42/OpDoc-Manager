@@ -1,0 +1,114 @@
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Engine";
+
+    var engineSelector = new List<SelectListItem>{
+        new SelectListItem("Villamos hajtás", "ELECTRIC"),
+        new SelectListItem("Belső égésű hajtás", "ICE")
+    };
+
+    var dropdownAttributes = new { disabled = "", id = "Engine_EngineTypeVisual", @class = "form-select" };
+    var numInputAttributes = (object)ViewBag.numInputAttributes;
+    var textboxAttributes = (object)ViewBag.textboxAttributes;
+    var validationAttributes = (object)ViewBag.validationAttributes;
+
+    Forklift.ElectricEngine tempElectric = ViewBag.NewElectricEngine;
+    Forklift.InternalCombustionEngine tempCombustion = ViewBag.NewICEngine;
+}
+@model Forklift.Engine
+
+<div class="tab-pane fade col-11" id="engine" role="tabpanel" aria-labelled-by="engine-tab">
+    <div class="card">
+        <div class="card-body">
+
+            @Html.HiddenFor(m => m.Id)
+
+            @Html.HiddenFor(m => m.EngineType)
+
+            @await Html.PartialAsync("_ElectricEngine", Model is Forklift.ElectricEngine ? (Forklift.ElectricEngine)Model : tempElectric)
+
+            @await Html.PartialAsync("_ICEngine", Model is Forklift.InternalCombustionEngine ? (Forklift.InternalCombustionEngine)Model : tempCombustion)
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const pwsourceDropdown = document.getElementById('PowerSource');
+        const engineType = document.getElementById('Engine_EngineType');
+        const engineTypeVisual = document.getElementById('engine-tab');
+
+        const electricDiv = document.getElementById('electricengine');
+        const iceDiv = document.getElementById('icengine');
+
+        pwsourceDropdown.addEventListener('change', function () {
+            switch(pwsourceDropdown.value){
+                case 'ELECTRIC':
+                    iceDiv.classList.add('visually-hidden');
+                    electricDiv.classList.remove('visually-hidden');
+
+                    engineType.value = 'ELECTRIC';
+                    engineTypeVisual.innerHTML = 'Elektromos hajtómű';
+
+                    iceDiv.querySelectorAll('.form-control').forEach(input => {
+                        input.disabled = true;
+                    });
+
+                    electricDiv.querySelectorAll('.form-control').forEach(input => {
+                        input.disabled = false;
+                    });
+                    break;
+
+                default:
+                    electricDiv.classList.add('visually-hidden');
+                    iceDiv.classList.remove('visually-hidden');
+
+                    engineType.value = 'ICE';
+                    engineTypeVisual.innerHTML = 'Belsőégésű hajtómű';
+
+                    electricDiv.querySelectorAll('.form-control').forEach(input => {
+                        input.disabled = true;
+                    });
+
+                    iceDiv.querySelectorAll('.form-control').forEach(input => {
+                        input.disabled = false;
+                    });
+                    break;
+            }
+        });
+
+        switch(pwsourceDropdown.value){
+            case 'ELECTRIC':
+                iceDiv.classList.add('visually-hidden');
+                electricDiv.classList.remove('visually-hidden');
+
+                engineType.value = 'ELECTRIC';
+                engineTypeVisual.innerHTML = 'Elektromos hajtómű';
+
+                iceDiv.querySelectorAll('.form-control').forEach(input => {
+                    input.disabled = true;
+                });
+
+                electricDiv.querySelectorAll('.form-control').forEach(input => {
+                    input.disabled = false;
+                });
+                break;
+
+            default:
+                electricDiv.classList.add('visually-hidden');
+                iceDiv.classList.remove('visually-hidden');
+
+                engineType.value = 'ICE';
+                engineTypeVisual.innerHTML = 'Belsőégésű hajtómű';
+
+                electricDiv.querySelectorAll('.form-control').forEach(input => {
+                    input.disabled = true;
+                });
+
+                iceDiv.querySelectorAll('.form-control').forEach(input => {
+                    input.disabled = false;
+                });
+                break;
+        }
+    });
+</script>

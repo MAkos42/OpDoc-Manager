@@ -1,0 +1,125 @@
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "LiftMechanism";
+
+    var numInputAttributes = (object)ViewBag.numInputAttributes;
+    var validationAttributes = (object)ViewBag.validationAttributes;
+}
+@model Forklift.LiftMechanism
+
+<div class="tab-pane fade col-11 show active" id="liftmech" role="tabpanel" aria-labelled-by="liftmech-tab">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class=" input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.LoadCapacity, "Névleges teherbítás: (t)")
+                        </div>
+                        @Html.TextBoxFor(lm => lm.LoadCapacity, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.LoadCapacity, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.NominalLiftHeight, "Névleges emelési magasság: (mm)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.NominalLiftHeight, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.NominalLiftHeight, "", validationAttributes)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.MaxHeightMaxLoad, "Teherbírás legnagyobb emelési magasságnál: (t)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.MaxHeightMaxLoad, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.MaxHeightMaxLoad, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.MaxLiftHeight, "Legnagyobb emelési magasság: (mm)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.MaxLiftHeight, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.MaxLiftHeight, "", validationAttributes)
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.LiftSpeedLoaded, "Emelési sebesség teherrel: (m/s)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.LiftSpeedLoaded, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.LiftSpeedLoaded, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.LiftSpeedUnloaded, "Emelési sebesség teher nélkül: (m/s)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.LiftSpeedUnloaded, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.LiftSpeedUnloaded, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.MastForwardTiltAngle, "Oszlop döntés szöge előre: (°)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.MastForwardTiltAngle, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.MastForwardTiltAngle, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.MastBackwardTiltAngle, "Oszlop döntés szöge hátra: (°)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.MastBackwardTiltAngle, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.MastBackwardTiltAngle, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(lm => lm.FreeLift, "Szabad emelési magasság: (mm)")
+                        </span>
+                        @Html.TextBoxFor(lm => lm.FreeLift, numInputAttributes)
+                        @Html.ValidationMessageFor(lm => lm.FreeLift, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

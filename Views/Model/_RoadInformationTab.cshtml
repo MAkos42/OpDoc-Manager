@@ -1,0 +1,297 @@
+﻿@{
+    Html.ViewData.TemplateInfo.HtmlFieldPrefix = "RoadInformation";
+
+    var numInputAttributes = (object)ViewBag.numInputAttributes;
+    var textboxAttributes = (object)ViewBag.textboxAttributes;
+    var validationAttributes = (object)ViewBag.validationAttributes;
+}
+
+@model Forklift.RoadInformation
+
+<div class="tab-pane fade col-11" id="roadinfo" role="tabpanel" aria-labelled-by="roadinfo-tab">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.Width, "Haladási szélesség: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.Width, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.Width, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.Length, "Üzemi Hossz: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.Length, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.Length, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.OperationalWeight, "Saját tömeg üzemkész állapotban: (kg)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.OperationalWeight, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.OperationalWeight, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.GroundClearance, "Út feletti szabad magasság: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.GroundClearance, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.GroundClearance, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.HeightTransportPosition, "Magasság teherfogó szállítási helyzetében: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.HeightTransportPosition, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.HeightTransportPosition, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.HeightMastLowered, "Legnagyobb szerkezeti magasság szállításkor: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.HeightMastLowered, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.HeightMastLowered, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.HeightMastRaised, "Legnagyobb szerkezeti magasság legnagyobb emelési magasságnál: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.HeightMastRaised, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.HeightMastRaised, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-9">
+                            @Html.LabelFor(ri => ri.GroundClearance, "Út feletti magasság: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.GroundClearance, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.GroundClearance, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.InnerTurningCircle, "Legkisebb belső fordulósugár: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.InnerTurningCircle, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.InnerTurningCircle, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.OuterTurningCircle, "Legkisebb külső fordulósugár: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.OuterTurningCircle, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.OuterTurningCircle, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.Wheelbase, "Tengelytáv: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.Wheelbase, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.Wheelbase, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="track-width">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-9">
+                            @Html.LabelFor(ri => ri.TrackWidthFront, "Nyomtáv mellső tengelynél: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.TrackWidthFront, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.TrackWidthFront, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="track-width">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-9">
+                            @Html.LabelFor(ri => ri.TrackWidthBack, "Nyomtáv hátsó tengelynél: (mm)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.TrackWidthBack, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.TrackWidthBack, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.FrontWheelCount, "Első kerekek száma:")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.FrontWheelCount, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.FrontWheelCount, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.FrontWheelSize, "Első kerekek mérete:")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.FrontWheelSize, textboxAttributes)
+                        @Html.ValidationMessageFor(ri => ri.FrontWheelSize, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-9">
+                            @Html.LabelFor(ri => ri.FrontWheelPressure, "Első kerekek nyomása: (bar)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.FrontWheelPressure, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.FrontWheelPressure, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.BackWheelCount, "Hátsó kerekek száma:")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.BackWheelCount, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.BackWheelCount, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.BackWheelSize, "Hátsó kerekek mérete:")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.BackWheelSize, textboxAttributes)
+                        @Html.ValidationMessageFor(ri => ri.BackWheelSize, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-9">
+                            @Html.LabelFor(ri => ri.BackWheelPressure, "Hátsó kerekek nyomása: (bar)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.BackWheelPressure, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.BackWheelPressure, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.DrawbarPull, "Legnagyobb vonóerő: (N)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.DrawbarPull, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.DrawbarPull, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.BreakingForce, "Üzemi fékrendszer: (N)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.BreakingForce, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.BreakingForce, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(ri => ri.ParkingBreakForce, "Rögzítő fékrendszer: (N)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.ParkingBreakForce, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.ParkingBreakForce, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-10">
+                            @Html.LabelFor(ri => ri.BatteryWeight, "Akkumulátor súlya [elektromos meghajtsnál]: (kg)")
+                        </span>
+                        @Html.TextBoxFor(ri => ri.BatteryWeight, numInputAttributes)
+                        @Html.ValidationMessageFor(ri => ri.BatteryWeight, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

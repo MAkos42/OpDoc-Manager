@@ -1,0 +1,56 @@
+﻿@using OpDoc_Manager.Models.DTO;
+@model List<ForkliftModelDTO>
+
+<table id="modelTable" class="table table-bordered">
+    <thead class="text-center">
+        <tr>
+            <th class="col-md-4">Gyártó</th>
+            <th class="col-md-4">Típus</th>
+            <th class="col-md-1 text-center">Működési mód</th>
+            <th class="col-md-1 text-center">Kezelési mód</th>
+            <th class="col-md-1 text-center">Energia forrás</th>
+            <th class="text-center" data-dt-order="disable"><a class="btn btn-primary" href=@Url.Action("Create", new { id = Guid.Empty })>Új</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model is not null)
+        {
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-content-center">@item.Manufacturer</td>
+                    <td class="align-content-center">@item.Type</td>
+                    <td class="align-content-center">@item.OperationMode</td>
+                    <td class="align-content-center">@item.OperatorType</td>
+                    <td class="align-content-center">@item.PowerSource</td>
+                    <td class="align-content-center"><a class="btn btn-primary" href="@Url.Action("Edit", new {id = item.Id})">Szerkeszt</a></td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        $('#modelTable').DataTable({
+            language:{
+                        "search": "Keresés:",
+        "lengthMenu": "Oldalanként _MENU_ elem",
+        "info": "Mutat _START_-től _END_-ig elemet (Összesen: _TOTAL_)",
+        "infoEmpty": "Nincs találat",
+        "infoFiltered": "(Összesen: _MAX_)",
+        "paginate": {
+            "first": "Első",
+            "previous": "<",
+            "next": ">",
+            "last": "Utolsó"
+        },
+        "emptyTable": "Nem található targonca modell",
+        "loadingRecords": "Betöltés...",
+        "zeroRecords": "Nem létezik keresésnek megfelelő elem",
+            }
+        });
+    });
+</script>

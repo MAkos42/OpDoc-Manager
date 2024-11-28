@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Model Editor";
+
+    var operationModeSelector = new List<SelectListItem> {
+        new SelectListItem("Emelőtargonca", "LIFT"),
+        new SelectListItem("Vontatótargonca","TOW"),
+        new SelectListItem("Szállítótargonca", "TRANSPORT")};
+
+    var operatorTypeSelector = new List<SelectListItem> {
+        new SelectListItem("Vezetőüles", "SEATED"),
+        new SelectListItem("Vezetőállás", "STANDING"),
+        new SelectListItem("Gyalogkíséret", "PEDESTRIAN")
+    };
+
+    var powerSourceSelector = new List<SelectListItem> {
+        new SelectListItem("Dízel", "DIESEL"),
+        new SelectListItem("Benzin", "GASOLINE"),
+        new SelectListItem("Földgáz", "NATGAS"),
+        new SelectListItem("Elektromos", "ELECTRIC"),
+    };
+
+    var engineSelector = new List<SelectListItem>{
+        new SelectListItem("Villamos hajtás", "ELECTRIC"),
+        new SelectListItem("Belső égésű hajtás", "ICE")
+    };
+
+    var dropdownAttributes = (object)ViewBag.DropdownAttributes;
+    var numInputAttributes = (object)ViewBag.NumInputAttributes;
+    var textboxAttributes = (object)ViewBag.TextboxAttributes;
+    var validationAttributes = (object)ViewBag.ValidationAttributes;
+}
+
+@model Forklift.ModelInformation
+
+@using (Html.BeginForm("SaveChanges", "Model", FormMethod.Post, new { @id = "form" }))
+{
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a href="#liftmech" class="nav-link active" id="liftmech-tab" role="tab" data-bs-toggle="tab" aria-controls="liftmech">Emelőmű</a>
+            </li>
+            <li class="nav-item">
+                <a href="#roadinfo" class="nav-link" id="roadinfo-tab" role="tab" data-bs-toggle="tab" aria-controls="roadinfo">Haladómű</a>
+            </li>
+            <li class="nav-item">
+                <a href="#engine" class="nav-link" id="engine-tab" role="tab" data-bs-toggle="tab" aria-controls="engine" aria-selected="true">Hajtómű</a>
+            </li>
+            <li class="flex-fill">
+            </li>
+            <li class="align-self-center">
+                <button type="submit" class="btn btn-primary">Mentés</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="col-11">
+        <div class="card mb-3">
+            <div class="card-header">Általános adatok</div>
+            <div class="card-body">
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-2 ">
+                                @Html.LabelFor(m => m.Manufacturer, "Gyártó:")
+                            </span>
+                            @Html.TextBoxFor(m => m.Manufacturer, textboxAttributes)
+                            @Html.ValidationMessageFor(m => m.Manufacturer, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-2 ">
+                                @Html.LabelFor(m => m.Type, "Típus:")
+                            </span>
+                            @Html.TextBoxFor(m => m.Type, textboxAttributes)
+                            @Html.ValidationMessageFor(m => m.Type, "", validationAttributes)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-5 ">
+                                @Html.LabelFor(m => m.OperationMode, "Targonca típus:")
+                            </span>
+                            @Html.DropDownListFor(m => m.OperationMode, operationModeSelector, dropdownAttributes)
+                            @Html.ValidationMessageFor(m => m.OperationMode, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-5 ">
+                                @Html.LabelFor(m => m.OperatorType, "Kezelés módja:")
+                            </span>
+                            @Html.DropDownListFor(m => m.OperatorType, operatorTypeSelector, dropdownAttributes)
+                            @Html.ValidationMessageFor(m => m.OperatorType, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-6 ">
+                                @Html.LabelFor(m => m.PowerSource, "Működtetőenergia:")
+                            </span>
+                            @Html.DropDownListFor(m => m.PowerSource, powerSourceSelector, dropdownAttributes)
+                            @Html.ValidationMessageFor(m => m.PowerSource, "", validationAttributes)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="tab-content">
+        @await Html.PartialAsync("_LiftMechanismTab", Model.LiftMechanism)
+
+        @await Html.PartialAsync("_RoadInformationTab", Model.RoadInformation)
+
+        @await Html.PartialAsync("_EngineTab", Model.Engine)
+    </div>
+
+}
+
+@Html.ValidationSummary(true)
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('form');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var isValid = $('#form').valid();
+            console.log(isValid);
+
+            if(isValid){
+                $.ajax({
+                    type: 'POST',
+                    url: form.getAttribute('action'),
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        alert('Success: ' + response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+</script>

@@ -22,7 +22,6 @@
         new SelectListItem("Belső égésű hajtás", "ICE")
     };
 
-
     var dropdownAttributes = new { disabled = "", @class = "form-select form-select-disabled" };
     var numInputAttributes = new { type = "number", @class = "form-control", @readonly = "" };
     var textboxAttributes = new Dictionary<string, object> { { "class", "form-control" }, { "readonly", "" }, { "placeholder", "n/a"} };
@@ -38,7 +37,7 @@
             <div class="card-header">Általános adatok</div>
             <div class="card-body row">
 
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-text col-md-5 ">
                             @Html.LabelFor(m => m.OperationMode, "Targonca típus:")
@@ -48,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-text col-md-5 ">
                             @Html.LabelFor(m => m.OperatorType, "Kezelés módja:")
@@ -58,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-text col-md-6 ">
                             @Html.LabelFor(m => m.PowerSource, "Működtetőenergia:")
@@ -678,8 +677,3 @@
     }
 
 </div>
-
-
-<script>
-    console.log("@pageState")
-</script>

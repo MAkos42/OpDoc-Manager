@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OpDoc_Manager.Models
 {
     public partial class Forklift
     {
+        [ModelBinder(BinderType = typeof(EngineModelBinder))]
         public abstract class Engine
         {
             public Guid Id { get; set; }
@@ -16,6 +18,11 @@ namespace OpDoc_Manager.Models
 
         public class ElectricEngine : Engine
         {
+            public ElectricEngine()
+            {
+                EngineType = EngineType.ELECTRIC;
+            }
+
             [Required]
             public string BatteryType { get; set; }
             [Required]
@@ -52,6 +59,11 @@ namespace OpDoc_Manager.Models
 
         public class InternalCombustionEngine : Engine
         {
+            public InternalCombustionEngine()
+            {
+                EngineType = EngineType.ICE;
+            }
+
             [Required]
             public string Manufacturer { get; set; }
             [Required]

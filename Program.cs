@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Data;
-using OpDoc_Manager.Data.Service;
+using OpDoc_Manager.Service;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +18,7 @@ builder.Services.AddScoped<IForkliftModelsService, ForkliftModelsService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true); ;
+
 
 var app = builder.Build();
 
@@ -37,15 +38,15 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "EditRoute",
+    name: "ForkliftRoute",
     pattern: "{controller}/{id}/{action}",
-    defaults: new { controller = "View" }
+    defaults: new { controller = "Forklift" }
     );
 
 app.MapControllerRoute(
-    name: "CreateRoute",
+    name: "ModelRoute",
     pattern: "{controller}/{id}/{action}",
-    defaults: new { controller = "View" }
+    defaults: new { controller = "Model" }
     );
 
 app.MapControllerRoute(

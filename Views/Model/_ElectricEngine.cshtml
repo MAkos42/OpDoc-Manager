@@ -1,0 +1,185 @@
+﻿@{
+    var numInputAttributes = (object)ViewBag.numInputAttributes;
+    var textboxAttributes = (object)ViewBag.textboxAttributes;
+    var validationAttributes = (object)ViewBag.validationAttributes;
+}
+
+@model Forklift.ElectricEngine
+
+    <div id="electricengine">
+
+        <div class="card mb-3">
+            <div class="card-header">Akkumulátor</div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-3">
+                                @Html.LabelFor(m => m.BatteryType, "Típusa:")
+                            </span>
+                            @Html.TextBoxFor(m => m.BatteryType, textboxAttributes)
+                            @Html.ValidationMessageFor(m => m.BatteryType, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-3">
+                                @Html.LabelFor(m => m.BatteryManufacturer, "Gyártó:")
+                            </span>
+                            @Html.TextBoxFor(m => m.BatteryManufacturer, textboxAttributes)
+                            @Html.ValidationMessageFor(m => m.BatteryManufacturer, "", validationAttributes)
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-8">
+                                @Html.LabelFor(m => m.NominalBatteryCapacity, "Névleges kapacitás:")
+                            </span>
+                            @Html.TextBoxFor(m => m.NominalBatteryCapacity, numInputAttributes)
+                            @Html.ValidationMessageFor(m => m.NominalBatteryCapacity, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-8">
+                                @Html.LabelFor(m => m.BatteryVoltage, "Kapocsfeszültség:")
+                            </span>
+                            @Html.TextBoxFor(m => m.BatteryVoltage, numInputAttributes)
+                            @Html.ValidationMessageFor(m => m.BatteryVoltage, "", validationAttributes)
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-8">
+                                @Html.LabelFor(m => m.BatteryCellCount, "Cellák száma:")
+                            </span>
+                            @Html.TextBoxFor(m => m.BatteryCellCount, numInputAttributes)
+                            @Html.ValidationMessageFor(m => m.BatteryCellCount, "", validationAttributes)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Hajtómotor</div>
+            <div class="card-body row">
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(m => m.MotorOutput, "Teljesítmény: (kW)")
+                        </span>
+                        @Html.TextBoxFor(m => m.MotorOutput, numInputAttributes)
+                        @Html.ValidationMessageFor(m => m.MotorOutput, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-8">
+                            @Html.LabelFor(m => m.MotorRPM, "Fordulatszám: (1/perc)")
+                        </span>
+                        @Html.TextBoxFor(m => m.MotorRPM, numInputAttributes)
+                        @Html.ValidationMessageFor(m => m.MotorRPM, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(m => m.MotorManufacturer, "Gyártó:")
+                        </span>
+                        @Html.TextBoxFor(m => m.MotorManufacturer, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.MotorManufacturer, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Áramátalakító</div>
+            <div class="card-body row">
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(m => m.InverterType, "Típus:")
+                        </span>
+                        @Html.TextBoxFor(m => m.InverterType, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.InverterType, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(m => m.InverterManufacturer, "Gyártó:")
+                        </span>
+                        @Html.TextBoxFor(m => m.InverterManufacturer, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.InverterManufacturer, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-6">
+                            @Html.LabelFor(m => m.InverterPerformance, "Teljesítmény:")
+                        </span>
+                        @Html.TextBoxFor(m => m.InverterPerformance, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.InverterPerformance, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">Frekvenciaváltó</div>
+            <div class="card-body row">
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(m => m.FrequencyConverterType, "Típus:")
+                        </span>
+                        @Html.TextBoxFor(m => m.FrequencyConverterType, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.FrequencyConverterType, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-4">
+                            @Html.LabelFor(m => m.FrequencyConverterManufacturer, "Gyártó:")
+                        </span>
+                        @Html.TextBoxFor(m => m.FrequencyConverterManufacturer, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.FrequencyConverterManufacturer, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-6">
+                            @Html.LabelFor(m => m.FrequencyConverterPerformance, "Teljesítmény:")
+                        </span>
+                        @Html.TextBoxFor(m => m.FrequencyConverterPerformance, textboxAttributes)
+                        @Html.ValidationMessageFor(m => m.FrequencyConverterPerformance, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>

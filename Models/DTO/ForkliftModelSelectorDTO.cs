@@ -1,4 +1,4 @@
-﻿namespace OpDoc_Manager.Data.Service
+﻿namespace OpDoc_Manager.Models.DTO
 {
     public class ForkliftModelSelectorDTO
     {

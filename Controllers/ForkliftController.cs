@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Data;
-using OpDoc_Manager.Data.Service;
 using OpDoc_Manager.Models;
+using OpDoc_Manager.Models.DTO;
+using OpDoc_Manager.Service;
 
 namespace OpDoc_Manager.Controllers
 {
@@ -43,8 +44,8 @@ namespace OpDoc_Manager.Controllers
             {
                 return NotFound("Forklift Model");
             }
-            var electricEngine = await _context.Engines.OfType<Forklift.ElectricEngine>().Where(e => e.Id == model!.EngineId).FirstOrDefaultAsync();
-            var icEngine = await _context.Engines.OfType<Forklift.InternalCombustionEngine>().Where(e => e.Id == model!.EngineId).FirstOrDefaultAsync();
+            var electricEngine = await _context.Engines.OfType<Forklift.ElectricEngine>().FirstOrDefaultAsync(e => e.Id == model!.EngineId);
+            var icEngine = await _context.Engines.OfType<Forklift.InternalCombustionEngine>().FirstOrDefaultAsync(e => e.Id == model!.EngineId);
             if (forklift.General.Model.Engine is null)
             {
                 return NotFound("Forklift Model Engine");
@@ -119,13 +120,6 @@ namespace OpDoc_Manager.Controllers
         {
             Forklift forklift = new();
             forklift.UniqueId = Guid.Empty;
-            forklift.General = new();
-            forklift.Operator = new();
-            forklift.Operator.LeaseInformation = new();
-            forklift.UserManual = new();
-            forklift.Adapter = new();
-            forklift.Adapter.AdapterList = new();
-            forklift.PeriodicInspection = new();
 
             await GetModelNamesList();
 
@@ -147,7 +141,7 @@ namespace OpDoc_Manager.Controllers
                 record.Number = forklift.Adapter.AdapterList.IndexOf(record) + 1;
             }
 
-            forklift.General.Model = await _context.ForkliftModels.Where(m => m.Id == forklift.General.ModelId).Include(m => m.Engine).FirstOrDefaultAsync();
+            forklift.General.Model = await _context.ForkliftModels.Include(m => m.Engine).FirstOrDefaultAsync(m => m.Id == forklift.General.ModelId);
 
             if (!forklift.Operator.IsDifferentOperator)
             {
