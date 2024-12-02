@@ -12,11 +12,11 @@
     var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
 
 }
-@model Forklift.MainenanceReport
+@model Forklift.MaintenanceReport
 
 <div class="tab-pane col-md-8 fade" id="maintenance" role="tabpanel" aria-labelledby="maintenance-tab">
 
-    @using (Html.BeginForm("AddInspection", "Forklift", FormMethod.Post, new { @id = "MaintenanceForm" }))
+    @using (Html.BeginForm("AddMaintenance", "Forklift", FormMethod.Post, new { @id = "MaintenanceForm" }))
     {
         <div class="card">
             <div class="card-header d-flex">
@@ -36,9 +36,9 @@
 
                 <div class="row mb-3">
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="input-group">
-                            <span class="input-group-text col-md-7">
+                            <span class="input-group-text col-md-4">
                                 @Html.LabelFor(mr => mr.Date, "Dátum:")
                             </span>
                             @Html.TextBoxFor(mr => mr.Date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
@@ -46,12 +46,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="input-group">
-                            <span class="input-group-text col-md-9">
-                                @Html.LabelFor(mr => mr.OperatingHours, "Üzemóra: (vizsgálat idején)")
+                            <span class="input-group-text col-md-7">
+                                @Html.LabelFor(mr => mr.OperatingHours, "Üzemóra:")
                             </span>
-                            @Html.TextBoxFor(mr => mr.OperatingHours, new { @class = "form-control" })
+                            @Html.TextBoxFor(mr => mr.OperatingHours, new { @class = "form-control", type="number" })
                             @Html.ValidationMessageFor(mr => mr.OperatingHours, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -62,10 +62,10 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-text col-md-3">
-                                @Html.LabelFor(mr => mr.Description, "Leírás:")
+                                @Html.LabelFor(mr => mr.RepairDetails, "Leírás:")
                             </span>
-                            @Html.TextAreaFor(mr => mr.Description, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(mr => mr.Description, "", new { @class = "text-danger" })
+                            @Html.TextAreaFor(mr => mr.RepairDetails, new { @class = "form-control", rows=4 })
+                            @Html.ValidationMessageFor(mr => mr.RepairDetails, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

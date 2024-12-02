@@ -41,7 +41,7 @@
                             <span class="input-group-text col-md-9">
                                 @Html.LabelFor(pi => pi.RequiredOperationHours, "Üzemóra: (vizsgálat szükséges)")
                             </span>
-                            @Html.TextBoxFor(pi => pi.RequiredOperationHours, new { @class = "form-control", @readonly = "" })
+                            @Html.TextBoxFor(pi => pi.RequiredOperationHours, new { @class = "form-control", type="number", @readonly = "" })
                             @Html.ValidationMessageFor(pi => pi.RequiredOperationHours, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             <span class="input-group-text col-md-9">
                                 @Html.LabelFor(pi => pi.CurrentOperatingHours, "Üzemóra: (vizsgálat idején)")
                             </span>
-                            @Html.TextBoxFor(pi => pi.CurrentOperatingHours, new { @class = "form-control" })
+                            @Html.TextBoxFor(pi => pi.CurrentOperatingHours, new { @class = "form-control", type = "number" })
                             @Html.ValidationMessageFor(pi => pi.CurrentOperatingHours, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -111,8 +111,8 @@
                             @Html.LabelFor(pi => pi.HasPassedInspection, "A vizsgálat alapján a targonca biztonságos üzelemtetésre:")
                         </div>
                         <div class="btn-group">
-                            <button type="button" id="PassedInspection" class="btn btn-primary active">Alkalmas</button>
-                            <button type="button" id="FailedInspection" class="btn btn-secondary">Nem alkalmas</button>
+                            <button type="button" id="FailedInspection" class="btn btn-primary active">Nem alkalmas</button>
+                            <button type="button" id="PassedInspection" class="btn btn-secondary">Alkalmas</button>
                         </div>
                         @Html.HiddenFor(pi => pi.HasPassedInspection)
                     </div>

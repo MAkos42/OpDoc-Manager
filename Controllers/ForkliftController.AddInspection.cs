@@ -6,8 +6,12 @@ namespace OpDoc_Manager.Controllers
 {
     public partial class ForkliftController : Controller
     {
-        private async Task<IActionResult> AddInspection(Forklift.PeriodicInspectionResult result)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddInspection(Forklift.PeriodicInspectionResult result)
         {
+            result.Id = Guid.Empty;
+
             //result.Technician = User.Identity.Name;
             result.Technician = "tempValue";
 
@@ -17,9 +21,12 @@ namespace OpDoc_Manager.Controllers
                 return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca nem létezik!" });
             }
 
-            inspectionInformaton.LastInspectionDate = result.InspectionDate;
-            inspectionInformaton.NextInspectionOpHours = inspectionInformaton.NextInspectionOpHours + inspectionInformaton.StructuralInspectionOpHours;
-            inspectionInformaton.NextInspectionDate = inspectionInformaton.NextInspectionDate.AddMonths(inspectionInformaton.StructuralInspectionMonths);
+            if (result.HasPassedInspection && result.Type != Forklift.InspectionType.INSPECTION)
+            {
+                inspectionInformaton.LastInspectionDate = result.InspectionDate;
+                inspectionInformaton.NextInspectionOpHours = inspectionInformaton.NextInspectionOpHours + inspectionInformaton.StructuralInspectionOpHours;
+                inspectionInformaton.NextInspectionDate = inspectionInformaton.NextInspectionDate.AddMonths(inspectionInformaton.StructuralInspectionMonths);
+            }
 
             ModelState.Clear();
             TryValidateModel(result);

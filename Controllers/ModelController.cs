@@ -29,6 +29,7 @@ namespace OpDoc_Manager.Controllers
             return View(models);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
             Forklift.ModelInformation? model = await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Id == id);
@@ -57,6 +58,7 @@ namespace OpDoc_Manager.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Create(Guid id)
         {
             Forklift.ModelInformation newModel = new();
@@ -68,6 +70,7 @@ namespace OpDoc_Manager.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveChanges(Forklift.ModelInformation model)
         {
 
