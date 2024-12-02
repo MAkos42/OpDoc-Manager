@@ -73,6 +73,11 @@ namespace OpDoc_Manager.Models
             [Required]
             public int MainInspectionPeriodMonths { get; set; }
 
+            [Required]
+            public int NextInspectionOpHours { get; set; }
+            [Required]
+            public DateOnly NextInspectionDate { get; set; }
+
             public List<CustomInspectionPeriod>? CustomInspectionPeriodRecord { get; set; }
 
             public List<PeriodicInspectionResult>? InspectionResults { get; set; }

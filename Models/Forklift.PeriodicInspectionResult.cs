@@ -27,7 +27,7 @@ namespace OpDoc_Manager.Models
             [Required]
             public bool HasPassedInspection { get; set; }
             [Required]
-            public string Performer { get; set; }
+            public string Technician { get; set; }
         }
     }
 }

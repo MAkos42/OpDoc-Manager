@@ -1,15 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Models;
+using System.Diagnostics.CodeAnalysis;
 using static OpDoc_Manager.Models.Forklift;
 
 namespace OpDoc_Manager.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        [SuppressMessage("Usage", "CS8618", Justification = "Properties are initialized by the Entity Framework")]
+#pragma warning disable CS8618 // Justification : Properties are initialized by the Entity Framework
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+                : base(options)
         {
         }
+#pragma warning restore CS8618
 
         public DbSet<Forklift> Forklifts { get; set; }
         public DbSet<OperatorInformation> OperatorInformation { get; set; }
@@ -49,7 +53,6 @@ namespace OpDoc_Manager.Data
             builder.Entity<ElectricEngine>().ToTable("ElectricEngines");
             builder.Entity<InternalCombustionEngine>().ToTable("ICEngine");
             builder.Entity<ModelInformation>().HasOne(m => m.Engine).WithOne().HasForeignKey<ModelInformation>(mi => mi.EngineId);
-
         }
     }
 }
