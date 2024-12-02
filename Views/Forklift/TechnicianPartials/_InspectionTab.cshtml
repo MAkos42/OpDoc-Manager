@@ -1,0 +1,181 @@
+﻿@{
+
+    var reportTypeSelector = new List<SelectListItem>{
+        new SelectListItem("Ellenörző", "INSPEECTION"),
+        new SelectListItem("Szerkezeti", "STRUCTURAL", true),
+        new SelectListItem("Fővizsgálat", "MAIN")
+    };
+
+    var dropdownAttributes = new Dictionary<string, object> { { "class", "form-select" } };
+    var numInputAttributes = new Dictionary<string, object> { { "class", "form-control" }, { "type", "number" } };
+    var textboxAttributes = new Dictionary<string, object> { { "class", "form-control" } };
+    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+
+}
+@model Forklift.PeriodicInspectionResult
+
+<div class="tab-pane col-md-8 fade show active" id="inspection" role="tabpanel" aria-labelledby="inspection-tab">
+
+    @using (Html.BeginForm("AddInspection", "Forklift", FormMethod.Post, new { @id = "InspectionForm" }))
+    {
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="align-content-center">
+                    Időszakos vizsgálat
+                </div>
+
+                <div class="flex-fill">
+                </div>
+                <div class="align-self-center">
+                    <button type="submit" class="btn-sm btn-primary">Mentés</button>
+                </div>
+            </div>
+            <div class="card-body">
+
+                @Html.HiddenFor(pi => pi.ForkliftId)
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-9">
+                                @Html.LabelFor(pi => pi.RequiredOperationHours, "Üzemóra: (vizsgálat szükséges)")
+                            </span>
+                            @Html.TextBoxFor(pi => pi.RequiredOperationHours, new { @class = "form-control", @readonly = "" })
+                            @Html.ValidationMessageFor(pi => pi.RequiredOperationHours, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-9">
+                                @Html.LabelFor(pi => pi.CurrentOperatingHours, "Üzemóra: (vizsgálat idején)")
+                            </span>
+                            @Html.TextBoxFor(pi => pi.CurrentOperatingHours, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(pi => pi.CurrentOperatingHours, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-7">
+                                @Html.LabelFor(pi => pi.RequiredInspectionDate, "Vizsgálat dátuma: (előírt)")
+                            </span>
+                            @Html.TextBoxFor(pi => pi.RequiredInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = "" })
+                            @Html.ValidationMessageFor(pi => pi.RequiredInspectionDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-7">
+                                @Html.LabelFor(pi => pi.InspectionDate, "Vizsgálat dátuma:")
+                            </span>
+                            @Html.TextBoxFor(pi => pi.InspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(pi => pi.InspectionDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-6">
+                                @Html.LabelFor(pi => pi.Type, "Vizsgálat jellege:")
+                            </span>
+                            @Html.DropDownListFor(pi => pi.Type, reportTypeSelector, dropdownAttributes)
+                            @Html.ValidationMessageFor(pi => pi.Type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-7">
+                                @Html.LabelFor(pi => pi.InspectionReportId, "Jegyzőkönyv/munkalap száma:")
+                            </span>
+                            @Html.TextBoxFor(pi => pi.InspectionReportId, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(pi => pi.InspectionReportId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <div class="form-label">
+                            @Html.LabelFor(pi => pi.HasPassedInspection, "A vizsgálat alapján a targonca biztonságos üzelemtetésre:")
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" id="PassedInspection" class="btn btn-primary active">Alkalmas</button>
+                            <button type="button" id="FailedInspection" class="btn btn-secondary">Nem alkalmas</button>
+                        </div>
+                        @Html.HiddenFor(pi => pi.HasPassedInspection)
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hiddenValue = document.getElementById("HasPassedInspection");
+        const passedButton = document.getElementById("PassedInspection");
+        const failedButton = document.getElementById("FailedInspection");
+
+
+        passedButton.addEventListener("click", function () {
+            hiddenValue.value = true;
+
+            passedButton.classList.add("active", "btn-primary");
+            passedButton.classList.remove("btn-secondary");
+
+            failedButton.classList.add("btn-secondary");
+            failedButton.classList.remove("active", "btn-primary");
+        });
+
+        failedButton.addEventListener("click", function () {
+            hiddenValue.value = false;
+
+            failedButton.classList.add("active", "btn-primary");
+            failedButton.classList.remove("btn-secondary");
+
+            passedButton.classList.add("btn-secondary");
+            passedButton.classList.remove("active", "btn-primary");
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('InspectionForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var isValid = $('#InspectionForm').valid();
+            console.log(isValid);
+
+            if(isValid){
+                $.ajax({
+                    type: 'POST',
+                    url: form.getAttribute('action'),
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        alert('Success: ' + response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+</script>

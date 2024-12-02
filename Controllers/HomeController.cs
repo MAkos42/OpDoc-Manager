@@ -91,7 +91,7 @@ namespace OpDoc_Manager.Controllers
                 Engine = new Forklift.InternalCombustionEngine
                 {
                     EngineType = Forklift.EngineType.ICE,
-                    Manufacturer = "",
+                    Manufacturer = "CAT",
                     Type = "D04EG",
                     RatedOutput = 36.0,
                     CylinderVolume = 3331,
@@ -152,13 +152,13 @@ namespace OpDoc_Manager.Controllers
                 {
                     EngineType = Forklift.EngineType.ELECTRIC,
 
-                    BatteryType = "",
-                    BatteryManufacturer = "",
+                    BatteryType = "n/a",
+                    BatteryManufacturer = "n/a",
                     NominalBatteryCapacity = 775,
                     BatteryVoltage = 80,
                     BatteryCellCount = 12,
 
-                    MotorManufacturer = "",
+                    MotorManufacturer = "n/a",
                     MotorOutput = 8.0,
                     MotorRPM = 2000,
 
@@ -256,6 +256,8 @@ namespace OpDoc_Manager.Controllers
                     StructuralInspectionMonths = 8,
                     MainInspectionPeriodOpHours = 4800,
                     MainInspectionPeriodMonths = 24,
+                    NextInspectionOpHours = 5400,
+                    NextInspectionDate = new DateOnly(2025, 6, 11),
                     InspectionResults = new List<Forklift.PeriodicInspectionResult>
                     {
                         new Forklift.PeriodicInspectionResult
@@ -267,7 +269,7 @@ namespace OpDoc_Manager.Controllers
                             InspectionDate = new DateOnly(2023, 6, 5),
                             InspectionReportId = "CTZXAB1222001-2023-06-05-001",
                             HasPassedInspection = true,
-                            Performer = "Székely József"
+                            Technician = "Székely József"
                         },
 
                         new Forklift.PeriodicInspectionResult
@@ -279,7 +281,7 @@ namespace OpDoc_Manager.Controllers
                             InspectionDate = new DateOnly(2024, 1, 26),
                             InspectionReportId = "CTZXAB1222001-2024-01-26-001",
                             HasPassedInspection = true,
-                            Performer = "Székely József"
+                            Technician = "Székely József"
                         },
 
                         new Forklift.PeriodicInspectionResult
@@ -291,7 +293,7 @@ namespace OpDoc_Manager.Controllers
                             InspectionDate = new DateOnly(2024, 10, 2),
                             InspectionReportId = "CTZXAB1222001-2024-10-02-001",
                             HasPassedInspection = true,
-                            Performer = "Székely József"
+                            Technician = "Székely József"
                         }
                     },
                     MaintenanceReports = new List<Forklift.MaintenanceReport>

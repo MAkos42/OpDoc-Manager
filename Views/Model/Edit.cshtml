@@ -32,7 +32,7 @@
 
 @model Forklift.ModelInformation
 
-@using (Html.BeginForm("SaveChanges", "Model", FormMethod.Post, new { @id = "form" }))
+@using (Html.BeginForm("SaveChanges", "Model", FormMethod.Post, new { @id = "Form" }))
 {
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
         <ul class="nav nav-tabs" role="tablist">
@@ -134,11 +134,11 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('form');
+        const form = document.getElementById('Form');
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            var isValid = $('#form').valid();
+            var isValid = $('#Form').valid();
             console.log(isValid);
 
             if(isValid){

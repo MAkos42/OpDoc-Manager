@@ -107,36 +107,39 @@
         </div>
     </div>
 
-    <div class="card col-md-7 mb-3">
-        <div class="card-header">
-            Targonca jelenlegi állapota
-        </div>
-
-        <div class="card-body row">
-
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-text col-md-6">
-                        @Html.LabelFor(pi => pi.OperatingHours, "Üzemóra:")
-                    </span>
-
-                    @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control", @type = "number" })
-                    @Html.ValidationMessageFor(pi => pi.OperatingHours, "", validationAttributes)
-                </div>
+    @if (Url.ActionContext.HttpContext.Request.Path.Value!.Split('/').Last() != "Create")
+    {
+        <div class="card col-md-7 mb-3">
+            <div class="card-header">
+                Targonca jelenlegi állapota
             </div>
 
-            <div class="col-md-8">
-                <div class="input-group ">
-                    <span class="input-group-text col-md-7 ">
-                        @Html.LabelFor(pi => pi.LastInspectionDate, "Utolsó vizsgálat dátuma:")
-                    </span>
-                    @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                    @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", validationAttributes)
-                </div>
-            </div>
+            <div class="card-body row">
 
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text col-md-6">
+                            @Html.LabelFor(pi => pi.OperatingHours, "Üzemóra:")
+                        </span>
+
+                        @Html.TextBoxFor(pi => pi.OperatingHours, new { @class = "form-control", @type = "number" })
+                        @Html.ValidationMessageFor(pi => pi.OperatingHours, "", validationAttributes)
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="input-group ">
+                        <span class="input-group-text col-md-7 ">
+                            @Html.LabelFor(pi => pi.LastInspectionDate, "Utolsó vizsgálat dátuma:")
+                        </span>
+                        @Html.TextBoxFor(pi => pi.LastInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(pi => pi.LastInspectionDate, "", validationAttributes)
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
+    }
 
     <div class="card mb-3">
         <div class="card-header d-flex">
@@ -176,14 +179,14 @@
                                 <td>@result.RequiredInspectionDate.ToString("yyyy-MM-dd") / @result.InspectionDate.ToString("yyyy-MM-dd")</td>
                                 <td>@result.InspectionReportId</td>
                                 <td>@(result.HasPassedInspection ? "Megfelelő" : "Nem felelt meg")</td>
-                                <td>@result.Performer</td>
+                                <td>@result.Technician</td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                        <td colspan="8">Nem található vizsgálati jelentés.</td>
+                            <td colspan="8">Nem található vizsgálati jelentés.</td>
                         </tr>
                     }
                 </tbody>
@@ -228,7 +231,7 @@
                     else
                     {
                         <tr>
-                        <td colspan="4">Nem található javítás</td>
+                            <td colspan="4">Nem található javítás</td>
                         </tr>
                     }
                 </tbody>

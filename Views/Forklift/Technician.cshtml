@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Technikusi műveletek";
+
+    Forklift.PeriodicInspectionResult result = new()
+            {
+                ForkliftId = Model.Id,
+                RequiredOperationHours = Model.NextInspectionOpHours,
+                CurrentOperatingHours = Model.OperatingHours,
+                RequiredInspectionDate = Model.NextInspectionDate,
+                InspectionDate = DateOnly.Parse(DateTime.Now.ToString("yyyy-MM-dd"))
+            };
+
+    Forklift.MaintenanceReport maintenance = new()
+            {
+                ForkliftId = Model.Id,
+                OperatingHours = Model.OperatingHours,
+                Date = DateOnly.Parse(DateTime.Now.ToString("yyyy-MM-dd"))
+            };
+}
+
+@using OpDoc_Manager.Models
+@model Forklift.PeriodicInspectionInformation
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#inspection" class="nav-link active" id="inspection-tab" role="tab" data-bs-toggle="tab" aria-controls="inspection">Időszakos vizsgálat</a>
+        </li>
+        <li class="nav-item">
+            <a href="#repair" class="nav-link" id="maintenance-tab" role="tab" data-bs-toggle="tab" aria-controls="maintenance" aria-selected="true">Javítás vagy csere</a>
+        </li>
+    </ul>
+
+</nav>
+
+<div class="tab-content">
+
+    @* Periodic Inspections *@
+    @await Html.PartialAsync("TechnicianPartials/_InspectionTab", result)
+
+    @* Repairs and Replacements *@
+    @await Html.PartialAsync("TechnicianPartials/_MaintenanceTab", maintenance)
+
+</div>

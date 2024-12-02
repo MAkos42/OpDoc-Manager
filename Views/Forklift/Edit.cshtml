@@ -40,28 +40,26 @@
 
     <div class="tab-content">
 
-        <!-- General Information -->
-        @await Html.PartialAsync("_GeneralTab", Model.General)
+        @* General Information *@
+        @await Html.PartialAsync("EditPartials/_GeneralTab", Model.General)
 
-        <!-- Operator -->
-        @await Html.PartialAsync("_OperatorTab", Model.Operator)
+        @* Operator *@
+        @await Html.PartialAsync("EditPartials/_OperatorTab", Model.Operator)
 
-        <!-- Operation -->
-        @await Html.PartialAsync("_OperationTab", Model.Operator)
+        @* Operation *@
+        @await Html.PartialAsync("EditPartials/_OperationTab", Model.Operator)
 
-        <!-- User Manual -->
-        @await Html.PartialAsync("_UserManualTab", Model.UserManual)
+        @* User Manual *@
+        @await Html.PartialAsync("EditPartials/_UserManualTab", Model.UserManual)
 
-        <!-- Technical Information -->
-        @await Html.PartialAsync("_ModelDataTab", Model.General is not null ? Model.General.Model : null)
+        @* Technical Information *@
+        @await Html.PartialAsync("EditPartials/_ModelDataTab", Model.General is not null ? Model.General.Model : null)
 
-        <!-- Adapter Information -->
-        @await Html.PartialAsync("_AdapterTab", Model.Adapter)
+        @* Adapter Information *@
+        @await Html.PartialAsync("EditPartials/_AdapterTab", Model.Adapter)
 
-        <!-- Periodic Inspection Information -->
-        @await Html.PartialAsync("_InspectionTab", Model.PeriodicInspection)
-
-        <!-- Add more tab content sections as needed -->
+        @* Periodic Inspection Information *@
+        @await Html.PartialAsync("EditPartials/_InspectionTab", Model.PeriodicInspection)
 
     </div>
 
@@ -72,10 +70,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('form');
+        const form = document.getElementById('Form');
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-            var isValid = $('#form').valid();
+            var isValid = $('#Form').valid();
             console.log(isValid);
 
             if(isValid){

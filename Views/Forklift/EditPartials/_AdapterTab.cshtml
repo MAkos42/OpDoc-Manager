@@ -102,7 +102,7 @@
             var number = document.querySelectorAll('tr.row').length;
 
             $.ajax({
-                url: '@Url.Action("AddAdapter", "Forklift")', // URL of the action that returns the partial view
+                url: '@Url.Action("NewAdapter", "Forklift")', // URL of the action that returns the partial view
                 type: 'POST',
                 data: { id: forklift, number: number },
                 success: function (result) {

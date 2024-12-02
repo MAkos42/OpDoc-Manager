@@ -31,11 +31,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Forklift\_AdapterTab.cshtml">
+    <Content Update="Views\Forklift\EditPartials\_AdapterTab.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Update="Views\Forklift\_InspectionTab.cshtml">
+    <Content Update="Views\Forklift\EditPartials\_InspectionTab.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
