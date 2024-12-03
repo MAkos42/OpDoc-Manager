@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Models;
 using System.Diagnostics.CodeAnalysis;
 using static OpDoc_Manager.Models.Forklift;
 
 namespace OpDoc_Manager.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<OpDocUser>
     {
         [SuppressMessage("Usage", "CS8618", Justification = "Properties are initialized by the Entity Framework")]
 #pragma warning disable CS8618 // Justification : Properties are initialized by the Entity Framework

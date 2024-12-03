@@ -1,8 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OpDoc_Manager.Data;
 using OpDoc_Manager.Models;
-using OpDoc_Manager.Models.DTO;
-using OpDoc_Manager.Service;
 using System.Diagnostics;
 
 namespace OpDoc_Manager.Controllers
@@ -11,32 +10,27 @@ namespace OpDoc_Manager.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly IForkliftModelsService _modelsService;
+        private readonly UserManager<OpDocUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IForkliftModelsService modelsService)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<OpDocUser> UserManager)
         {
             _logger = logger;
             _context = context;
-            _modelsService = modelsService;
+            _userManager = UserManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            if (_context.Forklifts.Count() == 0)
-                GenerateTestData();
+            GenerateTestData();
 
-            Forklift[] forklifts = _context.Forklifts.ToArray();
-
-            List<ForkliftModelSelectorDTO> modelList = await _modelsService.GetModelNamesAsync();
-
-
-            ViewBag.ModelList = modelList;
-
-            return View(forklifts);
+            return RedirectToAction("Index", "Forklift");
         }
 
         private void GenerateTestData()
         {
+            GenerateTestUsers();
+
+
 
             _context.ForkliftModels.RemoveRange(_context.ForkliftModels);
             Forklift.ModelInformation testModel1 = new Forklift.ModelInformation
@@ -324,6 +318,51 @@ namespace OpDoc_Manager.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private void GenerateTestUsers()
+        {
+            var testUsers = new List<OpDocUser>
+            {
+                new OpDocUser
+                {
+                    UserName = "fsandor@opdoc.com",
+                    Email = "fsandor@opdoc.com",
+                    FirstName = "Ferenczy",
+                    LastName = "Sándor",
+                    EmailConfirmed = true
+                },
+                new OpDocUser
+                {
+                    UserName = "szjozsef@opdoc.com",
+                    Email = "szjozsef@opdoc.com",
+                    FirstName = "Székely",
+                    LastName = "József",
+                    EmailConfirmed = true
+                },
+                new OpDocUser
+                {
+                    UserName = "tbela@opdoc.com",
+                    Email = "tbela@opdoc.com",
+                    FirstName = "Tóth",
+                    LastName = "Béla",
+                    EmailConfirmed = true
+                }
+            };
+
+            string[] roles = { "Admin", "Technician", "Operator" };
+
+            foreach (var user in testUsers)
+            {
+                if (_userManager.FindByEmailAsync(user.Email).Result == null)
+                {
+                    var result = _userManager.CreateAsync(user, "Test123!").Result;
+                    if (result.Succeeded)
+                    {
+                        _userManager.AddToRoleAsync(user, roles[testUsers.IndexOf(user)]).Wait();
+                    }
+                }
+            }
         }
     }
 }

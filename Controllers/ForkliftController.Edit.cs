@@ -49,7 +49,7 @@ namespace OpDoc_Manager.Controllers
             var manual = await _context.UserManualInformation.FirstOrDefaultAsync(um => um.Id == id);
             if (forklift.UserManual is null)
             {
-                return NotFound("User Manual");
+                return NotFound("OpDocUser Manual");
             }
 
             var adapter = await _context.AdapterInformation.Include(ai => ai.AdapterList).FirstOrDefaultAsync(ai => ai.Id == id);

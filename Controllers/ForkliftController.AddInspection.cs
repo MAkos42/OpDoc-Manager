@@ -12,7 +12,7 @@ namespace OpDoc_Manager.Controllers
         {
             result.Id = Guid.Empty;
 
-            //result.Technician = User.Identity.Name;
+            //result.Technician = OpDocUser.Identity.Name;
             result.Technician = "tempValue";
 
             Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == result.ForkliftId);

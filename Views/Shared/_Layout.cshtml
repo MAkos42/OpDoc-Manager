@@ -13,10 +13,20 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <a class="navbar-brand p-1" href=@Url.Action("Index", "Home")><h4>OpDoc Manager</h4></a>
+            <div class="p-1"></div>
+            <a class="navbar-brand text-primary p-1" href=@Url.Action("Index", "Home")><h4>OpDoc Manager</h4></a>
             <div class="h4">⏐</div>
-                <a class="nav-link" href=@Url.Action("Index", "Model")>Targonca modellek</a>
+            <ul class="navbar-nav nav-pills w-100">
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href=@Url.Action("Index", "Model")>Targonca modellek</a>
+                </li>
+                <li class="flex-fill"></li>
+
+                @await Html.PartialAsync("_LoginPartial")
+            </ul>
+            <div class="p-1"></div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">

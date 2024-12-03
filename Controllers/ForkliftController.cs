@@ -25,7 +25,14 @@ namespace OpDoc_Manager.Controllers
         // GET: Forklift/guid
         public async Task<IActionResult> Index(Forklift forklift)
         {
-            return await Task.FromResult(View(forklift));
+
+            Forklift[] forklifts = _context.Forklifts.ToArray();
+
+            List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
+
+            ViewBag.ModelList = modelList;
+
+            return View(forklifts);
         }
 
 
