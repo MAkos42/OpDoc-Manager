@@ -29,6 +29,10 @@
         <li class="nav-item">
             <a href="#maintenance" class="nav-link" id="maintenance-tab" role="tab" data-bs-toggle="tab" aria-controls="maintenance">Javítás vagy csere</a>
         </li>
+        <li class="flex-fill"/>
+        <li class="nav-item align-content-center">
+            <a class="btn btn-secondary" href=@Url.Action("Edit", "Forklift", new { id = Model.Id})>Vissza a targoncához</a>
+        </li>
     </ul>
 
 </nav>

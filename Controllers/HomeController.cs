@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OpDoc_Manager.Data;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 
 namespace OpDoc_Manager.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,7 +23,8 @@ namespace OpDoc_Manager.Controllers
 
         public async Task<IActionResult> Index()
         {
-            GenerateTestData();
+
+            //GenerateTestData();
 
             return RedirectToAction("Index", "Forklift");
         }

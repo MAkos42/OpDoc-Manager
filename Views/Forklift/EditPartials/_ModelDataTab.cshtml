@@ -24,8 +24,8 @@
 
     var dropdownAttributes = new { disabled = "", @class = "form-select form-select-disabled" };
     var numInputAttributes = new { type = "number", @class = "form-control", @readonly = "" };
-    var textboxAttributes = new Dictionary<string, object> { { "class", "form-control" }, { "readonly", "" }, { "placeholder", "n/a"} };
-    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+    var textboxAttributes = new { @@class = "form-control", @readonly= "" , placeholder= "n/a" };
+    var validationAttributes = new{ @@class = "text-danger" };
 }
 
 @model Forklift.ModelInformation

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Models;
@@ -6,6 +7,7 @@ namespace OpDoc_Manager.Controllers
 {
     public partial class ForkliftController : Controller
     {
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddMaintenance(Forklift.MaintenanceReport report)

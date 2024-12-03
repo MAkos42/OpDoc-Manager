@@ -83,6 +83,7 @@ namespace OpDoc_Manager.Controllers
 
             await GetModelNamesList();
 
+            SetViewBagAttributes();
             ViewBag.MSZ9750CAT = Json(Forklift.PeriodicInspectionInformation.MSZ9750CATEGORIES);
 
             adapter.AdapterList.Select(x => x.Id).ToArray();

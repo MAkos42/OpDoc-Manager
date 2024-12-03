@@ -19,7 +19,10 @@
         new SelectListItem("Bérlő", "LEASEE", false, true)
     };
 
-    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+    var textInputAttributes = ViewBag.TextInputAttributes as object;
+    var dateInputAttributes = ViewBag.DateInputAttributes as object;
+    var dropdownAttributes = ViewBag.DropdownAttributes as object;
+    var validationAttributes = ViewBag.ValidationAttributes as object;
 
 }
 
@@ -37,7 +40,7 @@
                     <span class="input-group-text col-md-6">
                         @Html.LabelFor(um => um.DateOfTransfer, "Átadás dátuma:")
                     </span>
-                    @Html.TextBoxFor(um => um.DateOfTransfer, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.TextBoxFor(um => um.DateOfTransfer, "{0:yyyy-MM-dd}", dateInputAttributes)
                     @Html.ValidationMessageFor(um => um.DateOfTransfer, "", validationAttributes)
                 </div>
             </div>
@@ -46,7 +49,7 @@
                 <span class="input-group-text col-md-5">
                     @Html.LabelFor(um => um.IsOnlineManual, "A használati utasítást az átadó:")
                 </span>
-                @Html.DropDownListFor(um => um.IsOnlineManual, webManualSelector, new { @class = "form-select" })
+                @Html.DropDownListFor(um => um.IsOnlineManual, webManualSelector, dropdownAttributes)
                 @Html.ValidationMessageFor(um => um.IsOnlineManual, "", validationAttributes)
             </div>
 
@@ -54,7 +57,7 @@
                 <span class="input-group-text col-md-2">
                     @Html.LabelFor(um => um.ManualWebsite, "Webcím:")
                 </span>
-                @Html.TextBoxFor(um => um.ManualWebsite, "", new { @class = "form-control" })
+                @Html.TextBoxFor(um => um.ManualWebsite, "", textInputAttributes)
                 @Html.ValidationMessageFor(um => um.ManualWebsite, "", validationAttributes)
             </div>
 
@@ -70,7 +73,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.SupplierType, "Átadó típusa:")
                                 </span>
-                                @Html.DropDownListFor(um => um.SupplierType, manualSupplierSelector, new { @class = "form-select" })
+                                @Html.DropDownListFor(um => um.SupplierType, manualSupplierSelector, dropdownAttributes)
                                 @Html.ValidationMessageFor(um => um.SupplierType, "", validationAttributes)
                             </div>
 
@@ -78,7 +81,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.SupplierSigneeName, "Képviselő neve:")
                                 </span>
-                                @Html.TextBoxFor(um => um.SupplierSigneeName, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.SupplierSigneeName, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.SupplierSigneeName, "", validationAttributes)
                             </div>
 
@@ -86,7 +89,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.SupplierSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um => um.SupplierSigneePosition, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.SupplierSigneePosition, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.SupplierSigneePosition, "", validationAttributes)
                             </div>
                         </div>
@@ -103,7 +106,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.RecipientType, "Átvevő típusa:")
                                 </span>
-                                @Html.DropDownListFor(um => um.RecipientType, manualRecipientSelector, new { @class = "form-select" })
+                                @Html.DropDownListFor(um => um.RecipientType, manualRecipientSelector, dropdownAttributes)
                                 @Html.ValidationMessageFor(um => um.RecipientType, "", validationAttributes)
                             </div>
 
@@ -111,7 +114,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.RecipientSigneeName, "Képviselő neve:\n ")
                                 </span>
-                                @Html.TextBoxFor(um => um.RecipientSigneeName, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.RecipientSigneeName, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.RecipientSigneeName, "", validationAttributes)
                             </div>
 
@@ -119,7 +122,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.RecipientSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um => um.RecipientSigneePosition, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.RecipientSigneePosition, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.RecipientSigneePosition, "", validationAttributes)
                             </div>
                         </div>
@@ -148,7 +151,7 @@
                     <span class="input-group-text col-md-6">
                         @Html.LabelFor(um => um.LeaseReturnDate, "Visszaadás dátuma:")
                     </span>
-                    @Html.TextBoxFor(um => um.LeaseReturnDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.TextBoxFor(um => um.LeaseReturnDate, "{0:yyyy-MM-dd}", dateInputAttributes)
                     @Html.ValidationMessageFor(um => um.LeaseReturnDate, "", validationAttributes)
                 </div>
             </div>
@@ -167,7 +170,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.LeaseeSigneeName, "Képviselő neve:\n ")
                                 </span>
-                                @Html.TextBoxFor(um => um.LeaseeSigneeName, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.LeaseeSigneeName, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.LeaseeSigneeName, "", validationAttributes)
                             </div>
 
@@ -175,7 +178,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.LeaseeSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um => um.LeaseeSigneePosition, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.LeaseeSigneePosition, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.LeaseeSigneePosition, "", validationAttributes)
                             </div>
 
@@ -194,7 +197,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.LeaserSigneeName, "Képviselő neve:")
                                 </span>
-                                @Html.TextBoxFor(um => um.LeaserSigneeName, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.LeaserSigneeName, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.LeaserSigneeName, "", validationAttributes)
                             </div>
 
@@ -202,7 +205,7 @@
                                 <span class="input-group-text col-md-5">
                                     @Html.LabelFor(um => um.LeaserSigneePosition, "Beosztása:")
                                 </span>
-                                @Html.TextBoxFor(um => um.LeaserSigneePosition, new { @class = "form-control" })
+                                @Html.TextBoxFor(um => um.LeaserSigneePosition, textInputAttributes)
                                 @Html.ValidationMessageFor(um => um.LeaserSigneePosition, "", validationAttributes)
                             </div>
 
@@ -221,6 +224,7 @@
 
 </div>
 
+@if(User.IsInRole("Admin")){
 
 <script>
 
@@ -294,3 +298,4 @@
     });
 
 </script>
+}

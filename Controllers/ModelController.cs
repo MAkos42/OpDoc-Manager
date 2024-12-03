@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Data;
 using OpDoc_Manager.Models;
@@ -6,6 +7,7 @@ using OpDoc_Manager.Service;
 
 namespace OpDoc_Manager.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ModelController : Controller
     {
 

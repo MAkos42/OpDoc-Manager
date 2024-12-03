@@ -22,6 +22,8 @@ namespace OpDoc_Manager.Controllers
             }
             returnList.Add(newAdapter);
 
+            SetViewBagAttributes();
+
             return await Task.FromResult(PartialView("EditPartials/_AdapterRecord", returnList));
         }
     }

@@ -1,7 +1,9 @@
 ﻿@{
     Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Operator";
 
-    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+    var textInputAttributes = ViewBag.TextInputAttributes as object;
+    var phoneInputAttributes = ViewBag.PhoneInputAttributes as object;
+    var validationAttributes = ViewBag.ValidationAttributes as object;
 
 }
 @model Forklift.OperatorInformation
@@ -16,7 +18,7 @@
                 <span class="input-group-text col-md-3">
                     @Html.LabelFor(o => o.OperationArea, "Üzemeltetés helye:")
                 </span>
-                @Html.TextBoxFor(o => o.OperationArea, new { @class = "form-control" })
+                @Html.TextBoxFor(o => o.OperationArea, textInputAttributes)
                 @Html.ValidationMessageFor(o => o.OperationArea, "", validationAttributes)
             </div>
         </div>
@@ -35,14 +37,14 @@
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.UserName, "Név:")
                         </span>
-                        @Html.TextBoxFor(o => o.UserName, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.UserName, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.UserName, "", validationAttributes)
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.UserPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o => o.UserPosition, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.UserPosition, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.UserPosition, "", validationAttributes)
                     </div>
                 </div>
@@ -59,14 +61,14 @@
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.TechnicianName, "Név:")
                         </span>
-                        @Html.TextBoxFor(o => o.TechnicianName, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.TechnicianName, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.TechnicianName, "", validationAttributes)
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.TechnicianPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o => o.TechnicianPosition, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.TechnicianPosition, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.TechnicianPosition, "", validationAttributes)
                     </div>
                 </div>
@@ -83,21 +85,21 @@
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.ForkliftAdministrator, "Név:")
                         </span>
-                        @Html.TextBoxFor(o => o.ForkliftAdministrator, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.ForkliftAdministrator, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.ForkliftAdministrator, "", validationAttributes)
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text col-md-3">
                             @Html.LabelFor(o => o.ForkliftAdminPosition, "Pozíció:")
                         </span>
-                        @Html.TextBoxFor(o => o.ForkliftAdminPosition, new { @class = "form-control" })
+                        @Html.TextBoxFor(o => o.ForkliftAdminPosition, textInputAttributes)
                         @Html.ValidationMessageFor(o => o.ForkliftAdminPosition, "", validationAttributes)
                     </div>
                     <div class="input-group">
                         <span class="input-group-text col-md-5">
                             @Html.LabelFor(o => o.ForkliftAdminContact, "Elérhetőség:")
                         </span>
-                        @Html.TextBoxFor(o => o.ForkliftAdminContact, new { @class = "form-control", Type = "tel", placeholder = "+36 00 123 4567" })
+                        @Html.TextBoxFor(o => o.ForkliftAdminContact, phoneInputAttributes)
                         @Html.ValidationMessageFor(o => o.ForkliftAdminContact, "", validationAttributes)
                     </div>
                 </div>

@@ -1,19 +1,23 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OpDoc_Manager.Data;
 using OpDoc_Manager.Models;
 
 namespace OpDoc_Manager.Controllers
 {
     public partial class ForkliftController : Controller
     {
+        [Authorize(Roles = "Technician")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddInspection(Forklift.PeriodicInspectionResult result)
         {
             result.Id = Guid.Empty;
 
-            //result.Technician = OpDocUser.Identity.Name;
-            result.Technician = "tempValue";
+            OpDocUser user = await _userManager.GetUserAsync(User);
+
+            result.Technician = $"{user.LastName} {user.FirstName}";
 
             Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == result.ForkliftId);
             if (inspectionInformaton is null)

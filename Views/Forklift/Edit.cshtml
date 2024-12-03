@@ -5,7 +5,7 @@
 @using OpDoc_Manager.Models
 @model Forklift
 
-@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post, new { @id = "form" }))
+@using (Html.BeginForm("SaveChanges", "Forklift", FormMethod.Post, new { @id = "Form" }))
 {
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
         <ul class="nav nav-tabs" role="tablist">
@@ -32,9 +32,18 @@
             </li>
             <li class="flex-fill">
             </li>
-            <li class="align-self-center">
-                <button type="submit" class="btn btn-primary">Mentés</button>
-            </li>
+            @if (User.IsInRole("Technician"))
+            {
+                <li class="align-self-center">
+                    <a href=@Url.Action("Technician") class="btn btn-primary">Műveletek</a>
+                </li>
+            }
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="align-self-center">
+                    <button type="submit" class="btn btn-primary">Mentés</button>
+                </li>
+            }
         </ul>
     </nav>
 

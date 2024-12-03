@@ -1,7 +1,10 @@
 ﻿@{
     Html.ViewData.TemplateInfo.HtmlFieldPrefix = "Adapter";
 
-    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+    var textInputAttributes = ViewBag.TextInputAttributes as object;
+    var adapterRecordTextAtt = ViewBag.AdapterRecordTextAtt as object;
+    var adapterRecordNumAtt = ViewBag.AdapterRecordNumAtt as object;
+    var validationAttributes = ViewBag.ValidationAttributes as object;
 
 }
 @model Forklift.AdapterInformation
@@ -32,7 +35,11 @@
                 <th class="col-md-3 align-content-center">Gyártási szám</th>
                 <th class="col-md-1 align-content-center">Saját Tömeg (kg)</th>
                 <th class="col-md-2 align-content-center">A tömegközéppont távolsága a felfogólaptól (mm)</th>
-                <th class="col-md-1 align-content-center text-center bg-light"><button id="AddAdapter" class="btn btn-primary">Új</button></th>
+                <th class="col-md-1 align-content-center text-center bg-light">
+                @if(User.IsInRole("Admin")){
+                    <button id="AddAdapter" class="btn btn-primary">Új</button>
+                }
+                </th>
             </tr>
         </thead>
         <tbody id="AdapterTable">
@@ -46,24 +53,26 @@
                         <td class="col-md-1 text-center bg-light number-col">@Model.AdapterList[i].Number</td>
 
                         <td class="p-1 col-md-3">
-                            @Html.TextBoxFor(a => a.AdapterList[i].Name, new { @class = "form-control border-0 record-value", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].Name, adapterRecordTextAtt)
                         </td>
                         <td class="p-1 col-md-1">
-                            @Html.TextBoxFor(a => a.AdapterList[i].Type, new { @class = "form-control border-0 record-value", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].Type, adapterRecordTextAtt)
                         </td>
                         <td class="p-1 col-md-3">
-                            @Html.TextBoxFor(a => a.AdapterList[i].SerialNumber, new { @class = "form-control border-0 record-value", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].SerialNumber, adapterRecordTextAtt)
                         </td>
                         <td class="p-1 col-md-1">
-                            @Html.TextBoxFor(a => a.AdapterList[i].Weight, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].Weight, adapterRecordNumAtt)
                         </td>
                         <td class="p-1 col-md-2">
-                            @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, new { @class = "form-control border-0 record-value", @type = "number", @required = "" })
+                            @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, adapterRecordNumAtt)
                         </td>
                         <td class="p-1 col-md-1 text-center align-content-center">
+                        @if(User.IsInRole("Admin")){
                             <button class="btn btn-danger delete-button">
                                 <i class="bi bi-trash3"></i>
                             </button>
+                        }
                         </td>
                     </tr>
                 }
