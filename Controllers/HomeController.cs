@@ -299,7 +299,7 @@ namespace OpDoc_Manager.Controllers
                         {
                             Date = new DateOnly(2024, 6, 5),
                             OperatingHours = 3520,
-                            RepairDetails = "Bal elsõ kerékgumi sérülés okozta cseréje."
+                            Description = "Bal elsõ kerékgumi sérülés okozta cseréje."
                         }
                     }
                 }

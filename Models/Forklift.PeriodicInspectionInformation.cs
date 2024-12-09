@@ -58,7 +58,9 @@ namespace OpDoc_Manager.Models
             [Column(TypeName = "text")]
             public InspectionCategory InspectionCategory { get; set; }
 
+            [MaxLength(100)]
             public string? ManufacturerInspectionId { get; set; }
+            [MaxLength(100)]
             public string? OperatorInspectionId { get; set; }
 
             public int? MSZ9750InspectionGroupId { get; set; }

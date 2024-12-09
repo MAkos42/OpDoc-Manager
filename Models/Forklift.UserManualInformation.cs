@@ -30,25 +30,34 @@ namespace OpDoc_Manager.Models
             [Column(TypeName = "text")]
             public Supplier SupplierType { get; set; }
             [Required]
+            [MaxLength(100)]
             public string SupplierSigneeName { get; set; }
             [Required]
+            [MaxLength(100)]
             public string SupplierSigneePosition { get; set; }
             [Required]
             [Column(TypeName = "text")]
             public Recipient RecipientType { get; set; }
             [Required]
+            [MaxLength(100)]
             public string RecipientSigneeName { get; set; }
             [Required]
+            [MaxLength(100)]
             public string RecipientSigneePosition { get; set; }
 
             [Required]
             public bool IsOnlineManual { get; set; }
+            [MaxLength(250)]
             public string? ManualWebsite { get; set; }
 
             public DateOnly? LeaseReturnDate { get; set; }
+            [MaxLength(100)]
             public string? LeaseeSigneeName { get; set; }
+            [MaxLength(100)]
             public string? LeaseeSigneePosition { get; set; }
+            [MaxLength(100)]
             public string? LeaserSigneeName { get; set; }
+            [MaxLength(100)]
             public string? LeaserSigneePosition { get; set; }
         }
     }

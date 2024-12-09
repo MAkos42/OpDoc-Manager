@@ -4,7 +4,7 @@
     {
         public enum InspectionType
         {
-            INSPECTION,
+            CONTROL,
             STRUCTURAL,
             MAIN
         }

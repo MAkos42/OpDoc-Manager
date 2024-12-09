@@ -25,7 +25,7 @@ namespace OpDoc_Manager.Controllers
                 return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca nem létezik!" });
             }
 
-            if (result.HasPassedInspection && result.Type != Forklift.InspectionType.INSPECTION)
+            if (result.HasPassedInspection && result.Type != Forklift.InspectionType.CONTROL)
             {
                 inspectionInformaton.LastInspectionDate = result.InspectionDate;
                 inspectionInformaton.NextInspectionOpHours = inspectionInformaton.NextInspectionOpHours + inspectionInformaton.StructuralInspectionOpHours;

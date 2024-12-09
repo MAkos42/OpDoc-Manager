@@ -11,6 +11,7 @@ namespace OpDoc_Manager.Models
         {
             [Required]
             [Column("Name")]
+            [MaxLength(100)]
             public string Name { get; set; }
 
             [ForeignKey("ModelInformation")]
@@ -24,12 +25,14 @@ namespace OpDoc_Manager.Models
             public int ManufacturingYear { get; set; }
             [Required]
             [Column("ProductionNumber")]
+            [MaxLength(50)]
             public string ProductionNumber { get; set; }
             [Required]
             [Column("EntryIntoService")]
             public DateOnly EntryIntoService { get; set; }
             [Required]
             [Column("EngineProductionNumber")]
+            [MaxLength(50)]
             public string EngineProductionNumber { get; set; }
 
         }

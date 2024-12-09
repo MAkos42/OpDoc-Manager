@@ -15,10 +15,13 @@ namespace OpDoc_Manager.Models
             [Required]
             public int Number { get; set; }
             [Required]
+            [MaxLength(100)]
             public string Name { get; set; }
             [Required]
+            [MaxLength(100)]
             public string Type { get; set; }
             [Required]
+            [MaxLength(100)]
             public string SerialNumber { get; set; }
             [Required]
             public int Weight { get; set; }

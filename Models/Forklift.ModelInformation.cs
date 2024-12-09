@@ -13,9 +13,11 @@ namespace OpDoc_Manager.Models
             public Guid Id { get; set; }
 
             [Required]
+            [MaxLength(50)]
             public string Manufacturer { get; set; }
 
             [Required]
+            [MaxLength(50)]
             public string Type { get; set; }
 
             [Required]

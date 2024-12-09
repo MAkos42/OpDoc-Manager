@@ -23,10 +23,12 @@ namespace OpDoc_Manager.Models
             [Required]
             public DateOnly InspectionDate { get; set; }
             [Required]
+            [MaxLength(100)]
             public string InspectionReportId { get; set; }
             [Required]
             public bool HasPassedInspection { get; set; }
             [Required]
+            [MaxLength(100)]
             public string Technician { get; set; }
         }
     }

@@ -18,7 +18,8 @@ namespace OpDoc_Manager.Models
             [Required]
             public int OperatingHours { get; set; }
             [Required]
-            public string RepairDetails { get; set; }
+            [MaxLength(1000)]
+            public string Description { get; set; }
         }
     }
 }

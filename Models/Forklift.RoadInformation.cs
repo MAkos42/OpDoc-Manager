@@ -59,9 +59,11 @@ namespace OpDoc_Manager.Models
             public int BackWheelCount { get; set; }
             [Required]
             [Column("FrontWheelSize")]
+            [MaxLength(50)]
             public string FrontWheelSize { get; set; }
             [Required]
             [Column("BackWheelSize")]
+            [MaxLength(50)]
             public string BackWheelSize { get; set; }
             [Required]
             [Column("FrontWheelPressure")]

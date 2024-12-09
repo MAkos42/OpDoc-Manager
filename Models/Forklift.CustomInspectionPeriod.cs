@@ -16,13 +16,14 @@ namespace OpDoc_Manager.Models
             [Required]
             public int Number { get; set; }
             [Required]
+            [MaxLength(100)]
             public string Name { get; set; }
             [Required]
             public int ManufacturerOperatingHours { get; set; }
 
-            public int? CheckInspectionPeriod { get; set; }
+            public int? ControlInspectionPeriod { get; set; }
             [Column(TypeName = "text")]
-            public InspectionPeriodType? CheckInspectionType { get; set; }
+            public InspectionPeriodType? ControlInspectionType { get; set; }
 
             [Required]
             public int StructuralInspectionPeriod { get; set; }

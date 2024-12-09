@@ -62,10 +62,10 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-text col-md-3">
-                                @Html.LabelFor(mr => mr.RepairDetails, "Leírás:")
+                                @Html.LabelFor(mr => mr.Description, "Leírás:")
                             </span>
-                            @Html.TextAreaFor(mr => mr.RepairDetails, new { @class = "form-control", rows=4 })
-                            @Html.ValidationMessageFor(mr => mr.RepairDetails, "", new { @class = "text-danger" })
+                            @Html.TextAreaFor(mr => mr.Description, new { @class = "form-control", rows = 4 })
+                            @Html.ValidationMessageFor(mr => mr.Description, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
