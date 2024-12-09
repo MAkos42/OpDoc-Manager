@@ -8,16 +8,19 @@
 @{
     if (@Model.DisplayConfirmAccountLink)
     {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
+        <p>
+            Az alkalmazás jelenleg nem rendelkezik email kiszolgálóval. A Rendszeradminisztrátor az alábbi üzenetet kapná:
+        </p>
+        <p>
+            @Model.UserFullName nevű felhasználó regisztrált a rendszerbe!
+            <a id="confirm-link" href="@Model.EmailConfirmationUrl">Kattints ide a regisztráció befejezéséhez és felhasználói szerepkör hozzárendeléséhez!</a>
+        </p>
     }
     else
     {
-<p>
-        Please check your email to confirm your account.
-</p>
+        <p>
+            A felhasználó aktiválási email el lett küldve egy adminisztrátornak.
+        </p>
     }
 }
 

@@ -2,7 +2,29 @@
 @model ConfirmEmailModel
 @{
     ViewData["Title"] = "Email megerősítés";
+
 }
 
 <h1>@ViewData["Title"]</h1>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div class="row">
+    <div class="cols-md-1"></div>
+    <div class="cols-md-8">
+        <p>
+            @Model.UserFullName felhasználó regisztrált a rendszerbe!<br/>
+            Adja meg az új felhasználó szerepkörét és erősítse meg a regisztrációt.
+        </p>
+
+        <form id="roleSelectForm" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="UserRole">Felhasználói szerepkör megadása</label>
+                <select asp-for="UserRole" asp-items="Model.RoleSelector" class="form-select" aria-required="true" placeholder="">
+                    <option value=""></option>
+                </select>
+                <span asp-validation-for="UserRole" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Regisztráció megerősítése</button>
+        </form>
+    </div>
+</div>
