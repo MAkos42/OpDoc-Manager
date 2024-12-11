@@ -10,15 +10,18 @@ var cultureInfo = new CultureInfo("hu-HU");
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
-// Add services to the container.
+// Szerverkapcsolat létrehozása
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+//Service kiszolgálók regisztrálása
 builder.Services.AddScoped<IForkliftModelsService, ForkliftModelsService>();
 builder.Services.AddScoped<IForkliftIndexService, ForkliftIndexService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//Felhasználókeezelõ beállítása
 builder.Services.AddDefaultIdentity<OpDocUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
@@ -29,6 +32,7 @@ builder.Services.AddDefaultIdentity<OpDocUser>(options =>
     options.SignIn.RequireConfirmedAccount = true;
 }).AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Kliens oldalú érték-ellenõrzés aktiválása
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddViewOptions(options => options.HtmlHelperOptions.ClientValidationEnabled = true); ;
 
 var app = builder.Build();
@@ -37,7 +41,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -50,6 +53,7 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+//Útvonalak regisztrálása
 app.MapControllerRoute(
     name: "ForkliftRoute",
     pattern: "{controller}/{id}/{action}",
@@ -69,7 +73,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages().WithStaticAssets();
 
-
+//Admin felhasználó generálása
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
