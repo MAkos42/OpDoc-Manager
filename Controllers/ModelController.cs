@@ -26,7 +26,7 @@ namespace OpDoc_Manager.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Models.DTO.ForkliftModelDTO> models = await _modelService.GetModelIndexInformationAsync();
+            List<Models.DTO.ForkliftModelIndexDTO> models = await _modelService.GetModelIndexInformationAsync();
 
             return View(models);
         }

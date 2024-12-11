@@ -29,9 +29,9 @@ namespace OpDoc_Manager.Service
             return await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Manufacturer == manufacturer && m.Type == type);
         }
 
-        public async Task<List<ForkliftModelDTO>> GetModelIndexInformationAsync()
+        public async Task<List<ForkliftModelIndexDTO>> GetModelIndexInformationAsync()
         {
-            return await _context.ForkliftModels.Select(m => new ForkliftModelDTO
+            return await _context.ForkliftModels.Select(m => new ForkliftModelIndexDTO
             {
                 Id = m.Id,
                 Manufacturer = m.Manufacturer,

@@ -2,7 +2,7 @@
 
 namespace OpDoc_Manager.Models.DTO
 {
-    public class ForkliftModelDTO
+    public class ForkliftModelIndexDTO
     {
         public Guid Id { get; set; }
         public string Manufacturer { get; set; }
