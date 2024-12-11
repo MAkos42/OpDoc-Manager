@@ -23,5 +23,7 @@ namespace OpDoc_Manager.Models
 
         //public ICollection<ManagerInformation> MaintenanceTechnicianRecord { get; set; }
 
+        [Required]
+        public bool IsActive { get; set; } = true;
     }
 }

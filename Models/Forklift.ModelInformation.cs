@@ -40,6 +40,9 @@ namespace OpDoc_Manager.Models
             public Guid EngineId { get; set; }
 
             public Engine Engine { get; set; }
+
+            [Required]
+            public bool IsActive { get; set; } = true;
         }
     }
 }

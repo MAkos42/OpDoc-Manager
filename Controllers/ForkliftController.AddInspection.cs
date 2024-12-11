@@ -26,7 +26,7 @@ namespace OpDoc_Manager.Controllers
             Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == result.ForkliftId);
             if (inspectionInformaton is null)
             {
-                return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca nem létezik!" });
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", error = "A megadott targonca nem létezik!" });
             }
 
             if (result.HasPassedInspection && result.Type != Forklift.InspectionType.CONTROL)
@@ -54,7 +54,7 @@ namespace OpDoc_Manager.Controllers
 
             await GetModelNamesList();
 
-            return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            return BadRequest(new { success = false, message = "Mentés sikertelen!", error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         }
     }
 }

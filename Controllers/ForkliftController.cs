@@ -85,7 +85,7 @@ namespace OpDoc_Manager.Controllers
         {
             List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
 
-            List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem(m.Manufacturer + " " + m.Type, m.Id.ToString())).ToList();
+            List<SelectListItem> modelNames = modelList.Select(m => new SelectListItem($"{m.Manufacturer} {m.Type}", m.Id.ToString())).ToList();
 
             ViewBag.ModelNames = modelNames;
         }

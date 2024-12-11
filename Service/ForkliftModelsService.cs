@@ -16,7 +16,7 @@ namespace OpDoc_Manager.Service
 
         public async Task<List<ForkliftModelSelectorDTO>> GetModelNamesAsync()
         {
-            return await _context.ForkliftModels.Select(t => new ForkliftModelSelectorDTO
+            return await _context.ForkliftModels.Where(m => m.IsActive).Select(t => new ForkliftModelSelectorDTO
             {
                 Id = t.Id,
                 Manufacturer = t.Manufacturer,
@@ -26,12 +26,12 @@ namespace OpDoc_Manager.Service
 
         public async Task<Forklift.ModelInformation?> GetModelByIndexAsync(string manufacturer, string type)
         {
-            return await _context.ForkliftModels.FirstOrDefaultAsync(m => m.Manufacturer == manufacturer && m.Type == type);
+            return await _context.ForkliftModels.Where(m => m.IsActive).FirstOrDefaultAsync(m => m.Manufacturer == manufacturer && m.Type == type);
         }
 
         public async Task<List<ForkliftModelIndexDTO>> GetModelIndexInformationAsync()
         {
-            return await _context.ForkliftModels.Select(m => new ForkliftModelIndexDTO
+            return await _context.ForkliftModels.Where(m => m.IsActive).Select(m => new ForkliftModelIndexDTO
             {
                 Id = m.Id,
                 Manufacturer = m.Manufacturer,

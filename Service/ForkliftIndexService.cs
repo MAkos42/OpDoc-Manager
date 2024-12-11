@@ -15,7 +15,7 @@ namespace OpDoc_Manager.Service
 
         public async Task<List<ForkliftIndexDTO>> GetIndexPageInformationAsync()
         {
-            return await _context.Forklifts.Select(f => new ForkliftIndexDTO
+            return await _context.Forklifts.Where(m => m.IsActive).Select(f => new ForkliftIndexDTO
             {
                 UniqueId = f.UniqueId,
                 Name = f.General.Name,

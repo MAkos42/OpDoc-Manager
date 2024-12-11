@@ -26,7 +26,7 @@ namespace OpDoc_Manager.Controllers
 
             if (model is null)
             {
-                return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca modell nem található!" });
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", error = "A megadott targonca modell nem található!" });
             }
 
             forklift.General.Model = model;
@@ -85,7 +85,7 @@ namespace OpDoc_Manager.Controllers
 
             await GetModelNamesList();
 
-            return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            return BadRequest(new { success = false, message = "Mentés sikertelen!", error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
 
         }
     }

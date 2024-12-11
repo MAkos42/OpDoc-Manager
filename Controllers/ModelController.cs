@@ -99,7 +99,30 @@ namespace OpDoc_Manager.Controllers
 
             FillViewBag();
 
-            return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            return BadRequest(new { success = false, message = "Mentés sikertelen!", error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SetInactive(Guid id)
+        {
+            Forklift.ModelInformation? model = await _context.ForkliftModels.FirstOrDefaultAsync(f => f.Id == id);
+            if (model == null)
+            {
+                return BadRequest(new { success = false, message = "Törlés sikertelen!", error = "A megadott tartgonca modell nem létezik!" });
+            }
+            bool hasActiveForklifts = await _context.Forklifts.AnyAsync(f => f.General.ModelId == id);
+            if (hasActiveForklifts)
+            {
+                return BadRequest(new { success = false, message = "Törlés sikertelen!", error = "Aktív targoncákkal rendelkező targonca nem törölhető!" });
+            }
+
+            model.IsActive = false;
+
+            _context.ForkliftModels.Update(model);
+
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true, message = "A targoncamodell sikeresen törölve a rendszerből!" });
         }
 
         private void FillViewBag()

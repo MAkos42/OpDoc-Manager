@@ -15,11 +15,11 @@ namespace OpDoc_Manager.Controllers
             Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == update.ForkliftId);
             if (inspectionInformaton is null)
             {
-                return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca nem létezik!" });
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", error = "A megadott targonca nem létezik!" });
             }
             if (inspectionInformaton.OperatingHours != update.Old)
             {
-                return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A régi üzemóra érték nem egyezett az adatbázisban tároltakkal!<br>Frissítse az ablakot a hiba elhárításhoz!" });
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", error = "A régi üzemóra érték nem egyezett az adatbázisban tároltakkal!<br>Frissítse az ablakot a hiba elhárításhoz!" });
             }
 
 
@@ -36,7 +36,7 @@ namespace OpDoc_Manager.Controllers
 
             var errorList = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
 
-            return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
+            return BadRequest(new { success = false, message = "Mentés sikertelen!", error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         }
     }
 }
