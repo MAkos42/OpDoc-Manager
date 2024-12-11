@@ -16,13 +16,15 @@ namespace OpDoc_Manager.Controllers
         private readonly ILogger<ForkliftController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly IForkliftModelsService _modelService;
+        private readonly IForkliftIndexService _indexService;
         private readonly UserManager<OpDocUser> _userManager;
 
-        public ForkliftController(ILogger<ForkliftController> logger, ApplicationDbContext context, IForkliftModelsService modelService, UserManager<OpDocUser> userManager)
+        public ForkliftController(ILogger<ForkliftController> logger, ApplicationDbContext context, IForkliftModelsService modelService, IForkliftIndexService indexService, UserManager<OpDocUser> userManager)
         {
             _logger = logger;
             _context = context;
             _modelService = modelService;
+            _indexService = indexService;
             _userManager = userManager;
         }
 
@@ -31,11 +33,8 @@ namespace OpDoc_Manager.Controllers
         public async Task<IActionResult> Index(Forklift forklift)
         {
 
-            Forklift[] forklifts = _context.Forklifts.ToArray();
+            List<ForkliftIndexDTO> forklifts = await _indexService.GetIndexPageInformation();
 
-            List<ForkliftModelSelectorDTO> modelList = await _modelService.GetModelNamesAsync();
-
-            ViewBag.ModelList = modelList;
             SetViewBagAttributes();
 
             return View(forklifts);

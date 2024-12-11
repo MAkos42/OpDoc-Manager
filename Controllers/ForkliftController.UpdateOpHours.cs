@@ -2,39 +2,39 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Models;
+using OpDoc_Manager.Models.DTO;
 
 namespace OpDoc_Manager.Controllers
 {
     public partial class ForkliftController : Controller
     {
-        [Authorize(Roles = "Technician Operator")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddMaintenance(Forklift.MaintenanceReport report)
+        [Authorize(Roles = "Operator")]
+        public async Task<IActionResult> UpdateOpHours(UpdateOpHoursDTO update)
         {
-            report.Id = Guid.Empty;
-
-            Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == report.ForkliftId);
+            Forklift.PeriodicInspectionInformation? inspectionInformaton = await _context.PeriodicInspectionInformation.FirstOrDefaultAsync(i => i.Id == update.ForkliftId);
             if (inspectionInformaton is null)
             {
                 return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A megadott targonca nem létezik!" });
             }
+            if (inspectionInformaton.OperatingHours != update.Old)
+            {
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = "A régi üzemóra érték nem egyezett az adatbázisban tároltakkal!<br>Frissítse az ablakot a hiba elhárításhoz!" });
+            }
 
-            ModelState.Clear();
-            TryValidateModel(report);
+
+            inspectionInformaton.OperatingHours = update.New;
 
             if (ModelState.IsValid)
             {
-                _context.MaintenanceReports.Add(report);
+                _context.PeriodicInspectionInformation.Update(inspectionInformaton);
 
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Javítás/Csere sikeresen hozzáadva." });
+                return Json(new { success = true, message = "Üzemóra szám sikeresen frissítve." });
             }
 
             var errorList = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
-
-            await GetModelNamesList();
 
             return BadRequest(new { success = false, message = "Mentés sikertelen!", errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage) });
         }

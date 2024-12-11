@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Technikusi műveletek";
+
+    UpdateOpHoursDTO update = new()
+            {
+                ForkliftId = Model.Id,
+                Old = Model.OperatingHours,
+                New = Model.OperatingHours
+            };
+
+    Forklift.MaintenanceReport maintenance = new()
+            {
+                ForkliftId = Model.Id,
+                OperatingHours = Model.OperatingHours,
+                Date = DateOnly.Parse(DateTime.Now.ToString("yyyy-MM-dd"))
+            };
+}
+
+@using OpDoc_Manager.Models
+@model Forklift.PeriodicInspectionInformation
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display:block">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#ophours" class="nav-link active" id="ophours-tab" role="tab" data-bs-toggle="tab" aria-controls="ophours">Üzemóra frissítése</a>
+        </li>
+        <li class="nav-item">
+            <a href="#maintenance" class="nav-link" id="maintenance-tab" role="tab" data-bs-toggle="tab" aria-controls="maintenance">Javítás vagy csere</a>
+        </li>
+        <li class="flex-fill"/>
+        <li class="nav-item align-content-center">
+            <a class="btn btn-secondary" href=@Url.Action("Edit", "Forklift", new { id = Model.Id})>Vissza a targoncához</a>
+        </li>
+    </ul>
+
+</nav>
+
+@Html.ValidationSummary(true)
+
+<div class="tab-content">
+
+    @* Update Operation Hours*@
+    @await Html.PartialAsync("OperatorPartials/_OpHoursTab", update)
+
+    @* Repairs and Replacements *@
+    @await Html.PartialAsync("TechnicianPartials/_MaintenanceTab", maintenance)
+
+</div>

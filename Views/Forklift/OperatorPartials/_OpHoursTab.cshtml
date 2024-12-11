@@ -1,0 +1,95 @@
+﻿@{
+
+    var reportTypeSelector = new List<SelectListItem>{
+        new SelectListItem("Ellenörző", "INSPEECTION"),
+        new SelectListItem("Szerkezeti", "STRUCTURAL", true),
+        new SelectListItem("Fővizsgálat", "MAIN")
+    };
+
+    var dropdownAttributes = new Dictionary<string, object> { { "class", "form-select" } };
+    var numInputAttributes = new Dictionary<string, object> { { "class", "form-control" }, { "type", "number" } };
+    var textboxAttributes = new Dictionary<string, object> { { "class", "form-control" } };
+    var validationAttributes = new Dictionary<string, object> { { "class", "text-danger" } };
+
+}
+@model UpdateOpHoursDTO
+
+<div class="tab-pane col-md-5 fade show active" id="ophours" role="tabpanel" aria-labelledby="ophours-tab">
+
+    @using (Html.BeginForm("UpdateOpHours", "Forklift", FormMethod.Post, new { @id = "OpHoursForm" }))
+    {
+        <div class="card">
+            <div class="card-header d-flex">
+                <div class="align-content-center">
+                    Üzemóra frissítése
+                </div>
+
+                <div class="flex-fill">
+                </div>
+                <div class="align-self-center">
+                    <button type="submit" class="btn-sm btn-primary">Mentés</button>
+                </div>
+            </div>
+            <div class="card-body">
+
+                @Html.HiddenFor(u => u.ForkliftId)
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-8">
+                                @Html.LabelFor(u => u.Old, "Üzemóra: (régi)")
+                            </span>
+                            @Html.TextBoxFor(u => u.Old, new { @class = "form-control", type = "number", @readonly = "" })
+                            @Html.ValidationMessageFor(u => u.Old, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text col-md-8">
+                                @Html.LabelFor(u => u.New, "Üzemóra: (Új)")
+                            </span>
+                            @Html.TextBoxFor(u => u.New, new { @class = "form-control", type = "number" })
+                            @Html.ValidationMessageFor(u => u.New, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    }
+
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('OpHoursForm');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            var isValid = $('#OpHoursForm').valid();
+            console.log(isValid);
+
+            if(isValid){
+                $.ajax({
+                    type: 'POST',
+                    url: form.getAttribute('action'),
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        alert('Success: ' + response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + xhr.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+</script>

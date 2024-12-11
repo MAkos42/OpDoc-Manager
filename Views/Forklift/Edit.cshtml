@@ -32,6 +32,12 @@
             </li>
             <li class="flex-fill">
             </li>
+            @if(User.IsInRole("Operator"))
+            {
+                <li class="align-self-center">
+                    <a href=@Url.Action("Operator") class="btn btn-primary">Műveletek</a>
+                </li>
+            }
             @if (User.IsInRole("Technician"))
             {
                 <li class="align-self-center">

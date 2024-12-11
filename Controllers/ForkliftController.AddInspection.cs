@@ -15,7 +15,11 @@ namespace OpDoc_Manager.Controllers
         {
             result.Id = Guid.Empty;
 
-            OpDocUser user = await _userManager.GetUserAsync(User);
+            OpDocUser? user = await _userManager.GetUserAsync(User);
+            if (user is null)
+            {
+                return NotFound("User");
+            }
 
             result.Technician = $"{user.LastName} {user.FirstName}";
 
