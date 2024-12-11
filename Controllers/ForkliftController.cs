@@ -33,7 +33,7 @@ namespace OpDoc_Manager.Controllers
         public async Task<IActionResult> Index(Forklift forklift)
         {
 
-            List<ForkliftIndexDTO> forklifts = await _indexService.GetIndexPageInformation();
+            List<ForkliftIndexDTO> forklifts = await _indexService.GetIndexPageInformationAsync();
 
             SetViewBagAttributes();
 

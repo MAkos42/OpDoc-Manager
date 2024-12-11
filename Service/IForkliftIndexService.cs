@@ -4,6 +4,6 @@ namespace OpDoc_Manager.Service
 {
     public interface IForkliftIndexService
     {
-        Task<List<ForkliftIndexDTO>> GetIndexPageInformation();
+        Task<List<ForkliftIndexDTO>> GetIndexPageInformationAsync();
     }
 }

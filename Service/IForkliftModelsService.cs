@@ -5,7 +5,7 @@ namespace OpDoc_Manager.Service
 {
     public interface IForkliftModelsService
     {
-        Task<List<ForkliftModelDTO>> GetModelBaseInformationAsync();
+        Task<List<ForkliftModelDTO>> GetModelIndexInformationAsync();
         Task<Forklift.ModelInformation?> GetModelByIndexAsync(string manufacturer, string type);
         Task<List<ForkliftModelSelectorDTO>> GetModelNamesAsync();
     }

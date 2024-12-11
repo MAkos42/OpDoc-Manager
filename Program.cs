@@ -11,7 +11,7 @@ CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
 // Szerverkapcsolat létrehozása
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration["ConnectionStrings:OpDocConnection"] ?? throw new InvalidOperationException("Connection string not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //Service kiszolgálók regisztrálása
 builder.Services.AddScoped<IForkliftModelsService, ForkliftModelsService>();
 builder.Services.AddScoped<IForkliftIndexService, ForkliftIndexService>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Felhasználókeezelõ beállítása

@@ -13,7 +13,7 @@ namespace OpDoc_Manager.Service
             _context = context;
         }
 
-        public async Task<List<ForkliftIndexDTO>> GetIndexPageInformation()
+        public async Task<List<ForkliftIndexDTO>> GetIndexPageInformationAsync()
         {
             return await _context.Forklifts.Select(f => new ForkliftIndexDTO
             {
