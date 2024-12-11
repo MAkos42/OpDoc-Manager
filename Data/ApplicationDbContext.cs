@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿#pragma warning disable CS8618 // Justification : Properties are initialized by the Entity Framework
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OpDoc_Manager.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -9,12 +10,10 @@ namespace OpDoc_Manager.Data
     public class ApplicationDbContext : IdentityDbContext<OpDocUser>
     {
         [SuppressMessage("Usage", "CS8618", Justification = "Properties are initialized by the Entity Framework")]
-#pragma warning disable CS8618 // Justification : Properties are initialized by the Entity Framework
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
                 : base(options)
         {
         }
-#pragma warning restore CS8618
 
         public DbSet<Forklift> Forklifts { get; set; }
         public DbSet<OperatorInformation> OperatorInformation { get; set; }
@@ -57,3 +56,4 @@ namespace OpDoc_Manager.Data
         }
     }
 }
+#pragma warning restore CS8618

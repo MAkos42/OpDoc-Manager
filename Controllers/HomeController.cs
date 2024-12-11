@@ -25,16 +25,13 @@ namespace OpDoc_Manager.Controllers
         {
 
             //GenerateTestData();
+            //GenerateTestUsers();
 
             return RedirectToAction("Index", "Forklift");
         }
 
         private void GenerateTestData()
         {
-            GenerateTestUsers();
-
-
-
             _context.ForkliftModels.RemoveRange(_context.ForkliftModels);
             Forklift.ModelInformation testModel1 = new Forklift.ModelInformation
             {
@@ -658,26 +655,26 @@ namespace OpDoc_Manager.Controllers
             {
                 new OpDocUser
                 {
-                    UserName = "fsandor@opdoc.com",
-                    Email = "fsandor@opdoc.com",
-                    FirstName = "Ferenczy",
-                    LastName = "Sándor",
+                    UserName = "testadmin@opdoc.com",
+                    Email = "testadmin@opdoc.com",
+                    FirstName = "Admin",
+                    LastName = "Teszt",
                     EmailConfirmed = true
                 },
                 new OpDocUser
                 {
-                    UserName = "szjozsef@opdoc.com",
-                    Email = "szjozsef@opdoc.com",
-                    FirstName = "Székely",
-                    LastName = "József",
+                    UserName = "testtech@opdoc.com",
+                    Email = "testtech@opdoc.com",
+                    FirstName = "Technikus",
+                    LastName = "Teszt",
                     EmailConfirmed = true
                 },
                 new OpDocUser
                 {
-                    UserName = "tbela@opdoc.com",
-                    Email = "tbela@opdoc.com",
-                    FirstName = "Tóth",
-                    LastName = "Béla",
+                    UserName = "testop@opdoc.com",
+                    Email = "testop@opdoc.com",
+                    FirstName = "Üzemeltetõ",
+                    LastName = "Teszt",
                     EmailConfirmed = true
                 }
             };

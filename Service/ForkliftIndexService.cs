@@ -27,7 +27,7 @@ namespace OpDoc_Manager.Service
                 OperatingHours = f.PeriodicInspection.OperatingHours,
                 NextInspectionOpHours = f.PeriodicInspection.NextInspectionOpHours,
                 NextInspectionDate = f.PeriodicInspection.NextInspectionDate
-            }).ToListAsync();
+            }).OrderBy(x => x.Operator).ThenBy(x => x.Name).ToListAsync();
         }
     }
 }
