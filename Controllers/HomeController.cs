@@ -237,7 +237,135 @@ namespace OpDoc_Manager.Controllers
                             Number = 2,
                             Name = "3000mm Simplex Carriage",
                             Type = "Simplex",
-                            SerialNumber = "CTZXAB1222001S300001",
+                            SerialNumber = "CTZXAB1222001S300002",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        }
+                    }
+                },
+                PeriodicInspection = new Forklift.PeriodicInspectionInformation
+                {
+                    OperatingHours = 4750,
+                    LastInspectionDate = new DateOnly(2024, 10, 11),
+                    InspectionCategory = Forklift.InspectionCategory.MSZ9721,
+                    MSZ9750InspectionGroupId = 1,
+                    StructuralInspectionOpHours = 1600,
+                    StructuralInspectionMonths = 8,
+                    MainInspectionPeriodOpHours = 4800,
+                    MainInspectionPeriodMonths = 24,
+                    NextInspectionOpHours = 5400,
+                    NextInspectionDate = new DateOnly(2025, 6, 11),
+                    InspectionResults = new List<Forklift.PeriodicInspectionResult>
+                    {
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 1600,
+                            CurrentOperatingHours= 1531,
+                            RequiredInspectionDate = new DateOnly(2023, 6, 11),
+                            InspectionDate = new DateOnly(2023, 6, 5),
+                            InspectionReportId = "CTZXAB1222001-2023-06-05",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 3200,
+                            CurrentOperatingHours= 3022,
+                            RequiredInspectionDate = new DateOnly(2024, 2, 11),
+                            InspectionDate = new DateOnly(2024, 1, 26),
+                            InspectionReportId = "CTZXAB1222001-2024-01-26",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.MAIN,
+                            RequiredOperationHours = 4800,
+                            CurrentOperatingHours= 4751,
+                            RequiredInspectionDate = new DateOnly(2024, 10, 11),
+                            InspectionDate = new DateOnly(2024, 10, 2),
+                            InspectionReportId = "CTZXAB1222001-2024-10-02",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        }
+                    },
+                    MaintenanceReports = new List<Forklift.MaintenanceReport>
+                    {
+                        new Forklift.MaintenanceReport
+                        {
+                            Date = new DateOnly(2024, 6, 5),
+                            OperatingHours = 3520,
+                            Description = "Bal elsõ kerékgumi sérülés okozta cseréje."
+                        }
+                    }
+                }
+            };
+
+            Forklift test2 = new Forklift
+            {
+                General = new Forklift.GeneralInformation
+                {
+                    Name = "TestForklift2",
+                    ManufacturingYear = 2022,
+                    ProductionNumber = "CTZXAB1222002EL",
+
+                    Model = testModel2,
+                    EngineProductionNumber = "TESTEL01",
+
+                    EntryIntoService = new DateOnly(2022, 10, 11)
+                },
+                Operator = new Forklift.OperatorInformation
+                {
+                    Owner = "Targonca Operations Kft.",
+                    OwnerAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    Operator = "Targonca Operations Kft.",
+                    OperatorAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    IsDifferentOperator = false,
+                    OperationArea = "Raktár A1",
+                    UserName = "Tóth Béla",
+                    UserPosition = "Targoncavezetõ",
+                    TechnicianName = "Székely József",
+                    TechnicianPosition = "Targoncaszerelõ",
+                    ForkliftAdministrator = "Ferenczy Sándor",
+                    ForkliftAdminPosition = "Emelõgép-ügyintézõ",
+                    ForkliftAdminContact = "+36201234567"
+                },
+                UserManual = new Forklift.UserManualInformation
+                {
+                    DateOfTransfer = new DateOnly(2022, 10, 11),
+                    IsOnlineManual = true,
+                    ManualWebsite = "https://www.niketrans.hu/site/assets/files/1081/chbc2037-d.pdf",
+                    SupplierType = Forklift.UserManualInformation.Supplier.DISTRIBUTOR,
+                    SupplierSigneeName = "Pálffy János",
+                    SupplierSigneePosition = "Adásvételi technikus",
+                    RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
+                    RecipientSigneeName = "Ferenczy Sándor",
+                    RecipientSigneePosition = "Emelõgép-ügyintézõ"
+                },
+                Adapter = new Forklift.AdapterInformation
+                {
+                    Name = "3A",
+                    AdapterList = new List<Forklift.AdapterRecord>
+                    {
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 1,
+                            Name = "3300mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1222002ELS330001",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        },
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 2,
+                            Name = "3000mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1222002ELS300002",
                             Weight = 85,
                             LoadCenterDistance = 500
                         }
@@ -264,7 +392,7 @@ namespace OpDoc_Manager.Controllers
                             CurrentOperatingHours= 1531,
                             RequiredInspectionDate = new DateOnly(2023, 6, 11),
                             InspectionDate = new DateOnly(2023, 6, 5),
-                            InspectionReportId = "CTZXAB1222001-2023-06-05-001",
+                            InspectionReportId = "CTZXAB1222002EL-2023-06-05",
                             HasPassedInspection = true,
                             Technician = "Székely József"
                         },
@@ -274,9 +402,9 @@ namespace OpDoc_Manager.Controllers
                             Type = Forklift.InspectionType.STRUCTURAL,
                             RequiredOperationHours = 3200,
                             CurrentOperatingHours= 3022,
-                            RequiredInspectionDate = new DateOnly(2024, 2, 5),
+                            RequiredInspectionDate = new DateOnly(2024, 2, 11),
                             InspectionDate = new DateOnly(2024, 1, 26),
-                            InspectionReportId = "CTZXAB1222001-2024-01-26-001",
+                            InspectionReportId = "CTZXAB1222002EL-2024-01-26",
                             HasPassedInspection = true,
                             Technician = "Székely József"
                         },
@@ -288,32 +416,233 @@ namespace OpDoc_Manager.Controllers
                             CurrentOperatingHours= 4751,
                             RequiredInspectionDate = new DateOnly(2024, 10, 11),
                             InspectionDate = new DateOnly(2024, 10, 2),
-                            InspectionReportId = "CTZXAB1222001-2024-10-02-001",
+                            InspectionReportId = "CTZXAB1222002EL-2024-10-02",
                             HasPassedInspection = true,
                             Technician = "Székely József"
                         }
-                    },
-                    MaintenanceReports = new List<Forklift.MaintenanceReport>
+                    }
+                }
+            };
+
+            Forklift test3 = new Forklift
+            {
+                General = new Forklift.GeneralInformation
+                {
+                    Name = "TestForklift3",
+                    ManufacturingYear = 2022,
+                    ProductionNumber = "CTZXAB1222003",
+
+                    Model = testModel1,
+                    EngineProductionNumber = "TEST0103",
+
+                    EntryIntoService = new DateOnly(2023, 1, 3)
+                },
+                Operator = new Forklift.OperatorInformation
+                {
+                    Owner = "Targonca Operations Kft.",
+                    OwnerAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    Operator = "Targonca Operations Kft.",
+                    OperatorAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    IsDifferentOperator = false,
+                    OperationArea = "Raktár A1",
+                    UserName = "Tóth Béla",
+                    UserPosition = "Targoncavezetõ",
+                    TechnicianName = "Székely József",
+                    TechnicianPosition = "Targoncaszerelõ",
+                    ForkliftAdministrator = "Ferenczy Sándor",
+                    ForkliftAdminPosition = "Emelõgép-ügyintézõ",
+                    ForkliftAdminContact = "+36201234567"
+                },
+                UserManual = new Forklift.UserManualInformation
+                {
+                    DateOfTransfer = new DateOnly(2023, 1, 3),
+                    IsOnlineManual = true,
+                    ManualWebsite = "https://www.niketrans.hu/site/assets/files/1081/chbc2037-d.pdf",
+                    SupplierType = Forklift.UserManualInformation.Supplier.DISTRIBUTOR,
+                    SupplierSigneeName = "Pálffy János",
+                    SupplierSigneePosition = "Adásvételi technikus",
+                    RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
+                    RecipientSigneeName = "Ferenczy Sándor",
+                    RecipientSigneePosition = "Emelõgép-ügyintézõ"
+                },
+                Adapter = new Forklift.AdapterInformation
+                {
+                    Name = "3A",
+                    AdapterList = new List<Forklift.AdapterRecord>
                     {
-                        new Forklift.MaintenanceReport
+                        new Forklift.AdapterRecord
                         {
-                            Date = new DateOnly(2024, 6, 5),
-                            OperatingHours = 3520,
-                            Description = "Bal elsõ kerékgumi sérülés okozta cseréje."
+                            Number = 1,
+                            Name = "3300mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1223001S330001",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        },
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 2,
+                            Name = "3000mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1223001S300002",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        }
+                    }
+                },
+                PeriodicInspection = new Forklift.PeriodicInspectionInformation
+                {
+                    OperatingHours = 4755,
+                    LastInspectionDate = new DateOnly(2024, 10, 11),
+                    InspectionCategory = Forklift.InspectionCategory.MSZ9721,
+                    MSZ9750InspectionGroupId = 1,
+                    StructuralInspectionOpHours = 1600,
+                    StructuralInspectionMonths = 8,
+                    MainInspectionPeriodOpHours = 4800,
+                    MainInspectionPeriodMonths = 24,
+                    NextInspectionOpHours = 4800,
+                    NextInspectionDate = new DateOnly(2025, 1, 3),
+                    InspectionResults = new List<Forklift.PeriodicInspectionResult>
+                    {
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 1600,
+                            CurrentOperatingHours= 1531,
+                            RequiredInspectionDate = new DateOnly(2023, 8, 3),
+                            InspectionDate = new DateOnly(2023, 7, 29),
+                            InspectionReportId = "CTZXAB1223001-2023-07-29",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 3200,
+                            CurrentOperatingHours= 3022,
+                            RequiredInspectionDate = new DateOnly(2024, 4, 3),
+                            InspectionDate = new DateOnly(2024, 3, 26),
+                            InspectionReportId = "CTZXAB1223001-2024-03-26",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        }
+                    }
+                }
+            };
+
+
+            Forklift test4 = new Forklift
+            {
+                General = new Forklift.GeneralInformation
+                {
+                    Name = "TestForklift4",
+                    ManufacturingYear = 2022,
+                    ProductionNumber = "CTZXAB1222003",
+
+                    Model = testModel1,
+                    EngineProductionNumber = "TEST0103",
+
+                    EntryIntoService = new DateOnly(2023, 1, 3)
+                },
+                Operator = new Forklift.OperatorInformation
+                {
+                    Owner = "Targonca Operations Kft.",
+                    OwnerAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    Operator = "Targonca Operations Kft.",
+                    OperatorAddress = "3501 Miskolc, Tesztpálya út. 31.",
+                    IsDifferentOperator = false,
+                    OperationArea = "Raktár A1",
+                    UserName = "Tóth Béla",
+                    UserPosition = "Targoncavezetõ",
+                    TechnicianName = "Székely József",
+                    TechnicianPosition = "Targoncaszerelõ",
+                    ForkliftAdministrator = "Ferenczy Sándor",
+                    ForkliftAdminPosition = "Emelõgép-ügyintézõ",
+                    ForkliftAdminContact = "+36201234567"
+                },
+                UserManual = new Forklift.UserManualInformation
+                {
+                    DateOfTransfer = new DateOnly(2023, 1, 3),
+                    IsOnlineManual = true,
+                    ManualWebsite = "https://www.niketrans.hu/site/assets/files/1081/chbc2037-d.pdf",
+                    SupplierType = Forklift.UserManualInformation.Supplier.DISTRIBUTOR,
+                    SupplierSigneeName = "Pálffy János",
+                    SupplierSigneePosition = "Adásvételi technikus",
+                    RecipientType = Forklift.UserManualInformation.Recipient.CUSTOMER,
+                    RecipientSigneeName = "Ferenczy Sándor",
+                    RecipientSigneePosition = "Emelõgép-ügyintézõ"
+                },
+                Adapter = new Forklift.AdapterInformation
+                {
+                    Name = "3A",
+                    AdapterList = new List<Forklift.AdapterRecord>
+                    {
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 1,
+                            Name = "3300mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1223001S330001",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        },
+                        new Forklift.AdapterRecord
+                        {
+                            Number = 2,
+                            Name = "3000mm Simplex Carriage",
+                            Type = "Simplex",
+                            SerialNumber = "CTZXAB1223001S300002",
+                            Weight = 85,
+                            LoadCenterDistance = 500
+                        }
+                    }
+                },
+                PeriodicInspection = new Forklift.PeriodicInspectionInformation
+                {
+                    OperatingHours = 4801,
+                    LastInspectionDate = new DateOnly(2024, 10, 11),
+                    InspectionCategory = Forklift.InspectionCategory.MSZ9721,
+                    MSZ9750InspectionGroupId = 1,
+                    StructuralInspectionOpHours = 1600,
+                    StructuralInspectionMonths = 8,
+                    MainInspectionPeriodOpHours = 4800,
+                    MainInspectionPeriodMonths = 24,
+                    NextInspectionOpHours = 4800,
+                    NextInspectionDate = new DateOnly(2025, 1, 3),
+                    InspectionResults = new List<Forklift.PeriodicInspectionResult>
+                    {
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 1600,
+                            CurrentOperatingHours= 1531,
+                            RequiredInspectionDate = new DateOnly(2023, 8, 3),
+                            InspectionDate = new DateOnly(2023, 7, 29),
+                            InspectionReportId = "CTZXAB1223001-2023-07-29",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
+                        },
+
+                        new Forklift.PeriodicInspectionResult
+                        {
+                            Type = Forklift.InspectionType.STRUCTURAL,
+                            RequiredOperationHours = 3200,
+                            CurrentOperatingHours= 3022,
+                            RequiredInspectionDate = new DateOnly(2024, 4, 3),
+                            InspectionDate = new DateOnly(2024, 3, 26),
+                            InspectionReportId = "CTZXAB1223001-2024-03-26",
+                            HasPassedInspection = true,
+                            Technician = "Székely József"
                         }
                     }
                 }
             };
 
             _context.Forklifts.Add(test);
-            _context.OperatorInformation.Add(test.Operator);
-            if (test.Operator.LeaseInformation != null)
-                _context.LeaseInformation.Add(test.Operator.LeaseInformation);
-            _context.UserManualInformation.Add(test.UserManual);
-            _context.AdapterInformation.Add(test.Adapter);
-            _context.Adapters.AddRange(test.Adapter.AdapterList);
-            _context.PeriodicInspectionInformation.Add(test.PeriodicInspection);
-            _context.periodicInspections.AddRange(test.PeriodicInspection.InspectionResults);
+            _context.Forklifts.Add(test2);
+            _context.Forklifts.Add(test3);
+            _context.Forklifts.Add(test4);
             _context.SaveChanges();
         }
 
