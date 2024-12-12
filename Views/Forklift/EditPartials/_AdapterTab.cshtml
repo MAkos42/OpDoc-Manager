@@ -36,9 +36,10 @@
                 <th class="col-md-1 align-content-center">Saját Tömeg (kg)</th>
                 <th class="col-md-2 align-content-center">A tömegközéppont távolsága a felfogólaptól (mm)</th>
                 <th class="col-md-1 align-content-center text-center bg-light">
-                @if(User.IsInRole("Admin")){
-                    <button id="AddAdapter" class="btn btn-primary">Új</button>
-                }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button id="AddAdapter" class="btn btn-primary">Új</button>
+                    }
                 </th>
             </tr>
         </thead>
@@ -68,11 +69,12 @@
                             @Html.TextBoxFor(a => a.AdapterList[i].LoadCenterDistance, adapterRecordNumAtt)
                         </td>
                         <td class="p-1 col-md-1 text-center align-content-center">
-                        @if(User.IsInRole("Admin")){
-                            <button class="btn btn-danger delete-button">
-                                <i class="bi bi-trash3"></i>
-                            </button>
-                        }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <button class="btn btn-danger delete-button">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            }
                         </td>
                     </tr>
                 }
@@ -141,14 +143,16 @@
         const adapterTable = document.getElementById('AdapterTable');
 
         button.addEventListener('click', function (event) {
-            event.preventDefault();
-            var row = button.closest('tr');
-            row.remove();
+            if(confirm('Biztos törölni szeretné az adaptert?')){
+                
+                event.preventDefault();
+                var row = button.closest('tr');
+                row.remove();
 
-            reorderRecords();
-
-            if (adapterTable.querySelectorAll('tr.row').length === 0)
-                adapterTable.innerHTML = '<tr id="error-row"><td colspan="7" class="text-center">Adapter lista üres.</td></tr>';
+                reorderRecords();
+                if (adapterTable.querySelectorAll('tr.row').length === 0)
+                    adapterTable.innerHTML = '<tr id="error-row"><td colspan="7" class="text-center">Adapter lista üres.</td></tr>';
+            }
         });
     }
 

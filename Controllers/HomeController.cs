@@ -21,7 +21,7 @@ namespace OpDoc_Manager.Controllers
             _userManager = UserManager;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 
             //GenerateTestData();

@@ -144,6 +144,37 @@
 
             </div>
         </div>
+
+    <div class="card col-md-7 mb-3">
+        <div class="card-header">
+            Következő vizsgálat
+        </div>
+
+        <div class="card-body row">
+
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text col-md-6">
+                        @Html.LabelFor(pi => pi.NextInspectionOpHours, "Üzemóra:")
+                    </span>
+
+                        @Html.TextBoxFor(pi => pi.NextInspectionOpHours, new { @class = "form-control", type = "number", @readonly = "" })
+                        @Html.ValidationMessageFor(pi => pi.NextInspectionOpHours, "", validationAttributes)
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="input-group ">
+                    <span class="input-group-text col-md-7 ">
+                        @Html.LabelFor(pi => pi.NextInspectionDate, "Utolsó vizsgálat dátuma:")
+                    </span>
+                        @Html.TextBoxFor(pi => pi.NextInspectionDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @readonly = "" })
+                        @Html.ValidationMessageFor(pi => pi.NextInspectionDate, "", validationAttributes)
+                </div>
+            </div>
+
+        </div>
+    </div>
     }
 
     <div class="card mb-3">

@@ -32,7 +32,7 @@
             </li>
             <li class="flex-fill">
             </li>
-            @if(User.IsInRole("Operator"))
+            @if (User.IsInRole("Operator"))
             {
                 <li class="align-self-center">
                     <a href=@Url.Action("Operator") class="btn btn-primary">Műveletek</a>
@@ -89,6 +89,13 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('Form');
+
+        document.getElementById('UserManual_SupplierType').disabled = false;
+        document.getElementById('UserManual_RecipientType'). disabled = false;
+        document.querySelectorAll('#modeldata input').forEach(input => function () {
+            input.disabled = true;
+        })
+
         form.addEventListener('submit', function (event) {
             event.preventDefault();
             var isValid = $('#Form').valid();
