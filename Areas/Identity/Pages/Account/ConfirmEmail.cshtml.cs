@@ -26,6 +26,8 @@ namespace OpDoc_Manager.Areas.Identity.Pages.Account
         [BindProperty]
         public string UserRole { get; set; }
 
+        public bool HasRole { get; set; } = false;
+
         public List<SelectListItem> RoleSelector { get; set; }
 
 
@@ -74,6 +76,14 @@ namespace OpDoc_Manager.Areas.Identity.Pages.Account
 
             UserFullName = $"{user.LastName} {user.FirstName}";
 
+            if ((await _userManager.GetRolesAsync(user)).Count > 0)
+            {
+                HasRole = true;
+                StatusMessage = "";
+
+                return Page();
+            }
+
             RoleSelector = new(){
                 new("Adminisztrátor", "Admin"),
                 new("Technikus", "Technician"),
@@ -96,7 +106,7 @@ namespace OpDoc_Manager.Areas.Identity.Pages.Account
 
             var result2 = await _userManager.AddToRoleAsync(user, UserRole);
             StatusMessage = result2.Succeeded ? $"{user.LastName} {user.FirstName} regisztrációja sikeres!" : "Hiba! A felhasználói szerepkör hozzárendelése sikertelen.";
-
+            HasRole = result.Succeeded & result2.Succeeded;
             return Page();
         }
     }

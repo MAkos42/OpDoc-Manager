@@ -11,6 +11,12 @@
 <div class="row">
     <div class="cols-md-1"></div>
     <div class="cols-md-8">
+        @if(Model.HasRole){
+            <p>
+                @Model.UserFullName már fel lett véve a rendszerbe.
+            </p>
+        }
+        else{
         <p>
             @Model.UserFullName felhasználó regisztrált a rendszerbe!<br/>
             Adja meg az új felhasználó szerepkörét és erősítse meg a regisztrációt.
@@ -26,5 +32,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Regisztráció megerősítése</button>
         </form>
+        }
     </div>
 </div>
