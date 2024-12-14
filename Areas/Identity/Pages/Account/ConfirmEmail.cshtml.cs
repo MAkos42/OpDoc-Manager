@@ -90,7 +90,7 @@ namespace OpDoc_Manager.Areas.Identity.Pages.Account
                 new("Üzemeltető", "Operator")
             };
 
-            if (UserRole == "")
+            if (UserRole is null)
             {
                 StatusMessage = "Hiba! Felhasználói szerepkör megadása kötelező!";
                 return Page();
