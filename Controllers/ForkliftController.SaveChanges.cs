@@ -72,9 +72,12 @@ namespace OpDoc_Manager.Controllers
 
             if (ModelState.IsValid)
             {
+                bool isCreated = false;
+
                 if (forklift.UniqueId == Guid.Empty)
                 {
                     _context.Add(forklift);
+                    isCreated = true;
                 }
                 else
                 {
@@ -82,7 +85,7 @@ namespace OpDoc_Manager.Controllers
                 }
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Változások sikeresen elmentve." });
+                return Json(new { success = true, message = isCreated ? "Targonca sikeresen felvéve a rendszerbe." : "Változások sikeresen elmentve." });
             }
 
             var errorList = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();

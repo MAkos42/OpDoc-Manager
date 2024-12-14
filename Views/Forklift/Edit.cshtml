@@ -109,6 +109,7 @@
                     processData: false,
                     contentType: false,
                     success: function (response) {
+                        window.location.href = window.location.href
                         alert('Success: ' + response.message);
                     },
                     error: function (xhr, status, error) {
