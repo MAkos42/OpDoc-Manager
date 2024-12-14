@@ -15,6 +15,10 @@ namespace OpDoc_Manager.Controllers
             forklift.Operator.Id = forklift.UniqueId;
             forklift.UserManual.Id = forklift.UniqueId;
             forklift.Adapter.Id = forklift.UniqueId;
+            if (forklift.Adapter.AdapterList is null)
+            {
+                return BadRequest(new { success = false, message = "Mentés sikertelen!", error = "Adapter megadása kötelezõ!" });
+            }
             forklift.PeriodicInspection.Id = forklift.UniqueId;
             foreach (var record in forklift.Adapter.AdapterList)
             {

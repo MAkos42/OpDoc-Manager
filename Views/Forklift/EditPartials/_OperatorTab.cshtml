@@ -103,126 +103,125 @@
         </div>
     </div>
 
+        <div class="card fade" id="LeaseOnly">
+            <div class="card-header">
+                <h4>Bérlési információ</h4>
+            </div>
 
-    <div class="card fade" id="LeaseOnly">
-        <div class="card-header">
-            <h4>Bérlési információ</h4>
-        </div>
+            <div class="card-body row">
 
-        <div class="card-body row">
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Bérbeadó
-                    </div>
-
-                    <div class="card-body">
-
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaserCompany, "Szervezet neve:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserCompany, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserCompany, "", validationAttributes)
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Bérbeadó
                         </div>
 
-                        <div class="row mb-3">
-                            A bérleti szerződést aláíró személy:
-                        </div>
+                        <div class="card-body">
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaserName, "Neve:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserName, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserName, "", validationAttributes)
-                        </div>
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaserCompany, "Szervezet neve:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaserCompany, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserCompany, "", validationAttributes)
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaserOrgUnit, "Szervezeti egység:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserOrgUnit, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserOrgUnit, "", validationAttributes)
-                        </div>
+                            <div class="row mb-3">
+                                A bérleti szerződést aláíró személy:
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaserPosition, "Beosztás:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserPosition, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserPosition, "", validationAttributes)
-                        </div>
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaserName, "Neve:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaserName, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserName, "", validationAttributes)
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaserContact, "Elérhetőség:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaserContact, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserContact, "", validationAttributes)
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaserOrgUnit, "Szervezeti egység:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaserOrgUnit, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserOrgUnit, "", validationAttributes)
+                            </div>
+
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaserPosition, "Beosztás:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaserPosition, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserPosition, "", validationAttributes)
+                            </div>
+
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaserContact, "Elérhetőség:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaserContact, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaserContact, "", validationAttributes)
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Bérbevevő
-                    </div>
-
-                    <div class="card-body">
-
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaseeCompany, "Szervezet neve:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeCompany, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeCompany, "", validationAttributes)
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Bérbevevő
                         </div>
 
-                        <div class="row mb-3">
-                            A bérleti szerződést aláíró személy:
-                        </div>
+                        <div class="card-body">
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaseeName, "Neve:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeName, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeName, "", validationAttributes)
-                        </div>
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaseeCompany, "Szervezet neve:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaseeCompany, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeCompany, "", validationAttributes)
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaseeOrgUnit, "Szervezeti egység:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeOrgUnit, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeOrgUnit, "", validationAttributes)
-                        </div>
+                            <div class="row mb-3">
+                                A bérleti szerződést aláíró személy:
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaseePosition, "Beosztás:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseePosition, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseePosition, "", validationAttributes)
-                        </div>
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaseeName, "Neve:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaseeName, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeName, "", validationAttributes)
+                            </div>
 
-                        <div class="input-group row mb-3">
-                            <span class="input-group-text col-md-4">
-                                @Html.LabelFor(o => o.LeaseInformation.LeaseeContact, "Elérhetőség:")
-                            </span>
-                            @Html.TextBoxFor(o => o.LeaseInformation.LeaseeContact, textInputAttributes)
-                            @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeContact, "", validationAttributes)
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaseeOrgUnit, "Szervezeti egység:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaseeOrgUnit, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeOrgUnit, "", validationAttributes)
+                            </div>
+
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaseePosition, "Beosztás:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaseePosition, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseePosition, "", validationAttributes)
+                            </div>
+
+                            <div class="input-group row mb-3">
+                                <span class="input-group-text col-md-4">
+                                    @Html.LabelFor(o => o.LeaseInformation.LeaseeContact, "Elérhetőség:")
+                                </span>
+                                @Html.TextBoxFor(o => o.LeaseInformation.LeaseeContact, differentOperatorAtt)
+                                @Html.ValidationMessageFor(o => o.LeaseInformation.LeaseeContact, "", validationAttributes)
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
-
-
-        </div>
 
 
 
