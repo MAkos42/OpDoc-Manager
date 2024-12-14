@@ -25,7 +25,6 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //Felhasználókeezelõ beállítása
 builder.Services.AddDefaultIdentity<OpDocUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
     options.User.RequireUniqueEmail = true;
     options.Password.RequiredLength = 8;
     options.SignIn.RequireConfirmedEmail = true;
