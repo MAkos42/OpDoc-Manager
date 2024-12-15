@@ -110,10 +110,10 @@ namespace OpDoc_Manager.Controllers
             {
                 return BadRequest(new { success = false, message = "Törlés sikertelen!", error = "A megadott tartgonca modell nem létezik!" });
             }
-            bool hasActiveForklifts = await _context.Forklifts.AnyAsync(f => f.General.ModelId == id);
+            bool hasActiveForklifts = await _context.Forklifts.AnyAsync(f => f.IsActive && f.General.ModelId == id);
             if (hasActiveForklifts)
             {
-                return BadRequest(new { success = false, message = "Törlés sikertelen!", error = "Aktív targoncákkal rendelkező targonca nem törölhető!" });
+                return BadRequest(new { success = false, message = "Törlés sikertelen!", error = "Aktív targoncákkal rendelkező modellinformáció nem törölhető!" });
             }
 
             model.IsActive = false;

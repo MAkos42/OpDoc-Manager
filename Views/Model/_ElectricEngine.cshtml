@@ -40,7 +40,7 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-text col-md-8">
-                                @Html.LabelFor(m => m.NominalBatteryCapacity, "Névleges kapacitás:")
+                                @Html.LabelFor(m => m.NominalBatteryCapacity, "Névleges kapacitás: (Ah)")
                             </span>
                             @Html.TextBoxFor(m => m.NominalBatteryCapacity, numInputAttributes)
                             @Html.ValidationMessageFor(m => m.NominalBatteryCapacity, "", validationAttributes)
@@ -50,7 +50,7 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-text col-md-8">
-                                @Html.LabelFor(m => m.BatteryVoltage, "Kapocsfeszültség:")
+                                @Html.LabelFor(m => m.BatteryVoltage, "Kapocsfeszültség: (V)")
                             </span>
                             @Html.TextBoxFor(m => m.BatteryVoltage, numInputAttributes)
                             @Html.ValidationMessageFor(m => m.BatteryVoltage, "", validationAttributes)
