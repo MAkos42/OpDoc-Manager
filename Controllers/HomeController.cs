@@ -24,8 +24,8 @@ namespace OpDoc_Manager.Controllers
         public IActionResult Index()
         {
 
-            //GenerateTestData();
-            //GenerateTestUsers();
+            GenerateTestData();
+            GenerateTestUsers();
 
             return RedirectToAction("Index", "Forklift");
         }
@@ -498,7 +498,7 @@ namespace OpDoc_Manager.Controllers
                     MainInspectionPeriodOpHours = 4800,
                     MainInspectionPeriodMonths = 24,
                     NextInspectionOpHours = 4800,
-                    NextInspectionDate = new DateOnly(2025, 1, 3),
+                    NextInspectionDate = new DateOnly(2025, 2, 3),
                     InspectionResults = new List<Forklift.PeriodicInspectionResult>
                     {
                         new Forklift.PeriodicInspectionResult
@@ -535,10 +535,10 @@ namespace OpDoc_Manager.Controllers
                 {
                     Name = "TestForklift4",
                     ManufacturingYear = 2022,
-                    ProductionNumber = "CTZXAB1222003",
+                    ProductionNumber = "CTZXAB1222004",
 
                     Model = testModel1,
-                    EngineProductionNumber = "TEST0103",
+                    EngineProductionNumber = "TEST0104",
 
                     EntryIntoService = new DateOnly(2023, 1, 3)
                 },
