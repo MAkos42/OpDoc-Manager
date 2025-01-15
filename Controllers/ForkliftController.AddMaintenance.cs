@@ -7,7 +7,7 @@ namespace OpDoc_Manager.Controllers
 {
     public partial class ForkliftController : Controller
     {
-        [Authorize(Roles = "Technician Operator")]
+        [Authorize(Roles = "Technician,Operator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddMaintenance(Forklift.MaintenanceReport report)
