@@ -24,8 +24,8 @@ namespace OpDoc_Manager.Controllers
         public IActionResult Index()
         {
 
-            GenerateTestData();
-            GenerateTestUsers();
+            //GenerateTestData();
+            //GenerateTestUsers();
 
             return RedirectToAction("Index", "Forklift");
         }

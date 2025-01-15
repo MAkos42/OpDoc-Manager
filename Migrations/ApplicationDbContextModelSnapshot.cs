@@ -243,7 +243,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("UniqueId");
 
-                    b.ToTable("Forklifts");
+                    b.ToTable("Forklifts", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+AdapterInformation", b =>
@@ -258,7 +258,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdapterInformation");
+                    b.ToTable("AdapterInformation", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+AdapterRecord", b =>
@@ -298,7 +298,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasIndex("ForkliftId");
 
-                    b.ToTable("Adapters");
+                    b.ToTable("Adapters", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+CustomInspectionPeriod", b =>
@@ -345,7 +345,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasIndex("ForkliftId");
 
-                    b.ToTable("CustomInspectionPeriods");
+                    b.ToTable("CustomInspectionPeriods", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+Engine", b =>
@@ -360,7 +360,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Engines");
+                    b.ToTable("Engines", (string)null);
 
                     b.UseTptMappingStrategy();
                 });
@@ -422,7 +422,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LeaseInformation");
+                    b.ToTable("LeaseInformation", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+MaintenanceReport", b =>
@@ -449,7 +449,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasIndex("ForkliftId");
 
-                    b.ToTable("MaintenanceReports");
+                    b.ToTable("MaintenanceReports", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ModelInformation", b =>
@@ -497,7 +497,7 @@ namespace OpDoc_Manager.Migrations
                     b.HasIndex("Manufacturer", "Type")
                         .IsUnique();
 
-                    b.ToTable("ForkliftModels");
+                    b.ToTable("ForkliftModels", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+OperatorInformation", b =>
@@ -575,7 +575,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OperatorInformation");
+                    b.ToTable("OperatorInformation", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+PeriodicInspectionInformation", b =>
@@ -624,7 +624,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PeriodicInspectionInformation");
+                    b.ToTable("PeriodicInspectionInformation", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+PeriodicInspectionResult", b =>
@@ -669,7 +669,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasIndex("ForkliftId");
 
-                    b.ToTable("periodicInspections");
+                    b.ToTable("periodicInspections", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+UserManualInformation", b =>
@@ -736,7 +736,7 @@ namespace OpDoc_Manager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserManualInformation");
+                    b.ToTable("UserManualInformation", (string)null);
                 });
 
             modelBuilder.Entity("OpDoc_Manager.Models.Forklift+ElectricEngine", b =>
@@ -935,7 +935,7 @@ namespace OpDoc_Manager.Migrations
 
                             b1.HasIndex("ModelId");
 
-                            b1.ToTable("Forklifts");
+                            b1.ToTable("Forklifts", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ForkliftUniqueId");
@@ -1047,7 +1047,7 @@ namespace OpDoc_Manager.Migrations
 
                             b1.HasKey("ModelInformationId");
 
-                            b1.ToTable("ForkliftModels");
+                            b1.ToTable("ForkliftModels", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ModelInformationId");
@@ -1160,7 +1160,7 @@ namespace OpDoc_Manager.Migrations
 
                             b1.HasKey("ModelInformationId");
 
-                            b1.ToTable("ForkliftModels");
+                            b1.ToTable("ForkliftModels", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ModelInformationId");

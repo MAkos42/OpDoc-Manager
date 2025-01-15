@@ -26,6 +26,8 @@ namespace OpDoc_Manager.Controllers
                 record.Number = forklift.Adapter.AdapterList.IndexOf(record) + 1;
             }
 
+            List<Guid> adapterIds = forklift.Adapter.AdapterList.Select(x => x.Id).ToList();
+
             Forklift.ModelInformation? model = await _context.ForkliftModels.Include(m => m.Engine).FirstOrDefaultAsync(m => m.Id == forklift.General.ModelId);
 
             if (model is null)
@@ -82,6 +84,9 @@ namespace OpDoc_Manager.Controllers
                 else
                 {
                     _context.Update(forklift);
+
+                    _context.Adapters.RemoveRange(await _context.Adapters.Where(a => a.ForkliftId == forklift.UniqueId && !adapterIds.Contains(a.Id)).ToListAsync());
+
                 }
                 await _context.SaveChangesAsync();
 
